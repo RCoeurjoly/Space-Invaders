@@ -4,7 +4,7 @@
 // 
 // Create Date:    00:30:38 03/19/2013 
 // Design Name: 
-// Module Name:    ship
+// Module Name:    bullet
 // Project Name: 
 // Target Devices: 
 // Tool versions: 

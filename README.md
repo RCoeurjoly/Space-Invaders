@@ -1,2 +1,4 @@
 # Space-Invaders
-Space Invaders in Verilog for the iCE40 H1K
+This is a work in progress.
+
+Port of VHDL Space Invaders (https://github.com/David-Estevez/spaceinvaders) to Verilog for the iCE40 H1K
