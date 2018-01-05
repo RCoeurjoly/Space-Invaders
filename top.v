@@ -38,17 +38,12 @@ module top(
    assign Y_format = Y_vga;
    wire [4:0] 	       posH_ship;
    
-   /*
-   assign red = red_vga;
-   assign green = green_vga;
-   assign blue = blue_vga;
-   */
    
    //-- Instanciar el vga
    vgaSI vgaSI1(
 		.dclk(dclk),
 		.clr(clr),
-		.RGB(rgb_VGA),//this works just OK
+		.RGB(rgb_VGA),
 		.hsync(hsync),
 		.vsync(vsync),
 		.red_vga(red),
@@ -64,8 +59,8 @@ module top(
 			.VGAx(X_format),
 			.VGAy(Y_format),
 			.clr(clr),
-			.invArray(20'b10101010101010101010),
-			.invLine(4'b1100),
+			.invArray(20'b00101010101010101010),
+			.invLine(4'b0010),
 			.shipX(posH_ship),
 			.bulletX(4'b0100),
 			.bulletY(3'b011),
