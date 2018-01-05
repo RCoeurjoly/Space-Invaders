@@ -1,3 +1,6 @@
 *.asc
 *.blif
 *.txt
+*.log
+*.bin
+#*.*# //temporal emacs files
