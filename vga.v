@@ -17,17 +17,17 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module vgaSI(
-	     input wire       dclk, //input clock: 12MHz
-	     input wire       clr, //asynchronous reset
-	     input wire [2:0] RGB,
+module vga(
+	     input wire       clk_12MHz, //input clock: 12MHz
+	     input wire       reset, //asynchronous reset
+	     input wire [2:0] rgb,
 	     output wire      hsync, //horizontal sync out
 	     output wire      vsync, //vertical sync out
-	     output reg       red_vga, //red vga output
-	     output reg       green_vga, //green vga output
-	     output reg       blue_vga, //blue vga output
-	     output reg [9:0] X,
-	     output reg [9:0] Y    
+	     output reg       red, //red vga output
+	     output reg       green, //green vga output
+	     output reg       blue, //blue vga output
+	     output reg [9:0] x,
+	     output reg [9:0] y    
 	     );
    //wire 		      clk = dclk;
    
@@ -41,62 +41,62 @@ module vgaSI(
 		   .DIVQ(3'b100),
 		   .FILTER_RANGE(3'b001),
 		   ) uut (
-			  .REFERENCECLK(dclk),
-			  .PLLOUTCORE(clk),
+			  .REFERENCECLK(clk_12MHz),
+			  .PLLOUTCORE(clk_85MHz),
 			  .RESETB(1'b1),
 			  .BYPASS(1'b0)
 			  );
    
    /**/
    // video structure constants
-   parameter activeHvideo = 640;
-   parameter activeVvideo = 480;
-   parameter hfp = 32; 	// horizontal front porch length
-   parameter hpulse = 48; 	// hsync pulse length
-   parameter hbp = 112; 	// horizontal back porch length
-   parameter vfp = 1; 		// vertical front porch length
-   parameter vpulse = 3; 	// vsync pulse length
-   parameter vbp = 25; 	// vertical back porch length
-   parameter blackH = hfp + hpulse + hbp;
-   parameter blackV = vfp + vpulse + vbp;
-   parameter hpixels = blackH + activeHvideo;
-   parameter vlines = blackV + activeVvideo;
+   parameter ACTIVE_H_VIDEO = 640;
+   parameter ACTIVE_V_VIDEO = 480;
+   parameter HFP = 32; 	// horizontal front porch length
+   parameter H_PULSE = 48; 	// hsync pulse length
+   parameter HBP = 112; 	// horizontal back porch length
+   parameter VFP = 1; 		// vertical front porch length
+   parameter V_PULSE = 3; 	// vsync pulse length
+   parameter VBP = 25; 	// vertical back porch length
+   parameter BLACK_H = HFP + H_PULSE + HBP;
+   parameter BLACK_V = VFP + V_PULSE + VBP;
+   parameter H_PIXELS = BLACK_H + ACTIVE_H_VIDEO;
+   parameter V_LINES = BLACK_V + ACTIVE_V_VIDEO;
      
    // active horizontal video is therefore: 784 - 144 = 640
    // active vertical video is therefore: 515 - 35 = 480
    
    // registers for storing the horizontal & vertical counters
-   reg [9:0] 	       hc;
-   reg [9:0] 	       vc;
+   reg [9:0] 	       h_counter;
+   reg [9:0] 	       v_counter;
    
    
    initial begin
-      X <= 0;
-      Y <= 0;
-      hc <= 0;
-      vc <= 0;
-      red_vga <= 0;
-      green_vga <= 0;
-      blue_vga <= 0;
+      x <= 0;
+      y <= 0;
+      h_counter <= 0;
+      v_counter <= 0;
+      red <= 0;
+      green <= 0;
+      blue <= 0;
    end
-   always @(posedge clk)
+   always @(posedge clk_85MHz)
      begin
 	// keep counting until the end of the line
-	if (hc < hpixels - 1)
-	  hc <= hc + 1;	
+	if (h_counter < H_PIXELS - 1)
+	  h_counter <= h_counter + 1;	
 	else
 	  // When we hit the end of the line, reset the horizontal
 	  // counter and increment the vertical counter.
 	  // If vertical counter is at the end of the frame, then
 	  // reset that one too.
 	  begin
-	     hc <= 0;
-	     if (vc < vlines - 1)
-	       vc <= vc + 1;
+	     h_counter <= 0;
+	     if (v_counter < V_LINES - 1)
+	       v_counter <= v_counter + 1;
 	     else
-	       vc <= 0;
-	  end // else: !if(hc < hpixels - 1)
-     end // always @ (posedge clk)
+	       v_counter <= 0;
+	  end // else: !if(h_counters < H_PIXELS - 1)
+     end // always @ (posedge clk_85MHz)
    
 
    
@@ -105,11 +105,11 @@ module vgaSI(
    // "assign" statements are a quick way to
    // give values to variables of type: wire
    
-   wire activevideo;
+   wire active_video;
    
-   assign hsync = (hc >= hfp && hc < hfp + hpulse) ? 0:1;
-   assign vsync = (vc >= vfp && vc < vfp + vpulse) ? 0:1;
-   assign activevideo = (hc >= hfp + hpulse + hbp && vc >= vfp + vpulse + vbp) ? 1:0;
+   assign hsync = (h_counter >= HFP && h_counter < HFP + H_PULSE) ? 0:1;
+   assign vsync = (v_counter >= VFP && v_counter < VFP + V_PULSE) ? 0:1;
+   assign active_video = (h_counter >= HFP + H_PULSE + HBP && v_counter >= VFP + V_PULSE + VBP) ? 1:0;
 
 
    // display 100% saturation colorbars
@@ -121,27 +121,27 @@ module vgaSI(
    // equivalent to the following: always @(hc, vc)
    // Assignment statements can only be used on type "reg" and should be of the "blocking" type: =   
    
-   always @(posedge clk)
+   always @(posedge clk_85MHz)
      begin
 	// first check if we're within vertical active video range
-	if (activevideo == 1)
+	if (active_video == 1)
 
 	// we're outside active video range so display black
 	  begin
-	     red_vga <= RGB[2];
-	     green_vga <= RGB[1];
-	     blue_vga <= RGB[0];
-	     X <= hc - hfp - hpulse - hbp;
-	     Y <= vc - vfp - vpulse - vbp;
-	  end // if (activevideo == 1)
+	     red <= rgb[2];
+	     green <= rgb[1];
+	     blue <= rgb[0];
+	     x <= h_counter - HFP - H_PULSE - HBP;
+	     y <= v_counter - VFP - V_PULSE - VBP;
+	  end // if (active_video == 1)
 	else
 	  begin
-	     red_vga <= 0;
-	     green_vga <= 0;
-	     blue_vga <= 0;
-	     X <= 0;
-	     Y <= 0;
+	     red <= 0;
+	     green <= 0;
+	     blue <= 0;
+	     x <= 0;
+	     y <= 0;
 	  end
-     end // always @ (posedge clk)
+     end // always @ (posedge clk_85MHz)
  
 endmodule
