@@ -58,8 +58,31 @@ module invaders(
 	     moving <= 0;
 	     hit1 <= 0;	     
 	  end
+	else
+	  begin
+	     if (clear == 1)
+	       begin
+		  direction <= 0;
+		  moving <= 0;
+		  hit1 <= 0;
+	       end
+	     else
+	       begin
+		  if (start == 1)
+		    moving <= 1;
+		  else if (tick == 1) && (moving == 1)
+		    begin
+		       if (direction == 0)
+			 begin
+			    if (invArray[39:38] != "00")
+			      invLine <=
+			 end
+		       
+			 
+		    end
+	       end
+	  end
 	
-	     
      end
 
 endmodule

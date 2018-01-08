@@ -22,6 +22,7 @@ module top(
 	   input wire  clr, //asynchronous reset
 	   input wire  left,
 	   input wire  right,
+	   input wire  shoot,
 	   output wire hsync, //horizontal sync out
 	   output wire vsync, //vertical sync out
 	   output wire red, //red vga output
@@ -60,11 +61,11 @@ module top(
 			.VGAy(Y_format),
 			.clr(clr),
 			.invArray(20'b00101010101010101010),
-			.invLine(4'b0010),
+			.invLine(5'b00100),
 			.shipX(posH_ship),
-			.bulletX(4'b0100),
-			.bulletY(3'b011),
-			.bulletFlying(1),
+			.bulletX(o_bulletX),
+			.bulletY(o_bulletY),
+			.bulletFlying(BulletActive),
 			.rgb(rgb_game)
 	    );
 
@@ -73,7 +74,7 @@ module top(
 				     .clr(clr),
 				     .enable(1),
 				     .in(left),
-				     .detected(left_ship)
+				     .detected(left)
 				     );
 
    edgeDetectorDebounce rightDetector(
@@ -81,7 +82,7 @@ module top(
 				      .clr(clr),
 				      .enable(1),
 				      .in(right),
-				      .detected(right_ship)
+				      .detected(right)
 				      );
    ship ship1(
 	      .dclk(dclk),
@@ -92,5 +93,24 @@ module top(
 	      .enable(1),
 	      .posH(posH_ship)
 	      );
-   
+
+   player player1(
+		  .clk(dclk),
+		  .reset(0),
+		  .clear(clr),
+		  .left(left),
+		  .right(right),
+		  .start(1),
+		  .shoot(shoot),
+		  .ScoreClear(0),
+		  .Enable(1),
+		  .hit(left),
+		  .posShip(posShip),
+		  .startPulse(startPulse),
+		  .bulletX(o_bulletX),
+		  .bulletY(o_bulletY),
+		  .BulletActive(BulletActive),
+		  .Score(Score)
+		  );
+
 endmodule

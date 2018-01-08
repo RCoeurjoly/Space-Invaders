@@ -29,12 +29,12 @@ module vgaSI(
 	     output reg [9:0] X,
 	     output reg [9:0] Y    
 	     );
-   //wire 		      clk = dclk;
+   wire 		      clk = dclk;
    
    
-   wire 		      clk;
+   //wire 		      clk;
    
-   SB_PLL40_CORE #(.FEEDBACK_PATH("SIMPLE"),
+   /*SB_PLL40_CORE #(.FEEDBACK_PATH("SIMPLE"),
                    .PLLOUT_SELECT("GENCLK"),
 		   .DIVR(4'b0000),
 		   .DIVF(7'b0101111),
@@ -47,7 +47,7 @@ module vgaSI(
 			  .BYPASS(1'b0)
 			  );
    
-   /**/
+   */
    // video structure constants
    parameter activeHvideo = 640;
    parameter activeVvideo = 480;
