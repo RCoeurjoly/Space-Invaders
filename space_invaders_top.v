@@ -18,7 +18,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module top(
-	   input wire  clk, //input clock: 12MHz
+	   input wire  clk_12MHz, //input clock: 12MHz
 	   input wire  reset, //asynchronous reset
 	   input wire  left,
 	   input wire  right,
@@ -32,60 +32,56 @@ module top(
    
    //-- Instanciar el vga
    vga vga1(
-		.clk(clk),
-		.reset(reset),
-		.rgb(rgb),
-		.hsync(hsync),
-		.vsync(vsync),
-		.red(red),
-		.green(green),
-		.blue(blue),
-		.x(x),
-		.y(y)
-		);
-
-   
+	    .clk_12MHz(clk_12MHz),
+	    .rgb(rgb),
+	    .hsync(hsync),
+	    .vsync(vsync),
+	    .red(red),
+	    .green(green),
+	    .blue(blue),
+	    .x(x),
+	    .y(y)
+	    );
    
    format_vga format_vga1(
-			.x(x),
-			.y(y),
-			.reset(reset),
-			.invaders_array(20'b00101010101010101010),
-			.invaders_line(5'b00100),
-			.ship_x(ship_x),
-			.bullet_x(bullet_x),
-			.bullet_y(bullet_x),
-			.bullet_flying(bullet_flying),
-			.rgb(rgb)
-	    );
-
+			  .x(x),
+			  .y(y),
+			  .reset(reset),
+			  .invaders_array(20'b00101010101010101010),
+			  .invaders_line(5'b00100),
+			  .ship_x(ship_x),
+			  .bullet_x(bullet_x),
+			  .bullet_y(bullet_x),
+			  .bullet_flying(bullet_flying),
+			  .rgb(rgb)
+			  );
+   
    edge_detector_debounce left_detector(
-				     .clk(clk),
-				     .reset(reset),
-				     .enable(1),
-				     .in(left),
-				     .detected(left_debounced)
-				     );
-
+					.clk_12MHz(clk_12MHz),
+					.reset(reset),
+					.enable(1),
+					.in(left),
+					.detected(left_debounced)
+					);
+   
    edge_detector_debounce right_detector(
-				      .clk(clk),
-				      .reset(reset),
-				      .enable(1),
-				      .in(right),
-				      .detected(right_debounced)
-				      );
+					 .clk_12MHz(clk_12MHz),
+					 .reset(reset),
+					 .enable(1),
+					 .in(right),
+					 .detected(right_debounced)
+					 );
    ship ship1(
-	      .clk(clk),
-	      .reset(0),
-	      .clr(clr),
-	      .left_command(left_debounced),
-	      .right_command(right_debounced),
+	      .clk_12MHz(clk_12MHz),
+	      .reset(reset),
+	      .left_debounced(left_debounced),
+	      .right_debounced(right_debounced),
 	      .enable(1),
 	      .ship_x(ship_x)
 	      );
-
+   
    player player1(
-		  .clk(clk),
+		  .clk_12MHz(clk_12MHz),
 		  .reset(0),
 		  .clear(clr),
 		  .left(left),

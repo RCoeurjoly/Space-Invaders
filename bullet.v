@@ -8,7 +8,7 @@
 // Project Name: 
 // Target Devices: 
 // Tool versions: 
-// Description: 
+// Description: When shot, starting to fly just over the ship
 //
 // Dependencies: 
 //
@@ -18,59 +18,59 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module bullet(
-	    input wire 	     clk,
-	    input wire 	     reset,
-	    input wire 	     clr, //asynchronous reset
+	    input wire 	     clk_12MHz,
+	    input wire 	     reset, //synchronous reset
 	    input wire 	     enable,
 	    input wire 	     hit,
 	    input wire 	     shoot,
-	    input wire [4:0] posH,
-	    output reg 	     flying,
-	    output reg [4:0] bulletX,
-	    output reg [3:0] bulletY
+	    input wire [4:0] ship_x,
+	    output reg 	     bullet_flying,
+	    output reg [4:0] bullet_x,
+	    output reg [3:0] bullet_y
 	    );   
    
    initial
      begin
-	bulletX <= 0;
-	bulletY <= 14;
-	flying <= 0;
+	bullet_x <= 0;
+	bullet_y <= 14;
+	bullet_flying <= 0;
      end
    
-   always @(posedge clk)
+   always @(posedge clk_12MHz)
      begin
 	// reset condition
 	if (reset == 1)
 	  begin
-	     bulletX <= 0;
-	     bulletY <= 14;
-	     flying <= 0;
+	     bullet_flying <= 0;
+	     bullet_x <= 0;
+	     bullet_y <= 14;
 	  end
-	else if (enable == 1)
+	else
 	  begin
-	     if (flying == 0 && shoot == 1)
+	     if (bullet_flying == 0 && shoot == 1)
 	       begin
-		  flying = 1;
-		  //starting just over the ship
-		  bulletX <= posH;
-		  bulletY <= 13;
+		  bullet_flying = 1;
+		  bullet_x <= ship_x;
+		  bullet_y <= 13;
 	       end
-	     if (hit == 1)
+	     else if (hit == 1)
 	       begin
-		  flying <= 0;
-		  bulletY <= 14; 
+		  bullet_flying <= 0;
+		  bullet_x <= 0;
+		  bullet_y <= 14; 
 	       end
-	     if (flying == 1)
+	     else if (bullet_flying == 1)
 	       begin
-		  if (bulletY == 0)
+		  if (bullet_y == 0)
 		    begin
 		       // Reached the top of the screen
-		       flying = 0;
-		       bulletY = 14;
+		       bullet_flying = 0;
+		       bullet_x <= ship_x;
+		       bullet_y = 14;
 		    end
 		  else
-		    bulletY = bulletY - 1;
-	       end // if (flying == 1)
+		    bullet_y = bullet_y - 1;
+	       end // if (bullet_flying == 1)
 	  end // if (enable == 1)
-     end // always @ (posedge clk)
+     end // always @ (posedge clk_12MHz)
 endmodule

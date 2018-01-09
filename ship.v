@@ -19,16 +19,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 module ship(
 	    input wire 	     clk,
-	    input wire 	     reset,
-	    input wire 	     clear, //asynchronous reset
-	    input wire 	     left,
-	    input wire 	     right,
+	    input wire 	     reset, //synchronous reset
+	    input wire 	     left_debounced,
+	    input wire 	     right_debounced,
 	    input wire 	     enable,
 	    output reg [4:0] ship_x 
 	    );   
 
    initial begin
-      posH <= 5;
+      ship_x <= 5;
    end
    
    always @(posedge clk_85MHz)
@@ -39,9 +38,9 @@ module ship(
 	  end
 	else if (enable == 1)
 	    begin
-	       if (left == 1 && ship_x != 0)
+	       if (left_debounced == 1 && ship_x != 0)
 		 ship_x <= ship_x - 1;
-	       else if (right == 1 && ship_x != 19)
+	       else if (right_debounced == 1 && ship_x != 19)
 		 ship_x <= ship_x + 1;
 	    end
 	  else

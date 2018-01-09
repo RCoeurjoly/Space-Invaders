@@ -19,7 +19,6 @@
 //////////////////////////////////////////////////////////////////////////////////
 module vga(
 	     input wire       clk_12MHz, //input clock: 12MHz
-	     input wire       reset, //asynchronous reset
 	     input wire [2:0] rgb,
 	     output wire      hsync, //horizontal sync out
 	     output wire      vsync, //vertical sync out
