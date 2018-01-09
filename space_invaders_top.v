@@ -30,9 +30,13 @@ module top(
 	   output wire blue //blue vga output 	       
 	   );   
    
-   //-- Instanciar el vga
+   clk_36MHz clk_36MHz1(
+			.clk_12MHz(clk_12MHz),
+			.clk_36MHz(clk_36MHz)
+			);
+   
    vga vga1(
-	    .clk_12MHz(clk_12MHz),
+	    .clk_36MHz(clk_36MHz),
 	    .rgb(rgb),
 	    .hsync(hsync),
 	    .vsync(vsync),
@@ -55,31 +59,7 @@ module top(
 			  .bullet_flying(bullet_flying),
 			  .rgb(rgb)
 			  );
-   
-   edge_detector_debounce left_detector(
-					.clk_12MHz(clk_12MHz),
-					.reset(reset),
-					.enable(1),
-					.in(left),
-					.detected(left_debounced)
-					);
-   
-   edge_detector_debounce right_detector(
-					 .clk_12MHz(clk_12MHz),
-					 .reset(reset),
-					 .enable(1),
-					 .in(right),
-					 .detected(right_debounced)
-					 );
-   ship ship1(
-	      .clk_12MHz(clk_12MHz),
-	      .reset(reset),
-	      .left_debounced(left_debounced),
-	      .right_debounced(right_debounced),
-	      .enable(1),
-	      .ship_x(ship_x)
-	      );
-   
+      
    player player1(
 		  .clk_12MHz(clk_12MHz),
 		  .reset(0),
