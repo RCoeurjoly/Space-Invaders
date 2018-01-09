@@ -41,7 +41,7 @@ module vga(
 		   .FILTER_RANGE(3'b001),
 		   ) uut (
 			  .REFERENCECLK(clk_12MHz),
-			  .PLLOUTCORE(clk_85MHz),
+			  .PLLOUTCORE(clk_36MHz),
 			  .RESETB(1'b1),
 			  .BYPASS(1'b0)
 			  );
@@ -78,7 +78,7 @@ module vga(
       green <= 0;
       blue <= 0;
    end
-   always @(posedge clk_85MHz)
+   always @(posedge clk_36MHz)
      begin
 	// keep counting until the end of the line
 	if (h_counter < H_PIXELS - 1)
@@ -120,7 +120,7 @@ module vga(
    // equivalent to the following: always @(hc, vc)
    // Assignment statements can only be used on type "reg" and should be of the "blocking" type: =   
    
-   always @(posedge clk_85MHz)
+   always @(posedge clk_36MHz)
      begin
 	// first check if we're within vertical active video range
 	if (active_video == 1)
