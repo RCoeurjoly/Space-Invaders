@@ -8,12 +8,12 @@
 module top_tb();
 
    //-- Registro para generar la señal de reloj
-   reg dclk = 0;
-   reg clr = 0;
+   reg clk_12MHz = 0;
+   reg reset = 1;
    reg left = 0;
    reg right = 0;
-   
-
+   reg shoot = 0;
+   reg start = 0;
    //salidas
    wire hsync;
    wire vsync;
@@ -22,22 +22,24 @@ module top_tb();
    wire blue;
    
    //-- Instanciar el contador
-   top top1(
-	    .dclk(dclk),
-	    .clr(clr),
-	    .left(left),
-	    .right(right),
-	    .hsync(hsync),
-	    .vsync(vsync),
-	    .red(red),
-	    .green(green),
-	    .blue(blue)
-	    );
+   space_invaders_top space_invaders_top1(
+					  .clk_12MHz(clk_12MHz),
+					  .reset(reset),
+					  .left(left),
+					  .right(right),
+					  .shoot(shoot),
+					  .start(start),
+					  .hsync(hsync),
+					  .vsync(vsync),
+					  .red(red),
+					  .green(green),
+					  .blue(blue)
+					  );
 
    //-- Generador de reloj. Periodo 2 unidades
-   always #1 dclk = ~dclk;
+   always #1 clk_12MHz = ~clk_12MHz;
 
-   always @(negedge dclk) begin
+   always @(negedge clk_12MHz) begin
    end
    //-- Proceso al inicio
    initial begin
@@ -45,19 +47,21 @@ module top_tb();
       //-- Fichero donde almacenar los resultados
       $dumpfile("top_tb.vcd");
       $dumpvars(0, top_tb);
-      # 10 clr = 1;
+      # 100000 reset = 0;
       # 20 left = 1;
       # 10 left = 0;
       # 20 right = 1;
       # 10 right = 0;
       # 20 left = 1;
       # 10 left = 0;
+      # 20 shoot = 1;
+      # 10 shoot = 0;
       # 20 right = 1;
       # 10 right = 0;
       # 20 left = 1;
       # 10 left = 0;
       
-      # 100 $display("End of simulation");
+      # 10000 $display("End of simulation");
       # 1 $finish;
    end
 endmodule

@@ -18,16 +18,15 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module timer_1us(
-				input wire clk,
-				input wire reset, //asynchronous reset
-				input wire clear,
+				input wire clk_12MHz,
+				input wire reset, //synchronous reset
 				input wire en,
 				output reg q	       
 				);
 
    parameter PERIOD = 1;
    localparam CLK_FREQ = 12; //12 MHz clock
-   localparam MAX = (PERIOD * clk_freq) - 1;
+   localparam MAX = (PERIOD * CLK_FREQ) - 1;
    reg [20:0] 				   count;
 
    initial begin
@@ -35,9 +34,9 @@ module timer_1us(
       count <= 0;
    end
    
-   always @(posedge clk)
+   always @(posedge clk_12MHz)
      begin
-	if (reset == 0)
+	if (reset == 1)
 	  count <= 0;
 	else
 	  count <= count + 1;   
@@ -45,5 +44,5 @@ module timer_1us(
 	  q <= 1;
 	else
 	  q <= 0;
-     end // always @ (posedge clk)
+     end // always @ (posedge clk_12MHz)
 endmodule

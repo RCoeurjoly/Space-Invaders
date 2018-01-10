@@ -17,7 +17,7 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module clk_36MHz(
+module clk_36MHz_generator(
 	     input wire       clk_12MHz,
 	     output wire      clk_36MHz    
 	     );

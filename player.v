@@ -25,16 +25,19 @@ module player(
 	      input wire       right,
 	      input wire       start,
 	      input wire       shoot,
-	      input wire       score_clear,
+	      input wire       clear_score,
 	      input wire       enable,
 	      input wire       hit,
-	      output reg [4:0] ship_x,
-	      output reg       start_debounced,
-	      output reg [4:0] bullet_x,
-	      output reg [3:0] bullet_x,
-	      output reg       bullet_flying,
+	      output wire [4:0] ship_x,
+	      output wire       start_debounced,
+	      output wire [4:0] bullet_x,
+	      output wire [3:0] bullet_y,
+	      output wire       bullet_flying,
 	      output reg [7:0] score
-	   );   
+	   );
+   wire [4:0] 		       o_ship_x;
+   wire [4:0] 		       o_bullet_x;
+   wire [3:0] 		       o_bullet_y;
    
    edge_detector_debouncer left_debouncer(
 					  .clk_12MHz(clk_12MHz),
@@ -57,43 +60,53 @@ module player(
 					   .reset(reset),
 					   .enable(enable),
 					   .in(start),
-					   .debounced(start_debounced)
+					   .debounced(start_pulse)
 					   );
 
    ship ship1(
 	      .clk_12MHz(clk_12MHz),
 	      .reset(reset),
-	      .clear(clear),
 	      .left_debounced(left_debounced),
 	      .right_debounced(right_debounced),
 	      .enable(enable),
-	      .ship_x(ship_x)
+	      .ship_x(o_ship_x)
 	      );
 
      
    bullet bullet1(
 		  .clk_12MHz(clk_12MHz),
 		  .reset(reset),
-		  .clear(clear),
 		  .enable(enable),
 		  .hit(hit),
 		  .shoot(shoot),
 		  .ship_x(ship_x),
-		  .bullet_flying(bullet_flying),
-		  .bullet_x(bullet_x),
-		  .bullet_y(bullet_y)
+		  .bullet_flying(o_bullet_flying),
+		  .bullet_x(o_bullet_x),
+		  .bullet_y(o_bullet_y)
 		  );
+
+   assign start_debounced = start_pulse;
+   assign ship_x = o_ship_x;
+   assign bullet_flying = o_bullet_flying;
+   assign bullet_x = o_bullet_x;
+   assign bullet_y = o_bullet_y;
+   assign ship_x = o_ship_x;
+   assign ship_x = o_ship_x;
+   
+   initial
+     begin
+	score <= 7'b0000000;     
+     end
    
    always @(posedge clk_12MHz)
      begin
-	ship_x <= ship_x;
-	if (reset == 1)
+        if (reset == 1)
 	  begin
 	     score <= 0;
 	  end
 	else
 	  begin
-	     if (score_clear == 1)  
+	     if (clear_score == 1)  
 	       score <= 0;
 	     else if (hit == 1)
 	       score <= score + 1;

@@ -17,7 +17,7 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module format_vga(
+module sprite_drawer(
 		 input wire [9:0]  x,
 		 input wire [9:0]  y,
 		 input wire 	   reset, //asynchronous reset
@@ -158,7 +158,7 @@ module format_vga(
 	if (reset == 1)
 	  begin
 	     // drawing bullet
-	     if (bullet_flying == 1 && (x == bullet_x) && (y == bullet_y))
+	     if (bullet_flying == 1 && (sprite_x == bullet_x) && (sprite_y == bullet_y))
 	       begin
 		  if (bullet[index_x][index_x] == 1)
 		    rgb <= YELLOW;
@@ -166,7 +166,7 @@ module format_vga(
 		    rgb <= BLACK;
 	       end
 	     // drawing ship (it is always in row 13)
-	     else if (x == ship_x && y == 13)
+	     else if (sprite_x == ship_x && sprite_y == 13)
 	       begin
 		  if (ship[index_y][index_x] == 1)
 		    rgb <= RED;
@@ -174,7 +174,7 @@ module format_vga(
 		    rgb <= BLACK;
 	       end
 	     // drawing invader
-	     else if (y == invader_line && invader_array[x] == 1)
+	     else if (sprite_y == invaders_line && invaders_array[sprite_x] == 1)
 	       begin
 		  if (invader[index_y][index_x] == 1)
 		    rgb <= MAGENTA;
@@ -188,7 +188,7 @@ module format_vga(
 	else 
 	  begin
 	     //Black and white chessboard
-	     if (x[0] ^ y[0] == 1)
+	     if (sprite_x[0] ^ sprite_y[0] == 1)
 	       rgb <= WHITE;
 	     else rgb <= BLACK;
 	  end

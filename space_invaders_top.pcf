@@ -1,9 +1,10 @@
-set_io clk_85MHz 21
+set_io clk_12MHz 21
 set_io reset 119
+set_io left 47
+set_io right 48
+set_io shoot 56
 set_io hsync 113
 set_io vsync 112
 set_io red 114
 set_io green 116
 set_io blue 118
-set_io left 56
-set_io right 60

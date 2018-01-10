@@ -17,12 +17,13 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module top(
+module space_invaders_top(
 	   input wire  clk_12MHz, //input clock: 12MHz
-	   input wire  reset, //asynchronous reset
+	   input wire  reset, //synchronous reset
 	   input wire  left,
 	   input wire  right,
 	   input wire  shoot,
+	   input wire  start,		  
 	   output wire hsync, //horizontal sync out
 	   output wire vsync, //vertical sync out
 	   output wire red, //red vga output
@@ -30,12 +31,24 @@ module top(
 	   output wire blue //blue vga output 	       
 	   );   
    
-   clk_36MHz clk_36MHz1(
+   wire 	       clk_36MHz;
+   wire [2:0] 	       rgb;
+   wire [9:0]	       x;
+   wire [9:0]	       y;
+   wire [4:0] ship_x;
+   wire [4:0] bullet_x;
+   wire [3:0] bullet_y;
+   wire bullet_flying;
+   wire clear;
+   wire start_debounced;
+   wire [7:0] score;
+   
+   clk_36MHz_generator clk_36MHz_generator1(
 			.clk_12MHz(clk_12MHz),
 			.clk_36MHz(clk_36MHz)
 			);
    
-   vga vga1(
+   vga_controller vga_controller1(
 	    .clk_36MHz(clk_36MHz),
 	    .rgb(rgb),
 	    .hsync(hsync),
@@ -47,7 +60,7 @@ module top(
 	    .y(y)
 	    );
    
-   format_vga format_vga1(
+   sprite_drawer sprite_drawer1(
 			  .x(x),
 			  .y(y),
 			  .reset(reset),
@@ -55,28 +68,30 @@ module top(
 			  .invaders_line(5'b00100),
 			  .ship_x(ship_x),
 			  .bullet_x(bullet_x),
-			  .bullet_y(bullet_x),
+			  .bullet_y(bullet_y),
 			  .bullet_flying(bullet_flying),
 			  .rgb(rgb)
 			  );
       
    player player1(
 		  .clk_12MHz(clk_12MHz),
-		  .reset(0),
-		  .clear(clr),
+		  .reset(reset),
+		  .clear(clear),
 		  .left(left),
 		  .right(right),
-		  .start(1),
+		  .start(start),
 		  .shoot(shoot),
-		  .clear_score(0),
-		  .enable(1),
+		  .clear_score(clear_score),
+		  .enable(enable),
 		  .hit(left),
 		  .ship_x(ship_x),
-		  .start_pulse(start_pulse),
+		  .start_debounced(start_debounced),
 		  .bullet_x(bullet_x),
 		  .bullet_y(bullet_y),
 		  .bullet_flying(bullet_flying),
 		  .score(score)
 		  );
 
+   assign enable = 1;
+   
 endmodule

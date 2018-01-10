@@ -17,16 +17,17 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module edge_detector_debounce(
-		    input wire clk,
-		    input wire reset, //asynchronous reset
-		    input wire enable,
-		    input wire in,
-		    output reg detected	       
-		    );   
-   reg [1:0] 		       current_state;
-   reg [1:0] 		       next_state;
-   reg 			       counter_enabled;
+module edge_detector_debouncer(
+			       input wire clk_12MHz,
+			       input wire reset, //asynchronous reset
+			       input wire enable,
+			       input wire in,
+			       output reg debounced	       
+			       );   
+   reg [1:0] 				  current_state;
+   reg [1:0] 				  next_state;
+   reg 					  counter_enabled;
+   wire 				  timeout;
    
    
    parameter [1:0] not_detected = 2'b00;
@@ -34,23 +35,22 @@ module edge_detector_debounce(
    parameter [1:0] disabled = 2'b11;
    parameter [1:0] waiting = 2'b10;
 
-   Timer Timer1(
-		.clk(clk),
-		.reset(0), //hardcoded
-		.clr(clr),
-		.en(counter_enabled),
-		.q(timeout)
-		);
+   timer_1us timer_1us1(
+			.clk_12MHz(clk_12MHz),
+			.reset(reset),
+			.en(counter_enabled),
+			.q(timeout)
+			);
    
    initial begin
       current_state <= 2'b00;
       next_state <= 2'b00;
    end
    
-   always @(posedge clk)
+   always @(posedge clk_12MHz)
      begin
 	// reset condition
-	if (reset == 0)	  
+	if (reset == 1)	  
 	  begin
 	     current_state <= not_detected;	     
 	  end
@@ -62,14 +62,14 @@ module edge_detector_debounce(
 	       end
 	  end // else: !if(reset == 1)
      end // always @ (posedge clk or posedge reset)
-
+   
    always @(current_state or in or timeout)
      begin
 	next_state <= current_state;
 	case (current_state)
 	  not_detected:
 	    begin
-	       detected <= 0;
+	       debounced <= 0;
 	       counter_enabled <= 0;
 	       if (in == 0)
 		 next_state <= not_detected;
@@ -78,13 +78,13 @@ module edge_detector_debounce(
 	    end	  
 	  edge_detected:
 	    begin
-	       detected <= 1;
+	       debounced <= 1;
 	       counter_enabled <= 0;
 	       next_state <= disabled;
 	    end
 	  disabled:
 	    begin
-	       detected <= 0;
+	       debounced <= 0;
 	       counter_enabled <= 1;
 	       if (timeout == 1)
 		 begin
@@ -98,7 +98,7 @@ module edge_detector_debounce(
 	    end // case: disabled
 	  waiting:
 	    begin
-	       detected <= 0;
+	       debounced <= 0;
 	       counter_enabled <= 0;
 	       if (in == 0)
 		 next_state <= not_detected;
@@ -107,7 +107,7 @@ module edge_detector_debounce(
 	    end
 	  default:
 	    begin
-	       detected <= 0;
+	       debounced <= 0;
 	       counter_enabled <= 0;
 	       if (in == 0)
 		 next_state <= not_detected;

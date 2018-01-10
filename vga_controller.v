@@ -17,7 +17,7 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module vga(
+module vga_controller(
 	     input wire       clk_36MHz,
 	     input wire [2:0] rgb,
 	     output wire      hsync, //horizontal sync out
@@ -62,7 +62,7 @@ module vga(
       y <= 0;
       h_counter <= 0;
       v_counter <= 0;
-      red <= 0;
+      red <= 1;
       green <= 0;
       blue <= 0;
    end
