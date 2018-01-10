@@ -45,8 +45,8 @@ module space_invaders_top_tb();
    initial begin
       
       //-- Fichero donde almacenar los resultados
-      $dumpfile("top_tb.vcd");
-      $dumpvars(0, top_tb);
+      $dumpfile("space_invaders_top_tb.vcd");
+      $dumpvars(0, space_invaders_top_tb);
       # 100000 reset = 0;
       # 20 left = 1;
       # 10 left = 0;
