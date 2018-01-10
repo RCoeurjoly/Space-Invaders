@@ -8,3 +8,4 @@ Port of VHDL Space Invaders (https://github.com/David-Estevez/spaceinvaders) to 
 Invaders
 FSM of game (win, lose)
 Tone generator
+Create makefile to handle synthesis and simulation
