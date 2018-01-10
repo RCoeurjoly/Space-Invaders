@@ -5,7 +5,7 @@
 //-- July 2017. Written by RCL
 //-------------------------------------------------------------------
 
-module top_tb();
+module space_invaders_top_tb();
 
    //-- Registro para generar la señal de reloj
    reg clk_12MHz = 0;
