@@ -1,22 +1,6 @@
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date:    00:30:38 03/19/2013 
-// Design Name: 
-// Module Name:    formatVGA
-// Project Name: 
-// Target Devices: 
-// Tool versions: 
-// Description: 
-//
-// Dependencies: 
-//
-// Revision: 
-// Revision 0.01 - File Created
-// Additional Comments: 
-//
-//////////////////////////////////////////////////////////////////////////////////
+// Copyright (c) 2017-2018 Roland Coeurjoly
+// This program is GPL Licensed. See LICENSE for the full license.
+
 module edge_detector_debouncer(
 			       input wire clk_36MHz,
 			       input wire reset, //asynchronous reset
@@ -61,7 +45,7 @@ module edge_detector_debouncer(
 		  current_state <= next_state;
 	       end
 	  end // else: !if(reset == 1)
-     end // always @ (posedge clk or posedge reset)
+     end // always @ (posedge clk_36MHz)
    
    always @(current_state or in or timeout)
      begin
@@ -113,7 +97,7 @@ module edge_detector_debouncer(
 		 next_state <= not_detected;
 	       else
 		 next_state <= waiting;
-	    end // always @ (...
+	    end
 	endcase
-     end // always @ (in)
+     end
 endmodule

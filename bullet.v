@@ -1,22 +1,6 @@
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date:    00:30:38 03/19/2013 
-// Design Name: 
-// Module Name:    bullet
-// Project Name: 
-// Target Devices: 
-// Tool versions: 
-// Description: When shot, starting to fly just over the ship
-//
-// Dependencies: 
-//
-// Revision: 
-// Revision 0.01 - File Created
-// Additional Comments: 
-//
-//////////////////////////////////////////////////////////////////////////////////
+// Copyright (c) 2017-2018 Roland Coeurjoly
+// This program is GPL Licensed. See LICENSE for the full license.
+
 module bullet(
 	    input wire 	     clk_36MHz,
 	    input wire 	     reset, //synchronous reset
@@ -72,5 +56,5 @@ module bullet(
 		    bullet_y = bullet_y - 1;
 	       end // if (bullet_flying == 1)
 	  end // if (enable == 1)
-     end // always @ (posedge clk_12MHz)
+     end // always @ (posedge clk_36MHz)
 endmodule

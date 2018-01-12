@@ -1,3 +1,6 @@
+# Copyright (c) 2017-2018 Roland Coeurjoly
+# This program is GPL Licensed. See LICENSE for the full license.
+
 #!/bin/sh
 
 yosys -p "synth_ice40 -blif space_invaders_top.blif" space_invaders_top.v vga_controller.v sprite_drawer.v ship.v edge_detector_debouncer.v timer_1us.v player.v clk_36MHz_generator.v bullet.v 2>&1 | tee file.log

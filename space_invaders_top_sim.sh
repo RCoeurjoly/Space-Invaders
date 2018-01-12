@@ -1,3 +1,6 @@
+# Copyright (c) 2017-2018 Roland Coeurjoly
+# This program is GPL Licensed. See LICENSE for the full license.
+
 #!/bin/sh
 
 rm space_invaders_top_tb.out space_invaders_top_tb.vcd space_invaders_top_tb.gtkw
