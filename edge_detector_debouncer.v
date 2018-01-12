@@ -18,7 +18,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module edge_detector_debouncer(
-			       input wire clk_12MHz,
+			       input wire clk_36MHz,
 			       input wire reset, //asynchronous reset
 			       input wire enable,
 			       input wire in,
@@ -36,7 +36,7 @@ module edge_detector_debouncer(
    parameter [1:0] waiting = 2'b10;
 
    timer_1us timer_1us1(
-			.clk_12MHz(clk_12MHz),
+			.clk_36MHz(clk_36MHz),
 			.reset(reset),
 			.en(counter_enabled),
 			.q(timeout)
@@ -47,7 +47,7 @@ module edge_detector_debouncer(
       next_state <= 2'b00;
    end
    
-   always @(posedge clk_12MHz)
+   always @(posedge clk_36MHz)
      begin
 	// reset condition
 	if (reset == 1)	  

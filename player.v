@@ -18,7 +18,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module player(
-	      input wire       clk_12MHz,
+	      input wire       clk_36MHz,
 	      input wire       reset,
 	      input wire       clear,
 	      input wire       left,
@@ -40,7 +40,7 @@ module player(
    wire [3:0] 		       o_bullet_y;
    
    edge_detector_debouncer left_debouncer(
-					  .clk_12MHz(clk_12MHz),
+					  .clk_36MHz(clk_36MHz),
 					  .reset(reset),
 					  .enable(enable),
 					  .in(left),
@@ -48,7 +48,7 @@ module player(
 					  );
 
    edge_detector_debouncer right_debouncer(
-					   .clk_12MHz(clk_12MHz),
+					   .clk_36MHz(clk_36MHz),
 					   .reset(reset),
 					   .enable(enable),
 					   .in(right),
@@ -56,7 +56,7 @@ module player(
 					   );
    
    edge_detector_debouncer start_debouncer(
-					   .clk_12MHz(clk_12MHz),
+					   .clk_36MHz(clk_36MHz),
 					   .reset(reset),
 					   .enable(enable),
 					   .in(start),
@@ -64,7 +64,7 @@ module player(
 					   );
 
    ship ship1(
-	      .clk_12MHz(clk_12MHz),
+	      .clk_36MHz(clk_36MHz),
 	      .reset(reset),
 	      .left_debounced(left_debounced),
 	      .right_debounced(right_debounced),
@@ -74,7 +74,7 @@ module player(
 
      
    bullet bullet1(
-		  .clk_12MHz(clk_12MHz),
+		  .clk_36MHz(clk_36MHz),
 		  .reset(reset),
 		  .enable(enable),
 		  .hit(hit),
@@ -98,7 +98,7 @@ module player(
 	score <= 7'b0000000;     
      end
    
-   always @(posedge clk_12MHz)
+   always @(posedge clk_36MHz)
      begin
         if (reset == 1)
 	  begin
@@ -111,5 +111,5 @@ module player(
 	     else if (hit == 1)
 	       score <= score + 1;
 	  end
-     end // always @ (posedge clk_12MHz)
+     end // always @ (posedge clk_36MHz)
 endmodule

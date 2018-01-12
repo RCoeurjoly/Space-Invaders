@@ -18,7 +18,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module bullet(
-	    input wire 	     clk_12MHz,
+	    input wire 	     clk_36MHz,
 	    input wire 	     reset, //synchronous reset
 	    input wire 	     enable,
 	    input wire 	     hit,
@@ -36,7 +36,7 @@ module bullet(
 	bullet_flying <= 0;
      end
    
-   always @(posedge clk_12MHz)
+   always @(posedge clk_36MHz)
      begin
 	// reset condition
 	if (reset == 1)

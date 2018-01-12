@@ -74,7 +74,7 @@ module space_invaders_top(
 			  );
       
    player player1(
-		  .clk_12MHz(clk_12MHz),
+		  .clk_36MHz(clk_36MHz),
 		  .reset(reset),
 		  .clear(clear),
 		  .left(left),
