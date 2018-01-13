@@ -9,7 +9,7 @@ module timer_1us(
 		 );
 
    parameter PERIOD = 1;
-   localparam CLK_FREQ = 12; //12 MHz clock
+   localparam CLK_FREQ = 36; //36 MHz clock
    localparam MAX = (PERIOD * CLK_FREQ) - 1;
    reg [20:0] 				   count;
 

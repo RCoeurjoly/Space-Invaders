@@ -7,9 +7,9 @@ module ship(
 	    input wire 	     left_debounced,
 	    input wire 	     right_debounced,
 	    input wire 	     enable,
-	    output wire [4:0] ship_x
+	    output reg [4:0] ship_x
 	    );   
-   wire [20:0] 		     next_state;
+   reg [20:0] 		     next_state;
    reg [20:0] 		     current_state;
    
    parameter [20:0] init = 21'b000000000000000000001;
@@ -405,7 +405,7 @@ module ship(
 	end
 	default : begin
 	   ship_x = 5;
-	   next_state <= init;
+	   next_state = init;
 	end
       endcase
    end // always @ (reset or left_debounced or right_debounced or enable or current_state)

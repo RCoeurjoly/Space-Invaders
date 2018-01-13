@@ -10,7 +10,7 @@ module ship_tb();
    reg right_debounced = 0;
    reg enable = 0;
    //-- outputs
-   //wire [4:0] ship_x;
+   wire [4:0] ship_h;
       
    //-- Instanciar el contador
    ship ship1(
@@ -19,7 +19,7 @@ module ship_tb();
 	      .left_debounced(left_debounced),
 	      .right_debounced(right_debounced),
 	      .enable(enable),
-	      .ship_x(ship_x)
+	      .ship_x(ship_h)
 	      );
 
    always #1 clk_36MHz = ~clk_36MHz;
@@ -111,6 +111,7 @@ module ship_tb();
       # 1 left_debounced = 0;
       # 100 right_debounced = 1;			     
       # 1 right_debounced = 0;
+   
       # 9999 $display("FIN de la simulacion");
       # 1000 $finish;
    end
