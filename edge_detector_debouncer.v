@@ -34,7 +34,7 @@ module edge_detector_debouncer(
    always @(posedge clk_36MHz)
      begin
 	// reset condition
-	if (reset == 1)	  
+	if (reset == 0)	  
 	  begin
 	     current_state <= not_detected;	     
 	  end

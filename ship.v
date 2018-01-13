@@ -9,6 +9,7 @@ module ship(
 	    input wire 	     enable,
 	    output reg [4:0] ship_x
 	    );   
+
    reg [20:0] 		     next_state;
    reg [20:0] 		     current_state;
    
@@ -45,7 +46,7 @@ module ship(
    always @(reset or left_debounced or right_debounced or enable or current_state) begin
       case (current_state)
 	init : begin
-	     if (reset == 1) begin
+	     if (reset == 0) begin
 		  ship_x = 5;
 		  next_state =  init;
 	       end
@@ -55,7 +56,7 @@ module ship(
 	     end
 	  end
 	S0 : begin //left limit
-	   if (reset == 1) begin
+	   if (reset == 0) begin
 	      ship_x = 5;
 	      next_state = init;
 	   end
@@ -63,9 +64,13 @@ module ship(
 	      ship_x = 1;
 	      next_state = S1;
 	   end
+	   else begin
+	      ship_x = 0;
+	      next_state = S0;
+	   end
 	end
 	S1 : begin
-	   if (reset == 1) begin
+	   if (reset == 0) begin
 	      ship_x = 5;
 	      next_state = init;
 	   end
@@ -83,7 +88,7 @@ module ship(
 	   end
 	end
 	S2 : begin
-	   if (reset == 1) begin
+	   if (reset == 0) begin
 	      ship_x = 5;
 	      next_state = init;
 	   end
@@ -101,7 +106,7 @@ module ship(
 	   end
 	end
 	S3 : begin
-	   if (reset == 1) begin
+	   if (reset == 0) begin
 	      ship_x = 5;
 	      next_state = init;
 	   end
@@ -119,7 +124,7 @@ module ship(
 	   end
 	end
 	S4 : begin
-	   if (reset == 1) begin
+	   if (reset == 0) begin
 	      ship_x = 5;
 	      next_state = init;
 	   end
@@ -137,7 +142,7 @@ module ship(
 	   end
 	end
 	S5 : begin
-	   if (reset == 1) begin
+	   if (reset == 0) begin
 	      ship_x = 5;
 	      next_state = init;
 	   end
@@ -155,7 +160,7 @@ module ship(
 	   end
 	end
 	S6 : begin
-	   if (reset == 1) begin
+	   if (reset == 0) begin
 	      ship_x = 5;
 	      next_state = init;
 	   end
@@ -173,7 +178,7 @@ module ship(
 	   end
 	end
 	S7 : begin
-	   if (reset == 1) begin
+	   if (reset == 0) begin
 	      ship_x = 5;
 	      next_state = init;
 	   end
@@ -191,7 +196,7 @@ module ship(
 	   end
 	end
 	S8 : begin
-	   if (reset == 1) begin
+	   if (reset == 0) begin
 	      ship_x = 5;
 	      next_state = init;
 	   end
@@ -209,7 +214,7 @@ module ship(
 	   end
 	end
 	S9 : begin
-	   if (reset == 1) begin
+	   if (reset == 0) begin
 	      ship_x = 5;
 	      next_state = init;
 	   end
@@ -227,7 +232,7 @@ module ship(
 	   end
 	end
 	S10 : begin
-	   if (reset == 1) begin
+	   if (reset == 0) begin
 	      ship_x = 5;
 	      next_state = init;
 	   end
@@ -245,7 +250,7 @@ module ship(
 	   end
 	end
 	S11 : begin
-	   if (reset == 1) begin
+	   if (reset == 0) begin
 	      ship_x = 5;
 	      next_state = init;
 	   end
@@ -263,7 +268,7 @@ module ship(
 	   end
 	end
 	S12 : begin
-	   if (reset == 1) begin
+	   if (reset == 0) begin
 	      ship_x = 5;
 	      next_state = init;
 	   end
@@ -281,7 +286,7 @@ module ship(
 	   end
 	end
 	S13 : begin
-	   if (reset == 1) begin
+	   if (reset == 0) begin
 	      ship_x = 5;
 	      next_state = init;
 	   end
@@ -299,7 +304,7 @@ module ship(
 	   end
 	end
 	S14 : begin
-	   if (reset == 1) begin
+	   if (reset == 0) begin
 	      ship_x = 5;
 	      next_state = init;
 	   end
@@ -317,7 +322,7 @@ module ship(
 	   end
 	end
 	S15 : begin
-	   if (reset == 1) begin
+	   if (reset == 0) begin
 	      ship_x = 5;
 	      next_state = init;
 	   end
@@ -335,7 +340,7 @@ module ship(
 	   end
 	end
 	S16 : begin
-	   if (reset == 1) begin
+	   if (reset == 0) begin
 	      ship_x = 5;
 	      next_state = init;
 	   end
@@ -353,7 +358,7 @@ module ship(
 	   end
 	end
 	S17 : begin
-	   if (reset == 1) begin
+	   if (reset == 0) begin
 	      ship_x = 5;
 	      next_state = init;
 	   end
@@ -371,7 +376,7 @@ module ship(
 	   end
 	end
 	S18 : begin
-	   if (reset == 1) begin
+	   if (reset == 0) begin
 	      ship_x = 5;
 	      next_state = init;
 	   end
@@ -389,7 +394,7 @@ module ship(
 	   end
 	end
 	S19 : begin //right limit
-	   if (reset == 1) begin
+	   if (reset == 0) begin
 	      ship_x = 5;
 	      next_state = init;
 	   end

@@ -11,7 +11,7 @@ module bullet(
 	    output reg 	     bullet_flying,
 	    output reg [4:0] bullet_x,
 	    output reg [3:0] bullet_y
-	    );   
+	    );
    
    initial
      begin
@@ -23,7 +23,7 @@ module bullet(
    always @(posedge clk_36MHz)
      begin
 	// reset condition
-	if (reset == 1)
+	if (reset == 0)
 	  begin
 	     bullet_flying <= 0;
 	     bullet_x <= 0;
@@ -35,7 +35,7 @@ module bullet(
 	       begin
 		  bullet_flying = 1;
 		  bullet_x <= ship_x;
-		  bullet_y <= 13;
+		  bullet_y <= 9;
 	       end
 	     else if (hit == 1)
 	       begin
@@ -53,7 +53,9 @@ module bullet(
 		       bullet_y = 14;
 		    end
 		  else
-		    bullet_y = bullet_y - 1;
+		    bullet_y = 9;
+		  
+		  //  bullet_y = bullet_y - 1;
 	       end // if (bullet_flying == 1)
 	  end // if (enable == 1)
      end // always @ (posedge clk_36MHz)

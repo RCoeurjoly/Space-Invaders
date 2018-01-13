@@ -66,7 +66,7 @@ module space_invaders_top(
 		  .start(start),
 		  .shoot(shoot),
 		  .clear_score(clear_score),
-		  .enable(enable),
+		  .enable(1),
 		  .hit(left),
 		  .ship_x(ship_x),
 		  .start_debounced(start_debounced),
@@ -75,7 +75,5 @@ module space_invaders_top(
 		  .bullet_flying(bullet_flying),
 		  .score(score)
 		  );
-
-   assign enable = 1;
    
 endmodule

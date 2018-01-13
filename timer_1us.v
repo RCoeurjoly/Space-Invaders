@@ -11,6 +11,7 @@ module timer_1us(
    parameter PERIOD = 1;
    localparam CLK_FREQ = 36; //36 MHz clock
    localparam MAX = (PERIOD * CLK_FREQ) - 1;
+
    reg [20:0] 				   count;
 
    initial begin
@@ -20,10 +21,16 @@ module timer_1us(
    
    always @(posedge clk_36MHz)
      begin
-	if (reset == 1)
+	if (reset == 0)
 	  count <= 0;
+	else if (en == 1) begin
+	   if (count == MAX)
+	     count <= 0;
+	   else
+	     count <= count + 1;
+	end
 	else
-	  count <= count + 1;   
+	  count <= 0;
 	if (count == MAX)
 	  q <= 1;
 	else

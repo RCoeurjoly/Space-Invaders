@@ -5,7 +5,7 @@ module space_invaders_top_tb();
 
    //-- Registro para generar la señal de reloj
    reg clk_12MHz = 0;
-   reg reset = 1;
+   reg reset = 0;
    reg left = 0;
    reg right = 0;
    reg shoot = 0;
@@ -43,7 +43,7 @@ module space_invaders_top_tb();
       //-- Fichero donde almacenar los resultados
       $dumpfile("space_invaders_top_tb.vcd");
       $dumpvars(0, space_invaders_top_tb);
-      # 10 reset = 0;
+      # 10 reset = 1;
       # 20 left = 1;
       # 10 left = 0;
       # 20 right = 1;

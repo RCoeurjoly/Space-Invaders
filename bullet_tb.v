@@ -4,35 +4,33 @@
 module bullet_tb();
 
    //-- input registers
-   reg clk = 0;
+   reg clk_36MHz = 0;
    reg reset = 0;
-   reg clr = 0;
    reg enable = 0;
    reg hit = 0;
    reg shoot = 0;
-   reg [4:0] posH = 0;
+   reg [4:0] ship_x = 7;
    
    //-- outputs
-   wire flying;
-   wire [4:0] bulletX;
-   wire [3:0] bulletY;
+   wire bullet_flying;
+   wire [4:0] bullet_x;
+   wire [3:0] bullet_y;
    
    
    //-- Instanciar el contador
    bullet bullet1(
-		  .clk(clk),
+		  .clk_36MHz(clk_36MHz),
 		  .reset(reset),
-		  .clr(clr),
 		  .enable(enable),
 		  .hit(hit),
 		  .shoot(shoot),
-		  .posH(posH),
-		  .flying(flying),
-		  .bulletX(bulletX),
-		  .bulletY(bulletY)
+		  .ship_x(ship_x),
+		  .bullet_flying(bullet_flying),
+		  .bullet_x(bullet_x),
+		  .bullet_y(bullet_y)
 		  );
 
-   always #1 clk = ~clk;
+   always #1 clk_36MHz = ~clk_36MHz;
    
 //-- Proceso al inicio
    initial begin
@@ -41,10 +39,8 @@ module bullet_tb();
       $dumpfile("bullet_tb.vcd");
       $dumpvars(0, bullet_tb);
       // Next event happens n# of seconds after
-      # 100 clr = 1;
-      # 50 clr = 0;
-      # 50 reset = 1;
       # 50 reset = 0;
+      # 50 reset = 1;
       # 50 enable = 1;	
       # 50 shoot = 1;
       # 10 hit = 1;      
