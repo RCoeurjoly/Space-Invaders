@@ -18,7 +18,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module vgaSI(
-	     input wire       dclk, //input clock: 12MHz
+	     input wire       clk_36MHz, //input clock: 36MHz
 	     input wire       clr, //asynchronous reset
 	     input wire [2:0] RGB,
 	     output wire      hsync, //horizontal sync out
@@ -29,25 +29,7 @@ module vgaSI(
 	     output reg [9:0] X,
 	     output reg [9:0] Y    
 	     );
-   //wire 		      clk = dclk;
    
-   
-   wire 		      clk;
-   
-   SB_PLL40_CORE #(.FEEDBACK_PATH("SIMPLE"),
-                   .PLLOUT_SELECT("GENCLK"),
-		   .DIVR(4'b0000),
-		   .DIVF(7'b0101111),
-		   .DIVQ(3'b100),
-		   .FILTER_RANGE(3'b001),
-		   ) uut (
-			  .REFERENCECLK(dclk),
-			  .PLLOUTCORE(clk),
-			  .RESETB(1'b1),
-			  .BYPASS(1'b0)
-			  );
-   
-   /**/
    // video structure constants
    parameter activeHvideo = 640;
    parameter activeVvideo = 480;
@@ -79,7 +61,7 @@ module vgaSI(
       green_vga <= 0;
       blue_vga <= 0;
    end
-   always @(posedge clk)
+   always @(posedge clk_36MHz)
      begin
 	// keep counting until the end of the line
 	if (hc < hpixels - 1)
@@ -121,7 +103,7 @@ module vgaSI(
    // equivalent to the following: always @(hc, vc)
    // Assignment statements can only be used on type "reg" and should be of the "blocking" type: =   
    
-   always @(posedge clk)
+   always @(posedge clk_36MHz)
      begin
 	// first check if we're within vertical active video range
 	if (activevideo == 1)
