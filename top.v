@@ -43,10 +43,14 @@ module top(
    assign green = green_vga;
    assign blue = blue_vga;
    */
+   clk_36MHz_generator clk_36MHz_generator1(
+					    .clk_12MHz(dclk),
+					    .clk_36MHz(clk)
+					    );
    
    //-- Instanciar el vga
    vgaSI vgaSI1(
-		.dclk(dclk),
+		.clk_36MHz(clk),
 		.clr(clr),
 		.RGB(rgb_VGA),//this works just OK
 		.hsync(hsync),
@@ -74,7 +78,7 @@ module top(
 	    );
 
    edgeDetectorDebounce leftDetector(
-				     .clk(dclk),
+				     .clk(clk),
 				     .clr(clr),
 				     .enable(1),
 				     .in(left),
@@ -82,14 +86,14 @@ module top(
 				     );
 
    edgeDetectorDebounce rightDetector(
-				      .clk(dclk),
+				      .clk(clk),
 				      .clr(clr),
 				      .enable(1),
 				      .in(right),
 				      .detected(right_ship)
 				      );
    ship ship1(
-	      .dclk(dclk),
+	      .dclk(clk),
 	      .reset(0),
 	      .clr(clr),
 	      .left(left_ship),
