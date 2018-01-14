@@ -13,7 +13,7 @@ module bullet(
 	    output reg [3:0] bullet_y
 	    );
 
-   timer_1us # (50000) timer_1us1(
+   timer_1us # (90000) timer_1us1(
 				 .clk_36MHz(clk_36MHz),
 				 .reset(reset),
 				 .en(1),
@@ -43,7 +43,7 @@ module bullet(
 	    else begin
 	       bullet_flying <= 0;
 	       bullet_x <= 0;
-	       bullet_y <= 14;
+	       bullet_y <= bullet_y;
 	    end
 	 end
 	 else begin 

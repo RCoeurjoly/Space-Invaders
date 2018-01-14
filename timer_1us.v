@@ -12,7 +12,7 @@ module timer_1us(
    localparam CLK_FREQ = 36; //36 MHz clock
    localparam MAX = (PERIOD * CLK_FREQ) - 1;
 
-   reg [20:0] 				   count;
+   reg [21:0] 				   count;
 
    initial begin
       q <= 0;
