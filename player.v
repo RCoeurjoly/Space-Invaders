@@ -46,6 +46,14 @@ module player(
 					   .in(start),
 					   .debounced(start_pulse)
 					   );
+   
+   edge_detector_debouncer shoot_debouncer(
+					   .clk_36MHz(clk_36MHz),
+					   .reset(reset),
+					   .enable(enable),
+					   .in(shoot),
+					   .debounced(shoot_debounced)
+					   );
 
    ship ship1(
 	      .clk_36MHz(clk_36MHz),
@@ -62,7 +70,7 @@ module player(
 		  .reset(reset),
 		  .enable(enable),
 		  .hit(hit),
-		  .shoot(shoot),
+		  .shoot(shoot_debounced),
 		  .ship_x(ship_x),
 		  .bullet_flying(o_bullet_flying),
 		  .bullet_x(o_bullet_x),
@@ -74,8 +82,6 @@ module player(
    assign bullet_flying = o_bullet_flying;
    assign bullet_x = o_bullet_x;
    assign bullet_y = o_bullet_y;
-   assign ship_x = o_ship_x;
-   assign ship_x = o_ship_x;
    
    initial
      begin

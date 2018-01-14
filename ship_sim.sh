@@ -3,7 +3,7 @@
 
 #!/bin/sh
 
-rm ship_tb.out ship_tb.vcd ship_tb.gtkw
 iverilog ship.v ship_tb.v -o ship_tb.out
 ./ship_tb.out
-gtkwave ship_tb.vcd ship_tb.gtkw &
+gtkwave ship_tb.vcd ship_tb.gtkw
+rm ship_tb.out ship_tb.vcd ship_tb.gtkw

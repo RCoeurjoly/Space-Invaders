@@ -12,51 +12,57 @@ module bullet(
 	    output reg [4:0] bullet_x,
 	    output reg [3:0] bullet_y
 	    );
+
+   timer_1us # (50000) timer_1us1(
+				 .clk_36MHz(clk_36MHz),
+				 .reset(reset),
+				 .en(1),
+				 .q(tick)
+				 );
    
-   initial
-     begin
-	bullet_x <= 0;
-	bullet_y <= 14;
-	bullet_flying <= 0;
-     end
+   initial begin
+      bullet_flying <= 0;
+      bullet_x <= 0;
+      bullet_y <= 14;
+   end
    
-   always @(posedge clk_36MHz)
-     begin
-	// reset condition
-	if (reset == 0)
-	  begin
-	     bullet_flying <= 0;
-	     bullet_x <= 0;
-	     bullet_y <= 14;
-	  end
-	else
-	  begin
-	     if (bullet_flying == 0 && shoot == 1)
-	       begin
-		  bullet_flying = 1;
-		  bullet_x <= ship_x;
-		  bullet_y <= 9;
-	       end
-	     else if (hit == 1)
-	       begin
-		  bullet_flying <= 0;
-		  bullet_x <= 0;
-		  bullet_y <= 14; 
-	       end
-	     else if (bullet_flying == 1)
-	       begin
-		  if (bullet_y == 0)
-		    begin
-		       // Reached the top of the screen
-		       bullet_flying = 0;
-		       bullet_x <= ship_x;
-		       bullet_y = 14;
-		    end
-		  else
-		    bullet_y = 9;
-		  
-		  //  bullet_y = bullet_y - 1;
-	       end // if (bullet_flying == 1)
-	  end // if (enable == 1)
-     end // always @ (posedge clk_36MHz)
+   always @(posedge clk_36MHz) begin
+      // reset condition
+      if (reset == 0) begin
+	 bullet_flying <= 0;
+	 bullet_x <= 0;
+	 bullet_y <= 14;
+      end
+      else begin
+	 if (bullet_flying == 0) begin
+	    if (shoot == 1) begin
+	       bullet_flying = 1;
+	       bullet_x <= ship_x;
+	       bullet_y <= 12;
+	    end
+	    else begin
+	       bullet_flying <= 0;
+	       bullet_x <= 0;
+	       bullet_y <= 14;
+	    end
+	 end
+	 else begin 
+	    if (hit == 1 || bullet_y == 0) begin
+	       bullet_flying <= 0;
+	       bullet_x <= 0;
+	       bullet_y <= 15; 
+	    end else if (tick) begin
+	       bullet_flying <= bullet_flying;
+	       bullet_x <= bullet_x;
+	       bullet_y = bullet_y - 1;
+	    end
+	    else begin
+	       bullet_flying <= bullet_flying;
+	       bullet_x <= bullet_x;
+	       bullet_y <= bullet_y; 
+	    end
+	 end // else: !if(bullet_flying == 0)
+      end // else: !if(reset == 0)
+   end // always @ (posedge clk_36MHz)
+
 endmodule

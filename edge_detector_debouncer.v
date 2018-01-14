@@ -19,7 +19,7 @@ module edge_detector_debouncer(
    parameter [1:0] disabled = 2'b11;
    parameter [1:0] waiting = 2'b10;
 
-   timer_1us timer_1us1(
+   timer_1us  # (1000) timer_1us1(
 			.clk_36MHz(clk_36MHz),
 			.reset(reset),
 			.en(counter_enabled),
