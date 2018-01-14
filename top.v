@@ -28,8 +28,8 @@ module top(
 	   output wire red, //red vga output
 	   output wire green, //green vga output
 	   output wire blue //blue vga output 	       
-	   );   
-   wire 	       clk;
+	   );
+   
    wire [2:0] 	       rgb_game;
    wire [2:0] 	       rgb_VGA;
    assign rgb_VGA = rgb_game;
@@ -39,7 +39,6 @@ module top(
    assign Y_format = Y_vga;
    wire [4:0] 	       posH_ship;
    
-<<<<<<< HEAD
    /*
    assign red = red_vga;
    assign green = green_vga;
@@ -49,11 +48,9 @@ module top(
 					    .clk_12MHz(dclk),
 					    .clk_36MHz(clk)
 					    );
-=======
->>>>>>> ad81eb64e23fd2fc7e54f1ed6598670d1516c94e
    
    //-- Instanciar el vga
-   vgaSI vgaSI1(
+   vga vga1(
 		.clk_36MHz(clk),
 		.clr(clr),
 		.RGB(rgb_VGA),
