@@ -22,6 +22,7 @@ module top(
 	   input wire  clr, //asynchronous reset
 	   input wire  left,
 	   input wire  right,
+	   input wire  shoot,
 	   output wire hsync, //horizontal sync out
 	   output wire vsync, //vertical sync out
 	   output wire red, //red vga output
@@ -38,6 +39,7 @@ module top(
    assign Y_format = Y_vga;
    wire [4:0] 	       posH_ship;
    
+<<<<<<< HEAD
    /*
    assign red = red_vga;
    assign green = green_vga;
@@ -47,12 +49,14 @@ module top(
 					    .clk_12MHz(dclk),
 					    .clk_36MHz(clk)
 					    );
+=======
+>>>>>>> ad81eb64e23fd2fc7e54f1ed6598670d1516c94e
    
    //-- Instanciar el vga
    vgaSI vgaSI1(
 		.clk_36MHz(clk),
 		.clr(clr),
-		.RGB(rgb_VGA),//this works just OK
+		.RGB(rgb_VGA),
 		.hsync(hsync),
 		.vsync(vsync),
 		.red_vga(red),
@@ -68,12 +72,12 @@ module top(
 			.VGAx(X_format),
 			.VGAy(Y_format),
 			.clr(clr),
-			.invArray(20'b10101010101010101010),
-			.invLine(4'b1100),
+			.invArray(20'b00101010101010101010),
+			.invLine(5'b00100),
 			.shipX(posH_ship),
-			.bulletX(4'b0100),
-			.bulletY(3'b011),
-			.bulletFlying(1),
+			.bulletX(o_bulletX),
+			.bulletY(o_bulletY),
+			.bulletFlying(BulletActive),
 			.rgb(rgb_game)
 	    );
 
@@ -82,7 +86,7 @@ module top(
 				     .clr(clr),
 				     .enable(1),
 				     .in(left),
-				     .detected(left_ship)
+				     .detected(left)
 				     );
 
    edgeDetectorDebounce rightDetector(
@@ -90,7 +94,7 @@ module top(
 				      .clr(clr),
 				      .enable(1),
 				      .in(right),
-				      .detected(right_ship)
+				      .detected(right)
 				      );
    ship ship1(
 	      .dclk(clk),
@@ -101,5 +105,24 @@ module top(
 	      .enable(1),
 	      .posH(posH_ship)
 	      );
-   
+
+   player player1(
+		  .clk(dclk),
+		  .reset(0),
+		  .clear(clr),
+		  .left(left),
+		  .right(right),
+		  .start(1),
+		  .shoot(shoot),
+		  .ScoreClear(0),
+		  .Enable(1),
+		  .hit(left),
+		  .posShip(posShip),
+		  .startPulse(startPulse),
+		  .bulletX(o_bulletX),
+		  .bulletY(o_bulletY),
+		  .BulletActive(BulletActive),
+		  .Score(Score)
+		  );
+
 endmodule

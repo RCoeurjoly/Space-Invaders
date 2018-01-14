@@ -5,5 +5,6 @@ set_io vsync 112
 set_io red 114
 set_io green 116
 set_io blue 118
-set_io left 44
-set_io right 45
+set_io shoot 48
+set_io left 56
+set_io right 60

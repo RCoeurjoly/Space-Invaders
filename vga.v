@@ -29,7 +29,29 @@ module vgaSI(
 	     output reg [9:0] X,
 	     output reg [9:0] Y    
 	     );
+<<<<<<< HEAD:vgaSI.v
    
+=======
+   wire 		      clk = dclk;
+   
+   
+   //wire 		      clk;
+   
+   /*SB_PLL40_CORE #(.FEEDBACK_PATH("SIMPLE"),
+                   .PLLOUT_SELECT("GENCLK"),
+		   .DIVR(4'b0000),
+		   .DIVF(7'b0101111),
+		   .DIVQ(3'b100),
+		   .FILTER_RANGE(3'b001),
+		   ) uut (
+			  .REFERENCECLK(dclk),
+			  .PLLOUTCORE(clk),
+			  .RESETB(1'b1),
+			  .BYPASS(1'b0)
+			  );
+   
+   */
+>>>>>>> ad81eb64e23fd2fc7e54f1ed6598670d1516c94e:vga.v
    // video structure constants
    parameter activeHvideo = 640;
    parameter activeVvideo = 480;
