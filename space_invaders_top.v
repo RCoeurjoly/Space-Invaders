@@ -69,7 +69,7 @@ module space_invaders_top(
 		  .shoot(shoot),
 		  .clear_score(clear_score),
 		  .enable(1),
-		  .hit(0),
+		  .hit(hit),
 		  .ship_x(ship_x),
 		  .start_debounced(start_debounced),
 		  .bullet_x(bullet_x),

@@ -28,7 +28,7 @@ module invaders(
 			  .reset(reset),
 			  .en(1),
 			  .q(tick2)
-			  );
+			  );   
 
    localparam RIGHT = 1'b1;
    localparam LEFT  = 1'b0;
@@ -54,6 +54,10 @@ module invaders(
 	 direction <= LEFT;
 	 hit <= 0;
 	 state <= 1;
+      end
+      else if ((bullet_y == invaders_line + 1) && (invaders_array[bullet_x] == 1)) begin
+	 hit <= 1;
+	 invaders_array[bullet_x] <= 0;
       end
       else if (tick1 == 1) begin
 	 if (invaders_array[19] == 1 && direction == LEFT) begin
@@ -84,6 +88,7 @@ module invaders(
 	    moving <= moving;
 	    direction <= direction;
 	    state <= 6;
+	    hit <= 0;
 	 end
       end // if (tick1)
       else begin
@@ -92,6 +97,7 @@ module invaders(
 	 moving <= moving;
 	 direction <= direction;
 	 state <= 7;
+	 hit <= 0;
       end // else: !if(tick1)
    end // always @ (posedge clk_36MHz)
    
