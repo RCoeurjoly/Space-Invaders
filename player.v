@@ -102,5 +102,5 @@ module player(
 	       score <= score + 1;
 	  end
      end // always @ (posedge clk_36MHz)
->>>>>>> bullet
+   
 endmodule
