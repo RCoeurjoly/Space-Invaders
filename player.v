@@ -1,101 +1,106 @@
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date:    00:30:38 03/19/2013 
-// Design Name: 
-// Module Name:    player
-// Project Name: 
-// Target Devices: 
-// Tool versions: 
-// Description: 
-//
-// Dependencies: 
-//
-// Revision: 
-// Revision 0.01 - File Created
-// Additional Comments: 
-//
-//////////////////////////////////////////////////////////////////////////////////
+// Copyright (c) 2017-2018 Roland Coeurjoly
+// This program is GPL Licensed. See LICENSE for the full license.
+
 module player(
-	      input wire       clk,
+	      input wire       clk_36MHz,
 	      input wire       reset,
 	      input wire       clear,
 	      input wire       left,
 	      input wire       right,
 	      input wire       start,
 	      input wire       shoot,
-	      input wire       ScoreClear,
-	      input wire       Enable,
+	      input wire       clear_score,
+	      input wire       enable,
 	      input wire       hit,
-	      output reg [4:0] posShip,
-	      output reg       startPulse,
-	      output reg [4:0] bulletX,
-	      output reg [3:0] bulletY,
-	      output reg       BulletActive,
-	      output reg [7:0] Score
-	   );   
+	      output wire [4:0] ship_x,
+	      output wire       start_debounced,
+	      output wire [4:0] bullet_x,
+	      output wire [3:0] bullet_y,
+	      output wire       bullet_flying,
+	      output reg [7:0] score
+	   );
+   wire [4:0] 		       o_ship_x;
+   wire [4:0] 		       o_bullet_x;
+   wire [3:0] 		       o_bullet_y;
    
-   ship ship1(
-	      .dclk(dclk),
-	      .reset(Reset),
-	      .clr(clear),
-	      .left(leftDetected),
-	      .right(rightDetected),
-	      .enable(enable),
-	      .posH(posHBus)
-	      );
-   
-   edgeDetectorDebounce leftDetector(
-				     .clk(dclk),
-				     .clr(clr),
-				     .enable(enable),
-				     .in(left),
-				     .detected(leftDetected)
-				     );
+   edge_detector_debouncer left_debouncer(
+					  .clk_36MHz(clk_36MHz),
+					  .reset(reset),
+					  .enable(enable),
+					  .in(left),
+					  .debounced(left_debounced)
+					  );
 
-   edgeDetectorDebounce rightDetector(
-				      .clk(dclk),
-				      .clr(clr),
-				      .enable(enable),
-				      .in(right),
-				      .detected(rightDetected)
-				      );
-   edgeDetectorDebounce startDetector(
-				      .clk(dclk),
-				      .clr(clr),
-				      .enable(1),
-				      .in(Start),
-				      .detected(startPulse)
-				      );
-  
+   edge_detector_debouncer right_debouncer(
+					   .clk_36MHz(clk_36MHz),
+					   .reset(reset),
+					   .enable(enable),
+					   .in(right),
+					   .debounced(right_debounced)
+					   );
+   
+   edge_detector_debouncer start_debouncer(
+					   .clk_36MHz(clk_36MHz),
+					   .reset(reset),
+					   .enable(enable),
+					   .in(start),
+					   .debounced(start_pulse)
+					   );
+   
+   edge_detector_debouncer shoot_debouncer(
+					   .clk_36MHz(clk_36MHz),
+					   .reset(reset),
+					   .enable(enable),
+					   .in(shoot),
+					   .debounced(shoot_debounced)
+					   );
+
+   ship ship1(
+	      .clk_36MHz(clk_36MHz),
+	      .reset(reset),
+	      .left_debounced(left_debounced),
+	      .right_debounced(right_debounced),
+	      .enable(enable),
+	      .ship_x(o_ship_x)
+	      );
+
+     
    bullet bullet1(
-		  .clk(dclk),
-		  .reset(Reset),
-		  .clr(clear),
+		  .clk_36MHz(clk_36MHz),
+		  .reset(reset),
 		  .enable(enable),
 		  .hit(hit),
-		  .shoot(shoot),
-		  .posH(posHBus),
-		  .flying(BulletActive),
-		  .bulletX(BulletX),
-		  .bulletY(BulletY)
+		  .shoot(shoot_debounced),
+		  .ship_x(ship_x),
+		  .bullet_flying(o_bullet_flying),
+		  .bullet_x(o_bullet_x),
+		  .bullet_y(o_bullet_y)
 		  );
+
+   assign start_debounced = start_pulse;
+   assign ship_x = o_ship_x;
+   assign bullet_flying = o_bullet_flying;
+   assign bullet_x = o_bullet_x;
+   assign bullet_y = o_bullet_y;
    
-   always @(posedge clk)
+   initial
      begin
-	posShip <= posHBus;
-	// reset condition
-	if (reset == 1)
+	score <= 7'b0000000;     
+     end
+   
+   always @(posedge clk_36MHz)
+     begin
+        if (reset == 0)
 	  begin
-	     intScore <= 0;
+	     score <= 0;
 	  end
 	else
 	  begin
-	     if (ScoreClear == 1)  
-	       intScore <= 0;
+	     if (clear_score == 1)  
+	       score <= 0;
 	     else if (hit == 1)
-	       intScore <= intScore + 1;
+	       score <= score + 1;
 	  end
-     end // always @ (posedge clk)
+     end // always @ (posedge clk_36MHz)
+>>>>>>> bullet
 endmodule

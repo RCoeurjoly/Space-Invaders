@@ -1,9 +1,5 @@
-//-------------------------------------------------------------------
-//-- top_tb.v
-//-- Banco de pruebas
-//-------------------------------------------------------------------
-//-- July 2017. Written by RCL
-//-------------------------------------------------------------------
+// Copyright (c) 2017-2018 Roland Coeurjoly
+// This program is GPL Licensed. See LICENSE for the full license.
 
 module player_tb();
 
