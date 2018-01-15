@@ -17,17 +17,18 @@ module space_invaders_top(
    
    wire 	       clk_36MHz;
    wire [2:0] 	       rgb;
-   wire [9:0]	       x;
-   wire [9:0]	       y;
-   wire [4:0] ship_x;
-   wire [4:0] bullet_x;
-   wire [3:0] bullet_y;
-   wire [19:0] invaders_array;
-   wire [3:0] invaders_line;
-   wire       bullet_flying;
-   wire clear;
-   wire start_debounced;
-   wire [7:0] score;
+   wire [9:0] 	       x;
+   wire [9:0] 	       y;
+   wire [4:0] 	       ship_x;
+   wire [4:0] 	       bullet_x;
+   wire [3:0] 	       bullet_y;
+   wire [19:0] 	       invaders_array;
+   wire [3:0] 	       invaders_line;
+   wire 	       bullet_flying;
+   wire 	       clear;
+   wire 	       start_debounced;
+   wire [7:0] 	       score;
+   wire [1:0] 	       gameplay;
    
    clk_36MHz_generator clk_36MHz_generator1(
 			.clk_12MHz(clk_12MHz),
@@ -47,18 +48,27 @@ module space_invaders_top(
 	    );
    
    sprite_drawer sprite_drawer1(
-			  .x(x),
-			  .y(y),
-			  .reset(reset),
-			  .invaders_array(invaders_array),
-			  .invaders_line(invaders_line),
-			  .ship_x(ship_x),
-			  .bullet_x(bullet_x),
-			  .bullet_y(bullet_y),
-			  .bullet_flying(bullet_flying),
-			  .rgb(rgb)
+				.x(x),
+				.y(y),
+				.reset(reset),
+				.invaders_array(invaders_array),
+				.invaders_line(invaders_line),
+				.ship_x(ship_x),
+				.bullet_x(bullet_x),
+				.bullet_y(bullet_y),
+				.bullet_flying(bullet_flying),
+				.gameplay(gameplay),
+				.rgb(rgb)
 			  );
-      
+
+   gameplay gameplay1(
+		      .clk_36MHz(clk_36MHz),
+		      .reset(reset),
+		      .invaders_array(invaders_array),
+		      .invaders_line(invaders_line),
+		      .gameplay(gameplay)
+		      );
+   
    player player1(
 		  .clk_36MHz(clk_36MHz),
 		  .reset(reset),
