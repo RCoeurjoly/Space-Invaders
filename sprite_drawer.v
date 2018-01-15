@@ -6,7 +6,7 @@ module sprite_drawer(
 		 input wire [9:0]  y,
 		 input wire 	   reset, //asynchronous reset
 		 input wire [19:0] invaders_array,
-		 input wire [4:0]  invaders_line,
+		 input wire [3:0]  invaders_line,
 		 input wire [4:0]  ship_x,
 		 input wire [4:0]  bullet_x,
 		 input wire [3:0]  bullet_y,
@@ -144,7 +144,7 @@ module sprite_drawer(
 	     // drawing bullet
 	     if (bullet_flying == 1 && (sprite_x == bullet_x) && (sprite_y == bullet_y))
 	       begin
-		  if (bullet[index_x][index_x] == 1)
+		  if (bullet[index_y][index_x] == 1)
 		    rgb <= YELLOW;
 		  else
 		    rgb <= BLACK;

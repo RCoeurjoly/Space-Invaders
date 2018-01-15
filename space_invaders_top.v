@@ -22,7 +22,9 @@ module space_invaders_top(
    wire [4:0] ship_x;
    wire [4:0] bullet_x;
    wire [3:0] bullet_y;
-   wire bullet_flying;
+   wire [19:0] invaders_array;
+   wire [3:0] invaders_line;
+   wire       bullet_flying;
    wire clear;
    wire start_debounced;
    wire [7:0] score;
@@ -48,8 +50,8 @@ module space_invaders_top(
 			  .x(x),
 			  .y(y),
 			  .reset(reset),
-			  .invaders_array(20'b00101010101010101010),
-			  .invaders_line(5'b00100),
+			  .invaders_array(invaders_array),
+			  .invaders_line(invaders_line),
 			  .ship_x(ship_x),
 			  .bullet_x(bullet_x),
 			  .bullet_y(bullet_y),
@@ -75,5 +77,17 @@ module space_invaders_top(
 		  .bullet_flying(bullet_flying),
 		  .score(score)
 		  );
+
+   invaders invaders1(
+		      .clk_36MHz(clk_36MHz),
+		      .reset(reset),
+		      .start(start),
+		      .bullet_x(bullet_x),
+		      .bullet_y(bullet_y),
+		      .level(level),
+		      .hit(hit),
+		      .invaders_array(invaders_array),
+		      .invaders_line(invaders_line)
+		      );
    
 endmodule
