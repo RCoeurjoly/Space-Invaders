@@ -26,7 +26,7 @@ module gameplay(
 	  end
 	else
 	  begin
-	     if (invaders_line == 3)  
+	     if (invaders_line == 13)  
 	       gameplay <= GAME_OVER;
 	     else if (invaders_array == 0)
 	       gameplay <= YOU_WIN;
