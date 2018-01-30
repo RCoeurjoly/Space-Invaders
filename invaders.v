@@ -14,7 +14,7 @@ module invaders(
 		);   
 
    wire 			  tick1;
-   parameter SPEED = 200000;
+   parameter SPEED = 100000;
    
    timer_1us #(SPEED) speed_timer1(
 			  .clk_36MHz(clk_36MHz),
@@ -38,7 +38,7 @@ module invaders(
    
    
    initial begin
-      invaders_array <= 20'b00000000000101010101;
+      invaders_array <= 20'b00000000000111111111;
       invaders_line <= 4'b0001;
       moving <= 0;
       direction <= LEFT;
@@ -48,7 +48,7 @@ module invaders(
 
    always @(posedge clk_36MHz) begin
       if (reset == 0) begin
-	 invaders_array <= 20'b00000000000101010101;
+	 invaders_array <= 20'b00000000000111111111;
 	 invaders_line <= 4'b0001;
 	 moving <= 0;
 	 direction <= LEFT;
