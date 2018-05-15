@@ -5,13 +5,44 @@ Port of VHDL Space Invaders (https://github.com/David-Estevez/spaceinvaders) to 
 ## TODO
 
 1. Tone generator
-2. Create makefile to handle synthesis and simulation for all submodules
-3. Two players
-4. Different Levels
-5. Keeping score of how many invaders you have destroyed
-6. Read the sprite info from a plain text file. Research how to make 32x32 pixel map from picture
-7. Create extensive testbenches for all modules
-8. Use SystemVerilog asserts to verify model
-9. Trunk modules should only have instantiations of other modules. Leaf modules should implement the logic
-10. Use Mealy FSM for sequential logic (All modules but sprite_drawer). More specifically, use two process design method (Gaisler)
-11. Use homogenous naming and coding convention
+2. Two players
+3. Different Levels
+4. Keeping score of how many invaders you have destroyed
+5. Read the sprite info from a plain text file. Research how to make 32x32 pixel map from picture
+6. Create extensive testbenches for all modules
+7. Use SystemVerilog asserts to verify model
+8. Trunk modules should only have instantiations of other modules. Leaf modules should implement the logic
+9. Use Mealy FSM for sequential logic (All modules but sprite_drawer). More specifically, use two process design method (Gaisler)
+10. Use homogenous naming and coding convention
+
+# How to sinthesize & simulate
+
+## Top Module
+
+* Simulate top module
+
+```
+$ make sim
+```
+
+* Sinthesize top module:
+
+```
+$ make bin
+```
+
+* Upload to FPGA
+
+```
+$ make upload
+```
+
+## Submodules
+
+* Simulate sub-module
+
+Give your submodule is called `file.v`, and the corresponding testbench is called `file_tb.v`, you can simulate the sub-module using:
+
+```
+$ make MODULE=module sim
+```
