@@ -5,4 +5,5 @@
 *.bin
 *.out
 *.vcd
+*.pnr
 #*.*# //temporal emacs files
