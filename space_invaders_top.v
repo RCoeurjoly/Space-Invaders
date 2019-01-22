@@ -2,50 +2,54 @@
 // This program is GPL Licensed. See LICENSE for the full license.
 
 module space_invaders_top(
-	   input wire  clk_12MHz, //input clock: 12MHz
-	   input wire  reset, //synchronous reset
-	   input wire  left,
-	   input wire  right,
-	   input wire  shoot,
-	   input wire  start,		  
-	   output wire hsync, //horizontal sync out
-	   output wire vsync, //vertical sync out
-	   output wire red, //red vga output
-	   output wire green, //green vga output
-	   output wire blue //blue vga output 	       
-	   );   
+			  input wire  clk_12MHz, //input clock: 12MHz
+			  input wire  reset, //synchronous reset
+			  input wire  left,
+			  input wire  right,
+			  input wire  shoot,
+			  input wire  start, 
+			  output wire hsync, //horizontal sync out
+			  output wire vsync, //vertical sync out
+			  output wire red, //red vga output
+			  output wire green, //green vga output
+			  output wire blue //blue vga output 	       
+			  );   
    
-   wire 	       clk_36MHz;
-   wire [2:0] 	       rgb;
-   wire [9:0] 	       x;
-   wire [9:0] 	       y;
-   wire [4:0] 	       ship_x;
-   wire [4:0] 	       bullet_x;
-   wire [3:0] 	       bullet_y;
-   wire [19:0] 	       invaders_array;
-   wire [3:0] 	       invaders_line;
-   wire 	       bullet_flying;
-   wire 	       clear;
-   wire 	       start_debounced;
-   wire [7:0] 	       score;
-   wire [1:0] 	       gameplay;
+   wire 			      clk_36MHz;
+   wire [2:0] 			      rgb;
+   wire [9:0] 			      x;
+   wire [9:0] 			      y;
+   wire [4:0] 			      ship_x;
+   wire [4:0] 			      bullet_x;
+   wire [3:0] 			      bullet_y;
+   wire 			      hit;
+   wire [19:0] 			      invaders_array;
+   wire [3:0] 			      invaders_line;
+   wire 			      bullet_flying;
+   wire 			      clear;
+   wire 			      start_debounced;
+   wire [7:0] 			      score;
+   wire 			      hit;
+   wire 			      level;
+   wire 			      clear_score;                
+   wire [1:0] 			      gameplay;
    
    clk_36MHz_generator clk_36MHz_generator1(
-			.clk_12MHz(clk_12MHz),
-			.clk_36MHz(clk_36MHz)
-			);
+					    .clk_12MHz(clk_12MHz),
+					    .clk_36MHz(clk_36MHz)
+					    );
    
    vga_controller vga_controller1(
-	    .clk_36MHz(clk_36MHz),
-	    .rgb(rgb),
-	    .hsync(hsync),
-	    .vsync(vsync),
-	    .red(red),
-	    .green(green),
-	    .blue(blue),
-	    .x(x),
-	    .y(y)
-	    );
+				  .clk_36MHz(clk_36MHz),
+				  .rgb(rgb),
+				  .hsync(hsync),
+				  .vsync(vsync),
+				  .red(red),
+				  .green(green),
+				  .blue(blue),
+				  .x(x),
+				  .y(y)
+				  );
    
    sprite_drawer sprite_drawer1(
 				.x(x),
@@ -59,7 +63,7 @@ module space_invaders_top(
 				.bullet_flying(bullet_flying),
 				.gameplay(gameplay),
 				.rgb(rgb)
-			  );
+				);
 
    gameplay gameplay1(
 		      .clk_36MHz(clk_36MHz),

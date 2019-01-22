@@ -2,25 +2,25 @@
 // This program is GPL Licensed. See LICENSE for the full license.
 
 module sprite_drawer(
-		 input wire [9:0]  x,
-		 input wire [9:0]  y,
-		 input wire 	   reset, //asynchronous reset
-		 input wire [19:0] invaders_array,
-		 input wire [3:0]  invaders_line,
-		 input wire [4:0]  ship_x,
-		 input wire [4:0]  bullet_x,
-		 input wire [3:0]  bullet_y,
-		 input wire 	   bullet_flying,
-		 input wire [1:0]  gameplay,
-		 output reg [2:0]  rgb 
-		 );   
+		     input wire [9:0]  x,
+		     input wire [9:0]  y,
+		     input wire        reset, //asynchronous reset
+		     input wire [19:0] invaders_array,
+		     input wire [3:0]  invaders_line,
+		     input wire [4:0]  ship_x,
+		     input wire [4:0]  bullet_x,
+		     input wire [3:0]  bullet_y,
+		     input wire        bullet_flying,
+		     input wire [1:0]  gameplay,
+		     output reg [2:0]  rgb 
+		     );   
 
    
-   reg [31 : 0] 		   invader [31 : 0];
-   reg [31 : 0] 		   ship [31 : 0];
-   reg [31:0] 			   bullet [0:31];
-   reg [31:0] 			   smiley [0:31];
-   reg [31:0] 			   sad [0:31];
+   reg [31 : 0] 		       invader [31 : 0];
+   reg [31 : 0] 		       ship [31 : 0];
+   reg [31:0] 			       bullet [0:31];
+   reg [31:0] 			       smiley [0:31];
+   reg [31:0] 			       sad [0:31];
 
 
    
@@ -96,7 +96,7 @@ module sprite_drawer(
       ship[29]    <= 32'b01111000011110011001111000011110;
       ship[30]    <= 32'b01100000000000011000000000000110;
       ship[31]    <= 32'b01100000000000011000000000000110;
-            
+      
       bullet[0]   <= 32'b00000000000000111100000000000000;
       bullet[1]   <= 32'b00000000000001011110000000000000;
       bullet[2]   <= 32'b00000000000010101111000000000000;
@@ -260,6 +260,6 @@ module sprite_drawer(
 	 else rgb <= BLACK;
       end
    end // always @ (*)
-  
+   
    //end
 endmodule

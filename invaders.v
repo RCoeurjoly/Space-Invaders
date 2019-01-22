@@ -14,27 +14,28 @@ module invaders(
 		);   
 
    wire 			  tick1;
+   wire 			  tick2;
    parameter SPEED = 100000;
    
    timer_1us #(SPEED) speed_timer1(
-			  .clk_36MHz(clk_36MHz),
-			  .reset(reset),
-			  .en(1),
-			  .q(tick1)
-			  );
+				   .clk_36MHz(clk_36MHz),
+				   .reset(reset),
+				   .en(1),
+				   .q(tick1)
+				   );
    
    timer_1us #(2000) speed_timer2(
-			  .clk_36MHz(clk_36MHz),
-			  .reset(reset),
-			  .en(1),
-			  .q(tick2)
-			  );   
+				  .clk_36MHz(clk_36MHz),
+				  .reset(reset),
+				  .en(1),
+				  .q(tick2)
+				  );   
 
    localparam RIGHT = 1'b1;
    localparam LEFT  = 1'b0;
    
-   reg 			    direction, moving;
-   reg [2:0] 		    state;
+   reg 				  direction, moving;
+   reg [2:0] 			  state;
    
    
    initial begin

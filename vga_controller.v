@@ -2,20 +2,20 @@
 // This program is GPL Licensed. See LICENSE for the full license.
 
 module vga_controller(
-	     input wire       clk_36MHz,
-	     input wire [2:0] rgb,
-	     output wire      hsync, //horizontal sync out
-	     output wire      vsync, //vertical sync out
-	     output reg       red, //red vga output
-	     output reg       green, //green vga output
-	     output reg       blue, //blue vga output
-	     output reg [9:0] x,
-	     output reg [9:0] y    
-	     );
+		      input wire       clk_36MHz,
+		      input wire [2:0] rgb,
+		      output wire      hsync, //horizontal sync out
+		      output wire      vsync, //vertical sync out
+		      output reg       red, //red vga output
+		      output reg       green, //green vga output
+		      output reg       blue, //blue vga output
+		      output reg [9:0] x,
+		      output reg [9:0] y    
+		      );
    //wire 		      clk = dclk;
    
    
-   wire 		      clk;
+   wire 			       clk;
    
    
    /**/
@@ -32,13 +32,13 @@ module vga_controller(
    parameter BLACK_V = VFP + V_PULSE + VBP;
    parameter H_PIXELS = BLACK_H + ACTIVE_H_VIDEO;
    parameter V_LINES = BLACK_V + ACTIVE_V_VIDEO;
-     
+   
    // active horizontal video is therefore: 784 - 144 = 640
    // active vertical video is therefore: 515 - 35 = 480
    
    // registers for storing the horizontal & vertical counters
-   reg [9:0] 	       h_counter;
-   reg [9:0] 	       v_counter;
+   reg [9:0] 			       h_counter;
+   reg [9:0] 			       v_counter;
    
    
    initial begin
@@ -97,7 +97,7 @@ module vga_controller(
 	// first check if we're within vertical active video range
 	if (active_video == 1)
 
-	// we're outside active video range so display black
+	  // we're outside active video range so display black
 	  begin
 	     red <= rgb[2];
 	     green <= rgb[1];
@@ -114,5 +114,5 @@ module vga_controller(
 	     y <= 0;
 	  end
      end // always @ (posedge clk_85MHz)
- 
+   
 endmodule

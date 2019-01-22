@@ -8,11 +8,11 @@ module ship(
 	    input wire 	     right_debounced,
 	    input wire 	     enable,
 	    output reg [4:0] ship_x
-	    );   
+	    );
 
    reg [20:0] 		     next_state;
    reg [20:0] 		     current_state;
-   
+
    parameter [20:0] init = 21'b000000000000000000001;
    parameter [20:0] S0   = 21'b000000000000000000010;
    parameter [20:0] S1   = 21'b000000000000000000100;
@@ -34,27 +34,26 @@ module ship(
    parameter [20:0] S17  = 21'b001000000000000000000;
    parameter [20:0] S18  = 21'b010000000000000000000;
    parameter [20:0] S19  = 21'b100000000000000000000;
-   
+
    initial begin
-      current_state <= init; 
+      current_state <= init;
    end
-   
-   always @ (posedge clk_36MHz) begin
+
+   always @(posedge clk_36MHz) begin
       current_state <= next_state;
    end
-   
    always @(reset or left_debounced or right_debounced or enable or current_state) begin
       case (current_state)
 	init : begin
-	     if (reset == 0) begin
-		  ship_x = 5;
-		  next_state =  init;
-	       end
-	     else begin
-		ship_x = 5;
-		next_state = S5;
-	     end
-	  end
+	   if (reset == 0) begin
+	      ship_x = 5;
+	      next_state =  init;
+	   end
+	   else begin
+	      ship_x = 5;
+	      next_state = S5;
+	   end
+	end
 	S0 : begin //left limit
 	   if (reset == 0) begin
 	      ship_x = 5;
@@ -400,9 +399,9 @@ module ship(
 	   end
 	   else if (left_debounced == 1)
 	     begin
-	      ship_x = 18;
-	      next_state = S18;
-	   end
+	        ship_x = 18;
+	        next_state = S18;
+	     end
 	   else begin
 	      ship_x = 19;
 	      next_state = S19;
@@ -414,5 +413,4 @@ module ship(
 	end
       endcase
    end // always @ (reset or left_debounced or right_debounced or enable or current_state)
-   
 endmodule

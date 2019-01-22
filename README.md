@@ -1,12 +1,12 @@
-# Space-Invaders
+* Space-Invaders
 
 Port of VHDL Space Invaders (https://github.com/David-Estevez/spaceinvaders) to Verilog for the iCE40 H1K
 
-## Video
+** Video
 
 https://www.youtube.com/watch?v=zD_Xy7i3Ies
 
-## TODO
+ TODO
 
 1. Tone generator
 2. Two players

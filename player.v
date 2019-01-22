@@ -2,26 +2,31 @@
 // This program is GPL Licensed. See LICENSE for the full license.
 
 module player(
-	      input wire       clk_36MHz,
-	      input wire       reset,
-	      input wire       clear,
-	      input wire       left,
-	      input wire       right,
-	      input wire       start,
-	      input wire       shoot,
-	      input wire       clear_score,
-	      input wire       enable,
-	      input wire       hit,
+	      input wire 	clk_36MHz,
+	      input wire 	reset,
+	      input wire 	clear,
+	      input wire 	left,
+	      input wire 	right,
+	      input wire 	start,
+	      input wire 	shoot,
+	      input wire 	clear_score,
+	      input wire 	enable,
+	      input wire 	hit,
 	      output wire [4:0] ship_x,
-	      output wire       start_debounced,
+	      output wire 	start_debounced,
 	      output wire [4:0] bullet_x,
 	      output wire [3:0] bullet_y,
-	      output wire       bullet_flying,
-	      output reg [7:0] score
-	   );
-   wire [4:0] 		       o_ship_x;
-   wire [4:0] 		       o_bullet_x;
-   wire [3:0] 		       o_bullet_y;
+	      output wire 	bullet_flying,
+	      output reg [7:0] 	score
+	      );
+   wire [4:0] 			o_ship_x;
+   wire [4:0] 			o_bullet_x;
+   wire [3:0] 			o_bullet_y;
+   wire 			left_debounced;
+   wire 			right_debounced;
+   wire 			start_pulse;
+   wire 			shoot_debounced;
+   wire 			o_bullet_flying;
    
    edge_detector_debouncer left_debouncer(
 					  .clk_36MHz(clk_36MHz),
@@ -64,7 +69,7 @@ module player(
 	      .ship_x(o_ship_x)
 	      );
 
-     
+   
    bullet bullet1(
 		  .clk_36MHz(clk_36MHz),
 		  .reset(reset),

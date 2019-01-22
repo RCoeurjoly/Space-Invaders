@@ -11,7 +11,7 @@ module ship_tb();
    reg enable = 0;
    //-- outputs
    wire [4:0] ship_h;
-      
+   
    //-- Instanciar el contador
 
 

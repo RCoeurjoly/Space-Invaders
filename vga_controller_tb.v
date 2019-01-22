@@ -10,9 +10,9 @@ module vga_tb();
    //-- Datos de salida del controlador de vga
    wire hsync;
    wire vsync;
-   wire 	red;
-   wire 	green;
-   wire 	blue;
+   wire red;
+   wire green;
+   wire blue;
    //reg [25:0] data;
    //wire 	D5;
    

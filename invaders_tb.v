@@ -6,7 +6,7 @@
 
 module invaders_tb();
 
-     //-- input registers
+   //-- input registers
    reg clk_36MHz = 0;
    reg reset = 0;
    reg start = 0;
@@ -15,26 +15,26 @@ module invaders_tb();
    reg [2:0] level = 0;
    
    //-- outputs
-   wire hit;
+   wire      hit;
    wire [19:0] invaders_array;
-   wire [4:0] invaders_line;
+   wire [4:0]  invaders_line;
    
    //-- Instanciar el contador
    invaders #(1) invaders1(
-		      .clk_36MHz(clk_36MHz),
-		      .reset(reset),
-		      .start(start),
-		      .bullet_x(bullet_x),
-		      .bullet_y(bullet_y),
-		      .level(level),
-		      .hit(hit),
-		      .invaders_array(invaders_array),
-		      .invaders_line(invaders_line)
-		      );
+			   .clk_36MHz(clk_36MHz),
+			   .reset(reset),
+			   .start(start),
+			   .bullet_x(bullet_x),
+			   .bullet_y(bullet_y),
+			   .level(level),
+			   .hit(hit),
+			   .invaders_array(invaders_array),
+			   .invaders_line(invaders_line)
+			   );
    
    always #1 clk_36MHz = ~clk_36MHz;
    
-//-- Proceso al inicio
+   //-- Proceso al inicio
    initial begin
       
       //-- Fichero donde almacenar los resultados
@@ -43,7 +43,7 @@ module invaders_tb();
       // Next event happens n# of seconds after
       # 50 reset = 0;
       # 50 reset = 1;
-            
+      
       # 999999 $display("FIN de la simulacion");
       # 100000 $finish;
    end

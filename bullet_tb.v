@@ -12,7 +12,7 @@ module bullet_tb();
    reg [4:0] ship_x = 7;
    
    //-- outputs
-   wire bullet_flying;
+   wire      bullet_flying;
    wire [4:0] bullet_x;
    wire [3:0] bullet_y;
    
@@ -32,7 +32,7 @@ module bullet_tb();
 
    always #1 clk_36MHz = ~clk_36MHz;
    
-//-- Proceso al inicio
+   //-- Proceso al inicio
    initial begin
       
       //-- Fichero donde almacenar los resultados

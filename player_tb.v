@@ -41,7 +41,7 @@ module player_tb();
 		  .bulletX(bulletY),
 		  .BulletActive(BulletActive),
 		  .Score(Score)
-	    );
+		  );
 
    //-- Generador de reloj. Periodo 2 unidades
    always #1 clk = ~clk;

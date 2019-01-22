@@ -8,7 +8,7 @@ module timer_1us();
    reg reset = 0;
    reg en = 0;
    //-- outputs
-   wire      q;
+   wire q;
    
    
    
@@ -18,11 +18,11 @@ module timer_1us();
 			.reset(reset),
 			.en(en),
 			.q(q)
-		  );
+			);
 
    always #1 clk = ~clk;
    
-//-- Proceso al inicio
+   //-- Proceso al inicio
    initial begin
       
       //-- Fichero donde almacenar los resultados
