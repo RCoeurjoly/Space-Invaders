@@ -35,6 +35,7 @@ sim: $(MODULE)_tb.vcd
 json: $(MODULE).json
 svg: assets/$(MODULE).svg
 
+
 $(MODULE)_tb.vcd: $(MODULE).v $(DEPS) $(MODULE)_tb.v  $(AUXFILES)
 
 	iverilog $^ -o $(MODULE)_tb.out
@@ -42,12 +43,9 @@ $(MODULE)_tb.vcd: $(MODULE).v $(DEPS) $(MODULE)_tb.v  $(AUXFILES)
 	gtkwave $@ $(MODULE)_tb.gtkw &
 
 $(MODULE).bin: $(MODULE).pcf $(MODULE).v $(DEPS) $(AUXFILES)
-	
 	yosys -p "synth_ice40 -blif $(MODULE).blif $(YOSYSOPT)"\
               -l $(MODULE).log -q $(MODULE).v $(DEPS)
-	
 	arachne-pnr -d $(MEMORY) -p $(MODULE).pcf $(MODULE).blif -o $(MODULE).pnr
-	
 	icepack $(MODULE).pnr $(MODULE).bin
 
 $(MODULE).json: $(MODULE).v $(DEPS)
@@ -62,4 +60,7 @@ upload: $(MODULE).bin
 clean:
 	rm -f *.bin *.pnr *.blif *.out *.vcd *~
 
+formal_verification:
+	sby ­f ship.sby
 .PHONY: all clean json svg sim
+
