@@ -57,10 +57,10 @@
 ; yosys-smt2-wire reset 1
 (declare-fun |invaders#2| (|invaders_s|) Bool) ; \reset
 (define-fun |invaders_n reset| ((state |invaders_s|)) Bool (|invaders#2| state))
-; yosys-smt2-input level 3
-; yosys-smt2-wire level 3
-(declare-fun |invaders#3| (|invaders_s|) (_ BitVec 3)) ; \level
-(define-fun |invaders_n level| ((state |invaders_s|)) (_ BitVec 3) (|invaders#3| state))
+; yosys-smt2-input level 1
+; yosys-smt2-wire level 1
+(declare-fun |invaders#3| (|invaders_s|) Bool) ; \level
+(define-fun |invaders_n level| ((state |invaders_s|)) Bool (|invaders#3| state))
 ; yosys-smt2-output invaders_line 4
 ; yosys-smt2-register invaders_line 4
 ; yosys-smt2-wire invaders_line 4

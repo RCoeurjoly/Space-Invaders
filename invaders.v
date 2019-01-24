@@ -7,7 +7,7 @@ module invaders(
 		            input wire        start,
  		            input wire [4:0]  bullet_x,
 		            input wire [3:0]  bullet_y,
-		            input wire [2:0]  level,
+		            input wire        level,
 		            output reg        hit,
 		            output reg [19:0] invaders_array,
 		            output reg [3:0]  invaders_line

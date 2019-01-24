@@ -13,7 +13,7 @@ state 0
 assume (= [bullet_x] #b00000)
 assume (= [bullet_y] #b0000)
 assume (= [clk_36MHz] false)
-assume (= [level] #b000)
+assume (= [level] false)
 assume (= [reset] true)
 assume (= [start] false)
 
@@ -21,7 +21,7 @@ state 1
 assume (= [bullet_x] #b00000)
 assume (= [bullet_y] #b0000)
 assume (= [clk_36MHz] false)
-assume (= [level] #b000)
+assume (= [level] false)
 assume (= [reset] true)
 assume (= [start] false)
 
@@ -29,7 +29,7 @@ state 2
 assume (= [bullet_x] #b00000)
 assume (= [bullet_y] #b0000)
 assume (= [clk_36MHz] false)
-assume (= [level] #b000)
+assume (= [level] false)
 assume (= [reset] true)
 assume (= [start] false)
 
@@ -37,7 +37,7 @@ state 3
 assume (= [bullet_x] #b00000)
 assume (= [bullet_y] #b0000)
 assume (= [clk_36MHz] false)
-assume (= [level] #b000)
+assume (= [level] false)
 assume (= [reset] true)
 assume (= [start] false)
 
@@ -45,7 +45,7 @@ state 4
 assume (= [bullet_x] #b00000)
 assume (= [bullet_y] #b0000)
 assume (= [clk_36MHz] false)
-assume (= [level] #b000)
+assume (= [level] false)
 assume (= [reset] true)
 assume (= [start] false)
 
@@ -53,7 +53,7 @@ state 5
 assume (= [bullet_x] #b00000)
 assume (= [bullet_y] #b0000)
 assume (= [clk_36MHz] false)
-assume (= [level] #b000)
+assume (= [level] false)
 assume (= [reset] true)
 assume (= [start] false)
 
@@ -61,7 +61,7 @@ state 6
 assume (= [bullet_x] #b00000)
 assume (= [bullet_y] #b0000)
 assume (= [clk_36MHz] false)
-assume (= [level] #b000)
+assume (= [level] false)
 assume (= [reset] true)
 assume (= [start] false)
 
@@ -69,7 +69,7 @@ state 7
 assume (= [bullet_x] #b00000)
 assume (= [bullet_y] #b0000)
 assume (= [clk_36MHz] false)
-assume (= [level] #b000)
+assume (= [level] false)
 assume (= [reset] true)
 assume (= [start] false)
 
@@ -77,7 +77,7 @@ state 8
 assume (= [bullet_x] #b00000)
 assume (= [bullet_y] #b0000)
 assume (= [clk_36MHz] false)
-assume (= [level] #b000)
+assume (= [level] false)
 assume (= [reset] true)
 assume (= [start] false)
 
@@ -85,7 +85,7 @@ state 9
 assume (= [bullet_x] #b00000)
 assume (= [bullet_y] #b0000)
 assume (= [clk_36MHz] false)
-assume (= [level] #b000)
+assume (= [level] false)
 assume (= [reset] true)
 assume (= [start] false)
 
@@ -93,7 +93,7 @@ state 10
 assume (= [bullet_x] #b00000)
 assume (= [bullet_y] #b0000)
 assume (= [clk_36MHz] false)
-assume (= [level] #b000)
+assume (= [level] false)
 assume (= [reset] true)
 assume (= [start] false)
 
@@ -101,7 +101,7 @@ state 11
 assume (= [bullet_x] #b00000)
 assume (= [bullet_y] #b0000)
 assume (= [clk_36MHz] false)
-assume (= [level] #b000)
+assume (= [level] false)
 assume (= [reset] true)
 assume (= [start] false)
 
@@ -109,7 +109,7 @@ state 12
 assume (= [bullet_x] #b00000)
 assume (= [bullet_y] #b0000)
 assume (= [clk_36MHz] false)
-assume (= [level] #b000)
+assume (= [level] false)
 assume (= [reset] true)
 assume (= [start] false)
 
@@ -117,7 +117,7 @@ state 13
 assume (= [bullet_x] #b00000)
 assume (= [bullet_y] #b0000)
 assume (= [clk_36MHz] false)
-assume (= [level] #b000)
+assume (= [level] false)
 assume (= [reset] true)
 assume (= [start] false)
 
@@ -125,7 +125,7 @@ state 14
 assume (= [bullet_x] #b00000)
 assume (= [bullet_y] #b0000)
 assume (= [clk_36MHz] false)
-assume (= [level] #b000)
+assume (= [level] false)
 assume (= [reset] true)
 assume (= [start] false)
 
@@ -133,7 +133,7 @@ state 15
 assume (= [bullet_x] #b00000)
 assume (= [bullet_y] #b0000)
 assume (= [clk_36MHz] false)
-assume (= [level] #b000)
+assume (= [level] false)
 assume (= [reset] true)
 assume (= [start] false)
 
@@ -141,7 +141,7 @@ state 16
 assume (= [bullet_x] #b00000)
 assume (= [bullet_y] #b0000)
 assume (= [clk_36MHz] false)
-assume (= [level] #b000)
+assume (= [level] false)
 assume (= [reset] true)
 assume (= [start] false)
 
@@ -149,7 +149,7 @@ state 17
 assume (= [bullet_x] #b00000)
 assume (= [bullet_y] #b0000)
 assume (= [clk_36MHz] false)
-assume (= [level] #b000)
+assume (= [level] false)
 assume (= [reset] true)
 assume (= [start] false)
 
@@ -157,7 +157,7 @@ state 18
 assume (= [bullet_x] #b00000)
 assume (= [bullet_y] #b0000)
 assume (= [clk_36MHz] false)
-assume (= [level] #b000)
+assume (= [level] false)
 assume (= [reset] true)
 assume (= [start] false)
 
@@ -165,7 +165,7 @@ state 19
 assume (= [bullet_x] #b00000)
 assume (= [bullet_y] #b0000)
 assume (= [clk_36MHz] false)
-assume (= [level] #b000)
+assume (= [level] false)
 assume (= [reset] false)
 assume (= [start] false)
 
@@ -173,6 +173,6 @@ state 20
 assume (= [bullet_x] #b00000)
 assume (= [bullet_y] #b0000)
 assume (= [clk_36MHz] false)
-assume (= [level] #b000)
+assume (= [level] false)
 assume (= [reset] false)
 assume (= [start] false)

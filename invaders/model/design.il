@@ -302,7 +302,7 @@ module \invaders
   attribute \src "invaders.v:13"
   wire width 4 output 9 \invaders_line
   attribute \src "invaders.v:10"
-  wire width 3 input 6 \level
+  wire input 6 \level
   attribute \src "invaders.v:6"
   wire input 2 \reset
   attribute \src "invaders.v:7"

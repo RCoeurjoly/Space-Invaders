@@ -3,93 +3,93 @@
 <testsuite disabled="0" errors="0" failures="1" name="invaders" skipped="0" tests="1" time="2">
 <testcase classname="invaders" name="default" status="UNKNOWN" time="2">
 <failure message="UNKNOWN" type="UNKNOWN"/>
-<system-out>SBY 23:32:21 [invaders] Removing direcory 'invaders'.
-SBY 23:32:21 [invaders] Copy 'timer_1us.v' to 'invaders/src/timer_1us.v'.
-SBY 23:32:21 [invaders] Copy 'invaders.v' to 'invaders/src/invaders.v'.
-SBY 23:32:21 [invaders] engine_0: smtbmc
-SBY 23:32:21 [invaders] base: starting process &quot;cd invaders/src; yosys -ql ../model/design.log ../model/design.ys&quot;
-SBY 23:32:22 [invaders] base: finished (returncode=0)
-SBY 23:32:22 [invaders] smt2: starting process &quot;cd invaders/model; yosys -ql design_smt2.log design_smt2.ys&quot;
-SBY 23:32:22 [invaders] smt2: finished (returncode=0)
-SBY 23:32:22 [invaders] engine_0.basecase: starting process &quot;cd invaders; yosys-smtbmc --presat --unroll --noprogress -t 20 --append 0 --dump-vcd engine_0/trace.vcd --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2&quot;
-SBY 23:32:22 [invaders] engine_0.induction: starting process &quot;cd invaders; yosys-smtbmc --presat --unroll -i --noprogress -t 20 --append 0 --dump-vcd engine_0/trace_induct.vcd --dump-vlogtb engine_0/trace_induct_tb.v --dump-smtc engine_0/trace_induct.smtc model/design_smt2.smt2&quot;
-SBY 23:32:22 [invaders] engine_0.induction: ##   0:00:00  Solver: yices
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Solver: yices
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 0..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 0..
-SBY 23:32:22 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 20..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 1..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 1..
-SBY 23:32:22 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 19..
-SBY 23:32:22 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 18..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 2..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 2..
-SBY 23:32:22 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 17..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 3..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 3..
-SBY 23:32:22 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 16..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 4..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 4..
-SBY 23:32:22 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 15..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 5..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 5..
-SBY 23:32:22 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 14..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 6..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 6..
-SBY 23:32:22 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 13..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 7..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 7..
-SBY 23:32:22 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 12..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 8..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 8..
-SBY 23:32:22 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 11..
-SBY 23:32:22 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 10..
-SBY 23:32:22 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 9..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 9..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 9..
-SBY 23:32:22 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 8..
-SBY 23:32:22 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 7..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 10..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 10..
-SBY 23:32:22 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 6..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 11..
-SBY 23:32:22 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 11..
-SBY 23:32:22 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 5..
-SBY 23:32:23 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 4..
-SBY 23:32:23 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 12..
-SBY 23:32:23 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 12..
-SBY 23:32:23 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 3..
-SBY 23:32:23 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 2..
-SBY 23:32:23 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 1..
-SBY 23:32:23 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 13..
-SBY 23:32:23 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 13..
-SBY 23:32:23 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 0..
-SBY 23:32:23 [invaders] engine_0.induction: ##   0:00:00  Temporal induction failed!
-SBY 23:32:23 [invaders] engine_0.induction: ##   0:00:00  Assert failed in invaders: invaders.v:106
-SBY 23:32:23 [invaders] engine_0.induction: ##   0:00:00  Writing trace to VCD file: engine_0/trace_induct.vcd
-SBY 23:32:23 [invaders] engine_0.basecase: ##   0:00:01  Checking assumptions in step 14..
-SBY 23:32:23 [invaders] engine_0.basecase: ##   0:00:01  Checking assertions in step 14..
-SBY 23:32:23 [invaders] engine_0.induction: ##   0:00:01  Writing trace to Verilog testbench: engine_0/trace_induct_tb.v
-SBY 23:32:23 [invaders] engine_0.induction: ##   0:00:01  Writing trace to constraints file: engine_0/trace_induct.smtc
-SBY 23:32:23 [invaders] engine_0.induction: ##   0:00:01  Status: FAILED (!)
-SBY 23:32:23 [invaders] engine_0.induction: finished (returncode=1)
-SBY 23:32:23 [invaders] engine_0: Status returned by engine for induction: FAIL
-SBY 23:32:23 [invaders] engine_0.basecase: ##   0:00:01  Checking assumptions in step 15..
-SBY 23:32:23 [invaders] engine_0.basecase: ##   0:00:01  Checking assertions in step 15..
-SBY 23:32:23 [invaders] engine_0.basecase: ##   0:00:01  Checking assumptions in step 16..
-SBY 23:32:23 [invaders] engine_0.basecase: ##   0:00:01  Checking assertions in step 16..
-SBY 23:32:23 [invaders] engine_0.basecase: ##   0:00:01  Checking assumptions in step 17..
-SBY 23:32:23 [invaders] engine_0.basecase: ##   0:00:01  Checking assertions in step 17..
-SBY 23:32:23 [invaders] engine_0.basecase: ##   0:00:01  Checking assumptions in step 18..
-SBY 23:32:23 [invaders] engine_0.basecase: ##   0:00:01  Checking assertions in step 18..
-SBY 23:32:23 [invaders] engine_0.basecase: ##   0:00:01  Checking assumptions in step 19..
-SBY 23:32:23 [invaders] engine_0.basecase: ##   0:00:01  Checking assertions in step 19..
-SBY 23:32:23 [invaders] engine_0.basecase: ##   0:00:01  Status: PASSED
-SBY 23:32:23 [invaders] engine_0.basecase: finished (returncode=0)
-SBY 23:32:23 [invaders] engine_0: Status returned by engine for basecase: PASS
-SBY 23:32:23 [invaders] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:01 (1)
-SBY 23:32:23 [invaders] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:02 (2)
-SBY 23:32:23 [invaders] summary: engine_0 (smtbmc) returned FAIL for induction
-SBY 23:32:23 [invaders] summary: engine_0 (smtbmc) returned PASS for basecase
-SBY 23:32:23 [invaders] DONE (UNKNOWN, rc=4)
+<system-out>SBY 23:43:28 [invaders] Removing direcory 'invaders'.
+SBY 23:43:28 [invaders] Copy 'timer_1us.v' to 'invaders/src/timer_1us.v'.
+SBY 23:43:28 [invaders] Copy 'invaders.v' to 'invaders/src/invaders.v'.
+SBY 23:43:28 [invaders] engine_0: smtbmc
+SBY 23:43:28 [invaders] base: starting process &quot;cd invaders/src; yosys -ql ../model/design.log ../model/design.ys&quot;
+SBY 23:43:29 [invaders] base: finished (returncode=0)
+SBY 23:43:29 [invaders] smt2: starting process &quot;cd invaders/model; yosys -ql design_smt2.log design_smt2.ys&quot;
+SBY 23:43:29 [invaders] smt2: finished (returncode=0)
+SBY 23:43:29 [invaders] engine_0.basecase: starting process &quot;cd invaders; yosys-smtbmc --presat --unroll --noprogress -t 20 --append 0 --dump-vcd engine_0/trace.vcd --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2&quot;
+SBY 23:43:29 [invaders] engine_0.induction: starting process &quot;cd invaders; yosys-smtbmc --presat --unroll -i --noprogress -t 20 --append 0 --dump-vcd engine_0/trace_induct.vcd --dump-vlogtb engine_0/trace_induct_tb.v --dump-smtc engine_0/trace_induct.smtc model/design_smt2.smt2&quot;
+SBY 23:43:29 [invaders] engine_0.induction: ##   0:00:00  Solver: yices
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Solver: yices
+SBY 23:43:29 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 20..
+SBY 23:43:29 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 19..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 0..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 0..
+SBY 23:43:29 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 18..
+SBY 23:43:29 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 17..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 1..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 1..
+SBY 23:43:29 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 16..
+SBY 23:43:29 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 15..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 2..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 2..
+SBY 23:43:29 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 14..
+SBY 23:43:29 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 13..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 3..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 3..
+SBY 23:43:29 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 12..
+SBY 23:43:29 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 11..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 4..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 4..
+SBY 23:43:29 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 10..
+SBY 23:43:29 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 9..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 5..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 5..
+SBY 23:43:29 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 8..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 6..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 6..
+SBY 23:43:29 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 7..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 7..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 7..
+SBY 23:43:29 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 6..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 8..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 8..
+SBY 23:43:29 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 5..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 9..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 9..
+SBY 23:43:29 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 4..
+SBY 23:43:29 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 3..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 10..
+SBY 23:43:29 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 10..
+SBY 23:43:30 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 2..
+SBY 23:43:30 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 11..
+SBY 23:43:30 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 11..
+SBY 23:43:30 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 1..
+SBY 23:43:30 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 12..
+SBY 23:43:30 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 12..
+SBY 23:43:30 [invaders] engine_0.induction: ##   0:00:00  Trying induction in step 0..
+SBY 23:43:30 [invaders] engine_0.induction: ##   0:00:00  Temporal induction failed!
+SBY 23:43:30 [invaders] engine_0.induction: ##   0:00:00  Assert failed in invaders: invaders.v:106
+SBY 23:43:30 [invaders] engine_0.induction: ##   0:00:00  Writing trace to VCD file: engine_0/trace_induct.vcd
+SBY 23:43:30 [invaders] engine_0.basecase: ##   0:00:00  Checking assumptions in step 13..
+SBY 23:43:30 [invaders] engine_0.basecase: ##   0:00:00  Checking assertions in step 13..
+SBY 23:43:30 [invaders] engine_0.induction: ##   0:00:01  Writing trace to Verilog testbench: engine_0/trace_induct_tb.v
+SBY 23:43:30 [invaders] engine_0.induction: ##   0:00:01  Writing trace to constraints file: engine_0/trace_induct.smtc
+SBY 23:43:30 [invaders] engine_0.induction: ##   0:00:01  Status: FAILED (!)
+SBY 23:43:30 [invaders] engine_0.basecase: ##   0:00:01  Checking assumptions in step 14..
+SBY 23:43:30 [invaders] engine_0.basecase: ##   0:00:01  Checking assertions in step 14..
+SBY 23:43:30 [invaders] engine_0.induction: finished (returncode=1)
+SBY 23:43:30 [invaders] engine_0: Status returned by engine for induction: FAIL
+SBY 23:43:30 [invaders] engine_0.basecase: ##   0:00:01  Checking assumptions in step 15..
+SBY 23:43:30 [invaders] engine_0.basecase: ##   0:00:01  Checking assertions in step 15..
+SBY 23:43:30 [invaders] engine_0.basecase: ##   0:00:01  Checking assumptions in step 16..
+SBY 23:43:30 [invaders] engine_0.basecase: ##   0:00:01  Checking assertions in step 16..
+SBY 23:43:30 [invaders] engine_0.basecase: ##   0:00:01  Checking assumptions in step 17..
+SBY 23:43:30 [invaders] engine_0.basecase: ##   0:00:01  Checking assertions in step 17..
+SBY 23:43:30 [invaders] engine_0.basecase: ##   0:00:01  Checking assumptions in step 18..
+SBY 23:43:30 [invaders] engine_0.basecase: ##   0:00:01  Checking assertions in step 18..
+SBY 23:43:30 [invaders] engine_0.basecase: ##   0:00:01  Checking assumptions in step 19..
+SBY 23:43:30 [invaders] engine_0.basecase: ##   0:00:01  Checking assertions in step 19..
+SBY 23:43:30 [invaders] engine_0.basecase: ##   0:00:01  Status: PASSED
+SBY 23:43:30 [invaders] engine_0.basecase: finished (returncode=0)
+SBY 23:43:30 [invaders] engine_0: Status returned by engine for basecase: PASS
+SBY 23:43:30 [invaders] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:01 (1)
+SBY 23:43:30 [invaders] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:02 (2)
+SBY 23:43:30 [invaders] summary: engine_0 (smtbmc) returned FAIL for induction
+SBY 23:43:30 [invaders] summary: engine_0 (smtbmc) returned PASS for basecase
+SBY 23:43:30 [invaders] DONE (UNKNOWN, rc=4)
 </system-out></testcase></testsuite></testsuites>
