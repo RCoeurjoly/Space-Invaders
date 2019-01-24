@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites disabled="0" errors="0" failures="0" tests="1" time="1">
+<testsuite disabled="0" errors="0" failures="0" name="ship" skipped="0" tests="1" time="1">
+<testcase classname="ship" name="default" status="PASS" time="1">
+<system-out>SBY 23:21:42 [ship] Removing direcory 'ship'.
+SBY 23:21:42 [ship] Copy 'ship.v' to 'ship/src/ship.v'.
+SBY 23:21:42 [ship] engine_0: smtbmc
+SBY 23:21:42 [ship] base: starting process &quot;cd ship/src; yosys -ql ../model/design.log ../model/design.ys&quot;
+SBY 23:21:42 [ship] base: ship.v:417: Warning: Identifier `\clk' is implicitly declared.
+SBY 23:21:42 [ship] base: Warning: Wire ship.\clk is used but has no driver.
+SBY 23:21:42 [ship] base: finished (returncode=0)
+SBY 23:21:42 [ship] smt2: starting process &quot;cd ship/model; yosys -ql design_smt2.log design_smt2.ys&quot;
+SBY 23:21:42 [ship] smt2: finished (returncode=0)
+SBY 23:21:42 [ship] engine_0.basecase: starting process &quot;cd ship; yosys-smtbmc --presat --unroll --noprogress -t 20 --append 0 --dump-vcd engine_0/trace.vcd --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2&quot;
+SBY 23:21:42 [ship] engine_0.induction: starting process &quot;cd ship; yosys-smtbmc --presat --unroll -i --noprogress -t 20 --append 0 --dump-vcd engine_0/trace_induct.vcd --dump-vlogtb engine_0/trace_induct_tb.v --dump-smtc engine_0/trace_induct.smtc model/design_smt2.smt2&quot;
+SBY 23:21:42 [ship] engine_0.basecase: ##   0:00:00  Solver: yices
+SBY 23:21:42 [ship] engine_0.basecase: ##   0:00:00  Checking assumptions in step 0..
+SBY 23:21:42 [ship] engine_0.basecase: ##   0:00:00  Checking assertions in step 0..
+SBY 23:21:42 [ship] engine_0.induction: ##   0:00:00  Solver: yices
+SBY 23:21:42 [ship] engine_0.basecase: ##   0:00:00  Checking assumptions in step 1..
+SBY 23:21:42 [ship] engine_0.basecase: ##   0:00:00  Checking assertions in step 1..
+SBY 23:21:42 [ship] engine_0.induction: ##   0:00:00  Trying induction in step 20..
+SBY 23:21:42 [ship] engine_0.induction: ##   0:00:00  Trying induction in step 19..
+SBY 23:21:42 [ship] engine_0.induction: ##   0:00:00  Temporal induction successful.
+SBY 23:21:42 [ship] engine_0.basecase: ##   0:00:00  Checking assumptions in step 2..
+SBY 23:21:42 [ship] engine_0.basecase: ##   0:00:00  Checking assertions in step 2..
+SBY 23:21:42 [ship] engine_0.induction: ##   0:00:00  Status: PASSED
+SBY 23:21:42 [ship] engine_0.induction: finished (returncode=0)
+SBY 23:21:42 [ship] engine_0: Status returned by engine for induction: PASS
+SBY 23:21:42 [ship] engine_0.basecase: ##   0:00:00  Checking assumptions in step 3..
+SBY 23:21:42 [ship] engine_0.basecase: ##   0:00:00  Checking assertions in step 3..
+SBY 23:21:42 [ship] engine_0.basecase: ##   0:00:00  Checking assumptions in step 4..
+SBY 23:21:42 [ship] engine_0.basecase: ##   0:00:00  Checking assertions in step 4..
+SBY 23:21:42 [ship] engine_0.basecase: ##   0:00:00  Checking assumptions in step 5..
+SBY 23:21:42 [ship] engine_0.basecase: ##   0:00:00  Checking assertions in step 5..
+SBY 23:21:42 [ship] engine_0.basecase: ##   0:00:00  Checking assumptions in step 6..
+SBY 23:21:42 [ship] engine_0.basecase: ##   0:00:00  Checking assertions in step 6..
+SBY 23:21:42 [ship] engine_0.basecase: ##   0:00:00  Checking assumptions in step 7..
+SBY 23:21:42 [ship] engine_0.basecase: ##   0:00:00  Checking assertions in step 7..
+SBY 23:21:42 [ship] engine_0.basecase: ##   0:00:00  Checking assumptions in step 8..
+SBY 23:21:42 [ship] engine_0.basecase: ##   0:00:00  Checking assertions in step 8..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assumptions in step 9..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assertions in step 9..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assumptions in step 10..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assertions in step 10..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assumptions in step 11..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assertions in step 11..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assumptions in step 12..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assertions in step 12..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assumptions in step 13..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assertions in step 13..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assumptions in step 14..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assertions in step 14..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assumptions in step 15..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assertions in step 15..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assumptions in step 16..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assertions in step 16..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assumptions in step 17..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assertions in step 17..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assumptions in step 18..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assertions in step 18..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assumptions in step 19..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Checking assertions in step 19..
+SBY 23:21:43 [ship] engine_0.basecase: ##   0:00:00  Status: PASSED
+SBY 23:21:43 [ship] engine_0.basecase: finished (returncode=0)
+SBY 23:21:43 [ship] engine_0: Status returned by engine for basecase: PASS
+SBY 23:21:43 [ship] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:01 (1)
+SBY 23:21:43 [ship] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:01 (1)
+SBY 23:21:43 [ship] summary: engine_0 (smtbmc) returned PASS for induction
+SBY 23:21:43 [ship] summary: engine_0 (smtbmc) returned PASS for basecase
+SBY 23:21:43 [ship] summary: successful proof by k-induction.
+SBY 23:21:43 [ship] DONE (PASS, rc=0)
+</system-out></testcase></testsuite></testsuites>

@@ -18,6 +18,9 @@ ifeq ($(MODULE), $(TOP))
 	clk_36MHz_generator.v \
 	bullet.v
 
+FORMAL:=\
+    ship.v \
+    bullet.v
 #   AUXFILES:=\
 # 	const.vh
 
@@ -60,7 +63,16 @@ upload: $(MODULE).bin
 clean:
 	rm -f *.bin *.pnr *.blif *.out *.vcd *~
 
-formal_verification:
-	sby ­f ship.sby
+verify_ship:
+	sby -f  ship.sby
+verify_bullet:
+	sby -f  bullet.sby
+verify_edge_detector_debouncer:
+	sby -f  edge_detector_debouncer.sby
+verify_player:
+	sby -f  player.sby
+verify_invaders:
+	sby -f  invaders.sby
+
 .PHONY: all clean json svg sim
 

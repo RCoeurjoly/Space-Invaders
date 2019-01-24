@@ -1,0 +1,14 @@
+# running in ship/src/
+read -formal ship.v
+prep -top ship
+
+memory_nordff
+async2sync
+chformal -assume -early
+chformal -live -fair -cover -remove
+opt_clean
+setundef -anyseq
+opt -keepdc -fast
+check
+hierarchy -simcheck
+write_ilang ../model/design.il
