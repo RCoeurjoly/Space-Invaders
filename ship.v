@@ -413,4 +413,10 @@ module ship(
 	end
       endcase
    end // always @ (reset or left_debounced or right_debounced or enable or current_state)
+`ifdef FORMAL
+   always @(posedge clk) begin
+      assert (ship_x < 20);
+      assert (ship_x >= 0);
+   end
+`endif
 endmodule
