@@ -25,7 +25,7 @@ module bullet(
       bullet_x <= 0;
       bullet_y <= 14;
    end
-
+   
    always @(posedge clk_36MHz) begin
       // reset condition
       if (reset == 0) begin
