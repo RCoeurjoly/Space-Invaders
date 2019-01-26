@@ -2,7 +2,7 @@
 mode prove
 
 [engines]
-smtbmc
+smtbmc z3
 
 [script]
 read -formal ship.v

@@ -45,7 +45,7 @@ $ make upload
 
 * Simulate sub-module
 
-Give your submodule is called `file.v`, and the corresponding testbench is called `file_tb.v`, you can simulate the sub-module using:
+Given a submodule called `file.v`, and a corresponding testbench called `file_tb.v`, you can simulate the sub-module using:
 
 ```
 $ make MODULE=module sim
