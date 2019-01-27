@@ -2,17 +2,17 @@
 // This program is GPL Licensed. See LICENSE for the full license.
 
 module sprite_drawer(
-		                 input wire [9:0]  x,
-		                 input wire [9:0]  y,
-		                 input wire        reset, //asynchronous reset
-		                 input wire [19:0] invaders_array,
-		                 input wire [3:0]  invaders_line,
-		                 input wire [4:0]  ship_x,
-		                 input wire [4:0]  bullet_x,
-		                 input wire [3:0]  bullet_y,
-		                 input wire        bullet_flying,
-		                 input wire [2:0]  gameplay,
-		                 output reg [2:0]  rgb
+		                 input wire [9:0]  i_x,
+		                 input wire [9:0]  i_y,
+		                 input wire        i_reset, //asynchronous i_reset
+		                 input wire [19:0] i_invaders_array,
+		                 input wire [3:0]  i_invaders_line,
+		                 input wire [4:0]  i_ship_x,
+		                 input wire [4:0]  i_bullet_x,
+		                 input wire [3:0]  i_bullet_y,
+		                 input wire        i_bullet_flying,
+		                 input wire [1:0]  i_gameplay,
+		                 output reg [2:0]  o_rgb
 		                 );
 
 
@@ -29,8 +29,7 @@ module sprite_drawer(
    parameter GAME_OVER = 2'b10;
 
    initial begin
-      rgb <= 3'b000;
-
+      o_rgb = 3'b000;
       invader[0]  <= 32'b00000000000000000000000000000000;
       invader[1]  <= 32'b00000000000000000000000000000000;
       invader[2]  <= 32'b00000000000000000000000000000000;
@@ -207,59 +206,58 @@ module sprite_drawer(
    parameter [2:0] 	   YELLOW = 3'b110;
    parameter [2:0] 	   WHITE = 3'b111;
 
-   wire [4:0] 			   sprite_x = x[9:5];
-   wire [3:0]          sprite_y = y[8:5];
-   wire [4:0]          index_x = x[4:0];
-   wire [4:0]          index_y = y[4:0];
+   wire [4:0] 			   sprite_x = i_x[9:5];
+   wire [3:0]          sprite_y = i_y[8:5];
+   wire [4:0]          index_x = i_x[4:0];
+   wire [4:0]          index_y = i_y[4:0];
 
    always @(*) begin
-      if (reset == 1) begin
-	       if (gameplay == YOU_WIN) begin
+      if (i_reset == 1) begin
+	       if (i_gameplay == YOU_WIN) begin
 	          if (smiley[index_y][index_x] == 1)
-	            rgb <= BLACK;
+	            o_rgb <= BLACK;
 	          else
-	            rgb <= YELLOW;
+	            o_rgb <= YELLOW;
 	       end
-	       else if (gameplay == GAME_OVER) begin
+	       else if (i_gameplay == GAME_OVER) begin
 	          if (sad[index_y][index_x] == 1)
-	            rgb <= BLACK;
+	            o_rgb <= BLACK;
 	          else
-	            rgb <= RED;
+	            o_rgb <= RED;
 	       end
-	       else if (gameplay == PLAYING) begin
+	       else if (i_gameplay == PLAYING) begin
 	          // drawing bullet
-	          if (bullet_flying == 1 && (sprite_x == bullet_x) && (sprite_y == bullet_y)) begin
+	          if (i_bullet_flying == 1 && (sprite_x == i_bullet_x) && (sprite_y == i_bullet_y)) begin
 	             if (bullet[index_y][index_x] == 1)
-		             rgb <= YELLOW;
+		             o_rgb <= YELLOW;
 	             else
-		             rgb <= BLACK;
+		             o_rgb <= BLACK;
 	          end
 	          // drawing ship (it is always in row 13)
-	          else if (sprite_x == ship_x && sprite_y == 13) begin
+	          else if (sprite_x == i_ship_x && sprite_y == 13) begin
 	             if (ship[index_y][index_x] == 1)
-		             rgb <= RED;
+		             o_rgb <= RED;
 	             else
-		             rgb <= BLACK;
+		             o_rgb <= BLACK;
 	          end
 	          // drawing invader
-	          else if (sprite_y == invaders_line && invaders_array[sprite_x] == 1) begin
+	          else if (sprite_y == i_invaders_line && i_invaders_array[sprite_x] == 1) begin
 	             if (invader[index_y][index_x] == 1)
-		             rgb <= MAGENTA;
+		             o_rgb <= MAGENTA;
 	             else
-		             rgb <= BLACK;
-	          end
+		             o_rgb <= BLACK;
+            end
 	          //background
 	          else
-	            rgb <= BLACK;
-	       end // if (gameplay == PLAYING)
-      end // if (reset == 1)
+	            o_rgb <= BLACK;
+	       end // if (i_gameplay == PLAYING)
+      end // if (i_reset == 1)
       else begin
 	       //Black and white chessboard
 	       if (sprite_x[0] ^ sprite_y[0] == 1)
-	         rgb <= WHITE;
-	       else rgb <= BLACK;
+	         o_rgb <= WHITE;
+	       else o_rgb <= BLACK;
       end
    end // always @ (*)
-
    //end
 endmodule

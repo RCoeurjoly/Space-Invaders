@@ -2,11 +2,11 @@
 // This program is GPL Licensed. See LICENSE for the full license.
 
 module edge_detector_debouncer(
-			                         input wire clk_36MHz,
-			                         input wire reset, //asynchronous reset
-			                         input wire enable,
-			                         input wire in,
-			                         output reg debounced
+			                         input wire i_clk_36MHz,
+			                         input wire i_reset, //asynchronous i_reset
+			                         input wire i_enable,
+			                         input wire i_in,
+			                         output reg o_debounced
 			                         );
    reg [1:0]                              current_state;
    reg [1:0]                              next_state;
@@ -20,85 +20,85 @@ module edge_detector_debouncer(
    parameter [1:0] waiting = 2'b10;
 
    timer_1us  # (1000) timer_1us1(
-				                          .clk_36MHz(clk_36MHz),
-				                          .reset(reset),
-				                          .en(counter_enabled),
-				                          .q(timeout)
+				                          .i_clk_36MHz(i_clk_36MHz),
+				                          .i_reset(i_reset),
+				                          .i_en(counter_enabled),
+				                          .o_q(timeout)
 				                          );
 
    initial begin
-      current_state <= 2'b00;
-      next_state <= 2'b00;
-      debounced <= 1'b0;
+      current_state = 2'b00;
+      next_state = 2'b00;
+      o_debounced = 1'b0;
    end
 
-   always @(posedge clk_36MHz)
+   always @(posedge i_clk_36MHz)
      begin
-	      // reset condition
-	      if (reset == 0)
+	      // i_reset condition
+	      if (i_reset == 0)
 	        begin
 	           current_state <= not_detected;
 	        end
 	      else
 	        begin
-	           if (enable == 1)
+	           if (i_enable == 1)
 	             begin
 		              current_state <= next_state;
 	             end
-	        end // else: !if(reset == 1)
-     end // always @ (posedge clk_36MHz)
+	        end // else: !if(i_reset == 1)
+     end // always @ (posedge i_clk_36MHz)
 
-   always @(current_state or in or timeout)
+   always @(current_state or i_in or timeout)
      begin
-	      next_state <= current_state;
+	      next_state = current_state;
 	      case (current_state)
 	        not_detected:
 	          begin
-	             debounced <= 0;
-	             counter_enabled <= 0;
-	             if (in == 0)
-		             next_state <= not_detected;
+	             o_debounced = 0;
+	             counter_enabled = 0;
+	             if (i_in == 0)
+		             next_state = not_detected;
 	             else
-		             next_state <= edge_detected;
+		             next_state = edge_detected;
 	          end
 	        edge_detected:
 	          begin
-	             debounced <= 1;
-	             counter_enabled <= 0;
-	             next_state <= disabled;
+	             o_debounced = 1;
+	             counter_enabled = 0;
+	             next_state = disabled;
 	          end
 	        disabled:
 	          begin
-	             debounced <= 0;
-	             counter_enabled <= 1;
+	             o_debounced = 0;
+	             counter_enabled = 1;
 	             if (timeout == 1)
 		             begin
-		                if (in == 0)
-		                  next_state <= not_detected;
+		                if (i_in == 0)
+		                  next_state = not_detected;
 		                else
-		                  next_state <= waiting;
+		                  next_state = waiting;
 		             end
 	             else
-		             current_state <= current_state;
+		             current_state = current_state;
 	          end // case: disabled
 	        waiting:
 	          begin
-	             debounced <= 0;
-	             counter_enabled <= 0;
-	             if (in == 0)
-		             next_state <= not_detected;
+	             o_debounced = 0;
+	             counter_enabled = 0;
+	             if (i_in == 0)
+		             next_state = not_detected;
 	             else
-		             next_state <= waiting;
+		             next_state = waiting;
 	          end
 	        default:
 	          begin
-	             debounced <= 0;
-	             counter_enabled <= 0;
-	             if (in == 0)
-		             next_state <= not_detected;
+	             o_debounced = 0;
+	             counter_enabled = 0;
+	             if (i_in == 0)
+		             next_state = not_detected;
 	             else
-		             next_state <= waiting;
+		             next_state = waiting;
 	          end
 	      endcase
-     end
+     end // always @ (current_state or in or timeout)
 endmodule

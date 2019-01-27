@@ -1,0 +1,4 @@
+# running in edge_detector_debouncer/model/
+read_ilang design.il
+stat
+write_smt2 -wires design_smt2.smt2

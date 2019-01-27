@@ -2,11 +2,11 @@
 // This program is GPL Licensed. See LICENSE for the full license.
 
 module gameplay(
-		            input wire        clk_36MHz,
-		            input wire        reset,
-		            input wire [19:0] invaders_array,
-		            input wire [3:0]  invaders_line,
-		            output reg [1:0]  gameplay
+		            input wire        i_clk_36MHz,
+		            input wire        i_reset,
+		            input wire [19:0] i_invaders_array,
+		            input wire [3:0]  i_invaders_line,
+		            output reg [1:0]  o_gameplay
 		            );
 
    parameter PLAYING = 2'b00;
@@ -15,24 +15,23 @@ module gameplay(
 
    initial
      begin
-	      gameplay <= PLAYING;
+	      o_gameplay = PLAYING;
      end
 
-   always @(posedge clk_36MHz)
+   always @(posedge i_clk_36MHz)
      begin
-        if (reset == 0)
+        if (i_reset == 0)
 	        begin
-	           gameplay <= PLAYING;
+	           o_gameplay <= PLAYING;
 	        end
 	      else
 	        begin
-	           if (invaders_line == 13)
-	             gameplay <= GAME_OVER;
-	           else if (invaders_array == 0)
-	             gameplay <= YOU_WIN;
+	           if (i_invaders_line == 13)
+	             o_gameplay <= GAME_OVER;
+	           else if (i_invaders_array == 0)
+	             o_gameplay <= YOU_WIN;
 	           else
-	             gameplay <= PLAYING;
+	             o_gameplay <= PLAYING;
 	        end
-     end // always @ (posedge clk_36MHz)
-
+     end // always @ (posedge i_clk_36MHz)
 endmodule
