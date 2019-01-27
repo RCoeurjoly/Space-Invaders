@@ -1,0 +1,12 @@
+[options]
+mode prove
+
+[engines]
+smtbmc
+
+[script]
+read -formal gameplay.v
+prep -top gameplay
+
+[files]
+rtl/gameplay.v

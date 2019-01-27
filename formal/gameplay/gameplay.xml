@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites disabled="0" errors="0" failures="1" tests="1" time="0">
+<testsuite disabled="0" errors="0" failures="1" name="gameplay" skipped="0" tests="1" time="0">
+<testcase classname="gameplay" name="default" status="FAIL" time="0">
+<failure message="FAIL" type="FAIL"/>
+<system-out>SBY 22:18:30 [formal/gameplay] Removing direcory 'formal/gameplay'.
+SBY 22:18:30 [formal/gameplay] Copy 'rtl/gameplay.v' to 'formal/gameplay/src/gameplay.v'.
+SBY 22:18:30 [formal/gameplay] engine_0: smtbmc
+SBY 22:18:30 [formal/gameplay] base: starting process &quot;cd formal/gameplay/src; yosys -ql ../model/design.log ../model/design.ys&quot;
+SBY 22:18:30 [formal/gameplay] base: finished (returncode=0)
+SBY 22:18:30 [formal/gameplay] smt2: starting process &quot;cd formal/gameplay/model; yosys -ql design_smt2.log design_smt2.ys&quot;
+SBY 22:18:30 [formal/gameplay] smt2: finished (returncode=0)
+SBY 22:18:30 [formal/gameplay] engine_0.basecase: starting process &quot;cd formal/gameplay; yosys-smtbmc --presat --unroll --noprogress -t 20 --append 0 --dump-vcd engine_0/trace.vcd --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2&quot;
+SBY 22:18:30 [formal/gameplay] engine_0.induction: starting process &quot;cd formal/gameplay; yosys-smtbmc --presat --unroll -i --noprogress -t 20 --append 0 --dump-vcd engine_0/trace_induct.vcd --dump-vlogtb engine_0/trace_induct_tb.v --dump-smtc engine_0/trace_induct.smtc model/design_smt2.smt2&quot;
+SBY 22:18:30 [formal/gameplay] engine_0.basecase: ##   0:00:00  Solver: yices
+SBY 22:18:30 [formal/gameplay] engine_0.basecase: ##   0:00:00  Checking assumptions in step 0..
+SBY 22:18:30 [formal/gameplay] engine_0.basecase: ##   0:00:00  Checking assertions in step 0..
+SBY 22:18:30 [formal/gameplay] engine_0.induction: ##   0:00:00  Solver: yices
+SBY 22:18:30 [formal/gameplay] engine_0.basecase: ##   0:00:00  Checking assumptions in step 1..
+SBY 22:18:30 [formal/gameplay] engine_0.basecase: ##   0:00:00  Checking assertions in step 1..
+SBY 22:18:30 [formal/gameplay] engine_0.induction: ##   0:00:00  Trying induction in step 20..
+SBY 22:18:30 [formal/gameplay] engine_0.basecase: ##   0:00:00  Checking assumptions in step 2..
+SBY 22:18:30 [formal/gameplay] engine_0.basecase: ##   0:00:00  Checking assertions in step 2..
+SBY 22:18:30 [formal/gameplay] engine_0.induction: ##   0:00:00  Trying induction in step 19..
+SBY 22:18:30 [formal/gameplay] engine_0.induction: ##   0:00:00  Trying induction in step 18..
+SBY 22:18:30 [formal/gameplay] engine_0.basecase: ##   0:00:00  Checking assumptions in step 3..
+SBY 22:18:30 [formal/gameplay] engine_0.basecase: ##   0:00:00  Checking assertions in step 3..
+SBY 22:18:30 [formal/gameplay] engine_0.basecase: ##   0:00:00  BMC failed!
+SBY 22:18:30 [formal/gameplay] engine_0.basecase: ##   0:00:00  Re-solving with appended steps..
+SBY 22:18:30 [formal/gameplay] engine_0.induction: ##   0:00:00  Trying induction in step 17..
+SBY 22:18:30 [formal/gameplay] engine_0.basecase: ##   0:00:00  Assert failed in gameplay: gameplay.v:45
+SBY 22:18:30 [formal/gameplay] engine_0.basecase: ##   0:00:00  Writing trace to VCD file: engine_0/trace.vcd
+SBY 22:18:30 [formal/gameplay] engine_0.induction: ##   0:00:00  Trying induction in step 16..
+SBY 22:18:30 [formal/gameplay] engine_0.basecase: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace_tb.v
+SBY 22:18:30 [formal/gameplay] engine_0.induction: ##   0:00:00  Trying induction in step 15..
+SBY 22:18:30 [formal/gameplay] engine_0.basecase: ##   0:00:00  Writing trace to constraints file: engine_0/trace.smtc
+SBY 22:18:30 [formal/gameplay] engine_0.basecase: ##   0:00:00  Status: FAILED (!)
+SBY 22:18:30 [formal/gameplay] engine_0.induction: ##   0:00:00  Trying induction in step 14..
+SBY 22:18:30 [formal/gameplay] engine_0.induction: ##   0:00:00  Trying induction in step 13..
+SBY 22:18:30 [formal/gameplay] engine_0.basecase: finished (returncode=1)
+SBY 22:18:30 [formal/gameplay] engine_0: Status returned by engine for basecase: FAIL
+SBY 22:18:30 [formal/gameplay] engine_0.induction: terminating process
+SBY 22:18:30 [formal/gameplay] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY 22:18:30 [formal/gameplay] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY 22:18:30 [formal/gameplay] summary: engine_0 (smtbmc) returned FAIL for basecase
+SBY 22:18:30 [formal/gameplay] summary: counterexample trace: formal/gameplay/engine_0/trace.vcd
+SBY 22:18:30 [formal/gameplay] DONE (FAIL, rc=2)
+</system-out></testcase></testsuite></testsuites>

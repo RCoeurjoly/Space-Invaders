@@ -11,6 +11,6 @@ read -formal clk_36MHz_generator.v
 prep -top bullet
 
 [files]
-bullet.v
-timer_1us.v
-clk_36MHz_generator.v
+rtl/bullet.v
+rtl/timer_1us.v
+rtl/clk_36MHz_generator.v

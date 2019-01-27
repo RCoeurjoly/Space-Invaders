@@ -21,14 +21,9 @@ module player(
               );
 
    //Interconnect
-   wire [4:0]                   o_ship_x;
-   wire [4:0]                   o_bullet_x;
-   wire [3:0]                   o_bullet_y;
    wire                         left_debounced;
    wire                         right_debounced;
    wire                         shoot_debounced;
-   wire                         o_bullet_flying;
-
 
    edge_detector_debouncer left_debouncer(
                                           .i_clk_36MHz            (i_clk_36MHz),
@@ -79,7 +74,7 @@ module player(
 
    initial
      begin
-        o_score <= 0;
+        o_score = 0;
      end
 
    always @(posedge i_clk_36MHz)
