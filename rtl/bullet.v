@@ -60,7 +60,6 @@ module bullet(
 	             o_bullet_flying <= o_bullet_flying;
 	             o_bullet_x <= o_bullet_x;
 	             o_bullet_y <= o_bullet_y;
-               o_b
 	          end
 	       end // else: !if(o_bullet_flying == 0)
       end // else: !if(i_reset == 0)

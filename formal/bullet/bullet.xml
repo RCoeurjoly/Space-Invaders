@@ -2,72 +2,72 @@
 <testsuites disabled="0" errors="0" failures="0" tests="1" time="0">
 <testsuite disabled="0" errors="0" failures="0" name="bullet" skipped="0" tests="1" time="0">
 <testcase classname="bullet" name="default" status="PASS" time="0">
-<system-out>SBY 20:58:08 [formal/bullet] Removing direcory 'formal/bullet'.
-SBY 20:58:08 [formal/bullet] Copy 'rtl/clk_36MHz_generator.v' to 'formal/bullet/src/clk_36MHz_generator.v'.
-SBY 20:58:08 [formal/bullet] Copy 'rtl/timer_1us.v' to 'formal/bullet/src/timer_1us.v'.
-SBY 20:58:08 [formal/bullet] Copy 'rtl/bullet.v' to 'formal/bullet/src/bullet.v'.
-SBY 20:58:08 [formal/bullet] engine_0: smtbmc
-SBY 20:58:08 [formal/bullet] base: starting process &quot;cd formal/bullet/src; yosys -ql ../model/design.log ../model/design.ys&quot;
-SBY 20:58:08 [formal/bullet] base: finished (returncode=0)
-SBY 20:58:08 [formal/bullet] smt2: starting process &quot;cd formal/bullet/model; yosys -ql design_smt2.log design_smt2.ys&quot;
-SBY 20:58:08 [formal/bullet] smt2: finished (returncode=0)
-SBY 20:58:08 [formal/bullet] engine_0.basecase: starting process &quot;cd formal/bullet; yosys-smtbmc --presat --unroll --noprogress -t 20 --append 0 --dump-vcd engine_0/trace.vcd --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2&quot;
-SBY 20:58:08 [formal/bullet] engine_0.induction: starting process &quot;cd formal/bullet; yosys-smtbmc --presat --unroll -i --noprogress -t 20 --append 0 --dump-vcd engine_0/trace_induct.vcd --dump-vlogtb engine_0/trace_induct_tb.v --dump-smtc engine_0/trace_induct.smtc model/design_smt2.smt2&quot;
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Solver: yices
-SBY 20:58:08 [formal/bullet] engine_0.induction: ##   0:00:00  Solver: yices
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 0..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 0..
-SBY 20:58:08 [formal/bullet] engine_0.induction: ##   0:00:00  Trying induction in step 20..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 1..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 1..
-SBY 20:58:08 [formal/bullet] engine_0.induction: ##   0:00:00  Trying induction in step 19..
-SBY 20:58:08 [formal/bullet] engine_0.induction: ##   0:00:00  Temporal induction successful.
-SBY 20:58:08 [formal/bullet] engine_0.induction: ##   0:00:00  Status: PASSED
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 2..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 2..
-SBY 20:58:08 [formal/bullet] engine_0.induction: finished (returncode=0)
-SBY 20:58:08 [formal/bullet] engine_0: Status returned by engine for induction: PASS
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 3..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 3..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 4..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 4..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 5..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 5..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 6..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 6..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 7..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 7..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 8..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 8..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 9..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 9..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 10..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 10..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 11..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 11..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 12..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 12..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 13..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 13..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 14..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 14..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 15..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 15..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 16..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 16..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 17..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 17..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 18..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 18..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 19..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 19..
-SBY 20:58:08 [formal/bullet] engine_0.basecase: ##   0:00:00  Status: PASSED
-SBY 20:58:08 [formal/bullet] engine_0.basecase: finished (returncode=0)
-SBY 20:58:08 [formal/bullet] engine_0: Status returned by engine for basecase: PASS
-SBY 20:58:08 [formal/bullet] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
-SBY 20:58:08 [formal/bullet] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
-SBY 20:58:08 [formal/bullet] summary: engine_0 (smtbmc) returned PASS for induction
-SBY 20:58:08 [formal/bullet] summary: engine_0 (smtbmc) returned PASS for basecase
-SBY 20:58:08 [formal/bullet] summary: successful proof by k-induction.
-SBY 20:58:08 [formal/bullet] DONE (PASS, rc=0)
+<system-out>SBY 17:12:33 [formal/bullet] Removing direcory 'formal/bullet'.
+SBY 17:12:33 [formal/bullet] Copy 'rtl/bullet.v' to 'formal/bullet/src/bullet.v'.
+SBY 17:12:33 [formal/bullet] Copy 'rtl/timer_1us.v' to 'formal/bullet/src/timer_1us.v'.
+SBY 17:12:33 [formal/bullet] Copy 'rtl/clk_36MHz_generator.v' to 'formal/bullet/src/clk_36MHz_generator.v'.
+SBY 17:12:33 [formal/bullet] engine_0: smtbmc
+SBY 17:12:33 [formal/bullet] base: starting process &quot;cd formal/bullet/src; yosys -ql ../model/design.log ../model/design.ys&quot;
+SBY 17:12:34 [formal/bullet] base: finished (returncode=0)
+SBY 17:12:34 [formal/bullet] smt2: starting process &quot;cd formal/bullet/model; yosys -ql design_smt2.log design_smt2.ys&quot;
+SBY 17:12:34 [formal/bullet] smt2: finished (returncode=0)
+SBY 17:12:34 [formal/bullet] engine_0.basecase: starting process &quot;cd formal/bullet; yosys-smtbmc --presat --unroll --noprogress -t 20 --append 0 --dump-vcd engine_0/trace.vcd --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2&quot;
+SBY 17:12:34 [formal/bullet] engine_0.induction: starting process &quot;cd formal/bullet; yosys-smtbmc --presat --unroll -i --noprogress -t 20 --append 0 --dump-vcd engine_0/trace_induct.vcd --dump-vlogtb engine_0/trace_induct_tb.v --dump-smtc engine_0/trace_induct.smtc model/design_smt2.smt2&quot;
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Solver: yices
+SBY 17:12:34 [formal/bullet] engine_0.induction: ##   0:00:00  Solver: yices
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 0..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 0..
+SBY 17:12:34 [formal/bullet] engine_0.induction: ##   0:00:00  Trying induction in step 20..
+SBY 17:12:34 [formal/bullet] engine_0.induction: ##   0:00:00  Trying induction in step 19..
+SBY 17:12:34 [formal/bullet] engine_0.induction: ##   0:00:00  Temporal induction successful.
+SBY 17:12:34 [formal/bullet] engine_0.induction: ##   0:00:00  Status: PASSED
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 1..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 1..
+SBY 17:12:34 [formal/bullet] engine_0.induction: finished (returncode=0)
+SBY 17:12:34 [formal/bullet] engine_0: Status returned by engine for induction: PASS
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 2..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 2..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 3..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 3..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 4..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 4..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 5..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 5..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 6..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 6..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 7..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 7..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 8..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 8..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 9..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 9..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 10..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 10..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 11..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 11..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 12..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 12..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 13..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 13..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 14..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 14..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 15..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 15..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 16..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 16..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 17..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 17..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 18..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 18..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assumptions in step 19..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Checking assertions in step 19..
+SBY 17:12:34 [formal/bullet] engine_0.basecase: ##   0:00:00  Status: PASSED
+SBY 17:12:34 [formal/bullet] engine_0.basecase: finished (returncode=0)
+SBY 17:12:34 [formal/bullet] engine_0: Status returned by engine for basecase: PASS
+SBY 17:12:34 [formal/bullet] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:01 (1)
+SBY 17:12:34 [formal/bullet] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY 17:12:34 [formal/bullet] summary: engine_0 (smtbmc) returned PASS for induction
+SBY 17:12:34 [formal/bullet] summary: engine_0 (smtbmc) returned PASS for basecase
+SBY 17:12:34 [formal/bullet] summary: successful proof by k-induction.
+SBY 17:12:34 [formal/bullet] DONE (PASS, rc=0)
 </system-out></testcase></testsuite></testsuites>
