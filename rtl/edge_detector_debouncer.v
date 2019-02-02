@@ -4,7 +4,6 @@
 module edge_detector_debouncer(
 			                         input wire i_clk_36MHz,
 			                         input wire i_reset, //asynchronous i_reset
-			                         input wire i_enable,
 			                         input wire i_in,
 			                         output reg o_debounced
 			                         );
@@ -39,13 +38,7 @@ module edge_detector_debouncer(
 	        begin
 	           current_state <= not_detected;
 	        end
-	      else
-	        begin
-	           if (i_enable == 1)
-	             begin
-		              current_state <= next_state;
-	             end
-	        end // else: !if(i_reset == 1)
+	      else current_state <= next_state;
      end // always @ (posedge i_clk_36MHz)
 
    always @(current_state or i_in or timeout)

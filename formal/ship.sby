@@ -9,4 +9,4 @@ read -formal ship.v
 prep -top ship
 
 [files]
-ship.v
+rtl/ship.v

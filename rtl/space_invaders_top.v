@@ -1,4 +1,4 @@
-// Copyi_right (c) 2017-2018 Roland Coeurjoly
+// Copyright (c) 2017-2018 Roland Coeurjoly
 // This program is GPL Licensed. See LICENSE for the full license.
 
 module space_invaders_top(
@@ -26,11 +26,6 @@ module space_invaders_top(
    wire [19:0]                        invaders_array;
    wire [3:0]                         invaders_line;
    wire                               bullet_flying;
-   wire                               clear;
-   wire                               start_debounced;
-   wire [7:0]                         score;
-   wire                               level;
-   wire                               clear_score;
    wire [1:0]                         gameplay;
 
    clk_36MHz_generator clk_36MHz_generator1(
@@ -59,7 +54,6 @@ module space_invaders_top(
 				                        .i_ship_x(ship_x),
 				                        .i_bullet_x(bullet_x),
 				                        .i_bullet_y(bullet_y),
-				                        .i_bullet_flying(bullet_flying),
 				                        .i_gameplay(gameplay),
 				                        .o_rgb(rgb)
 				                        );
@@ -75,20 +69,14 @@ module space_invaders_top(
    player player1(
 		              .i_clk_36MHz(clk_36MHz),
 		              .i_reset(i_reset),
-		              .i_clear(clear),
 		              .i_left(i_left),
 		              .i_right(i_right),
 		              .i_start(i_start),
 		              .i_shoot(i_shoot),
-		              .i_clear_score(clear_score),
-		              .i_enable(1),
 		              .i_hit(hit),
 		              .o_ship_x(ship_x),
-		              .o_start_debounced(start_debounced),
 		              .o_bullet_x(bullet_x),
 		              .o_bullet_y(bullet_y),
-		              .o_bullet_flying(bullet_flying),
-		              .o_score(score)
 		              );
 
    invaders invaders1(
@@ -97,7 +85,6 @@ module space_invaders_top(
 		                  .i_start(i_start),
 		                  .i_bullet_x(bullet_x),
 		                  .i_bullet_y(bullet_y),
-		                  .i_level(level),
 		                  .o_hit(hit),
 		                  .o_invaders_array(invaders_array),
 		                  .o_invaders_line(invaders_line)

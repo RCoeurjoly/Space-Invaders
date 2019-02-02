@@ -4,10 +4,8 @@
 module invaders(
 		            input wire        i_clk_36MHz, //input clock: 12MHz
 		            input wire        i_reset, //synchronous i_reset
-		            input wire        i_start,
  		            input wire [4:0]  i_bullet_x,
 		            input wire [3:0]  i_bullet_y,
-		            input wire        i_level,
 		            output reg        o_hit,
 		            output reg [19:0] o_invaders_array,
 		            output reg [3:0]  o_invaders_line
@@ -35,7 +33,7 @@ module invaders(
    localparam LEFT  = 1'b0;
 
    reg                            direction, moving;
-   reg [2:0]                      state;
+   reg [2:0]                      current_state, next_state, state;
 
 
    initial begin
@@ -46,12 +44,15 @@ module invaders(
       o_hit = 0;
       state = 0;
    end
-
    always @(posedge i_clk_36MHz) begin
+      current_state <= next_state;
+   end
+
+   always @(*) begin
       if (i_reset == 0) begin
-	       o_invaders_array <= 20'b00000000000111111111;
-	       o_invaders_line <= 4'b0001;
-	       moving <= 0;
+	       o_invaders_array = 20'b00000000000111111111;
+	       o_invaders_line = 4'b0001;
+	       moving = 0;
 	       direction <= LEFT;
 	       o_hit <= 0;
 	       state <= 1;

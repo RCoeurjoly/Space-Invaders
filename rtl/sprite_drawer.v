@@ -10,7 +10,6 @@ module sprite_drawer(
 		                 input wire [4:0]  i_ship_x,
 		                 input wire [4:0]  i_bullet_x,
 		                 input wire [3:0]  i_bullet_y,
-		                 input wire        i_bullet_flying,
 		                 input wire [1:0]  i_gameplay,
 		                 output reg [2:0]  o_rgb
 		                 );
@@ -227,7 +226,7 @@ module sprite_drawer(
 	       end
 	       else if (i_gameplay == PLAYING) begin
 	          // drawing bullet
-	          if (i_bullet_flying == 1 && (sprite_x == i_bullet_x) && (sprite_y == i_bullet_y)) begin
+	          if ((sprite_x == i_bullet_x) && (sprite_y == i_bullet_y)) begin
 	             if (bullet[index_y][index_x] == 1)
 		             o_rgb = YELLOW;
 	             else
