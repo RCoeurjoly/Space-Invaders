@@ -1,0 +1,12 @@
+[options]
+mode prove
+
+[engines]
+smtbmc z3
+
+[script]
+read -formal ship.v
+prep -top ship
+
+[files]
+rtl/ship.v

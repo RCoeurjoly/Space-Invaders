@@ -1,0 +1,5 @@
+Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
+Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+engine_0 (smtbmc z3) returned PASS for induction
+engine_0 (smtbmc z3) returned PASS for basecase
+successful proof by k-induction.

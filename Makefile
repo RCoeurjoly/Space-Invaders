@@ -1,22 +1,27 @@
 # call with make MODULE=moduleName sim|svg|upload
 
 TOP:=space_invaders_top
+PATH:=~/Space-Invaders/
+FORMAL_PATH:=$(PATH)formal/
+RTL_PATH:=$(PATH)rtl/
+SIM_PATH:=$(PATH)sim/
+SYNTH_PATH:=$(PATH)syn/
 
 ifndef $(MODULE)
 	MODULE=$(TOP)
 endif
 ifeq ($(MODULE), $(TOP))
   DEPS:=\
-    rtl/vga_controller.v \
-    rtl/sprite_drawer.v \
-    rtl/gameplay.v \
-    rtl/ship.v \
-	rtl/edge_detector_debouncer.v \
-	rtl/timer_1us.v \
-	rtl/player.v \
-	rtl/invaders.v \
-	rtl/clk_36MHz_generator.v \
-	rtl/bullet.v
+    $(RTL_PATH)vga_controller.v \
+    $(RTL_PATH)sprite_drawer.v \
+    $(RTL_PATH)gameplay.v \
+    $(RTL_PATH)ship.v \
+	$(RTL_PATH)edge_detector_debouncer.v \
+	$(RTL_PATH)timer_1us.v \
+	$(RTL_PATH)player.v \
+	$(RTL_PATH)invaders.v \
+	$(RTL_PATH)clk_36MHz_generator.v \
+	$(RTL_PATH)bullet.v
 
 FORMAL:=\
     ship.v \
@@ -32,27 +37,26 @@ ifndef $(MEMORY)
 endif
 
 all: bin
-
 bin: $(MODULE).bin
 sim: $(MODULE)_tb.vcd
 json: $(MODULE).json
 svg: assets/$(MODULE).svg
 
 
-$(MODULE)_tb.vcd: rtl/$(MODULE).v $(DEPS) sim/$(MODULE)_tb.v  $(AUXFILES)
+$(MODULE)_tb.vcd: $(RTL_PATH)$(MODULE).v $(DEPS) $(SIM_PATH)$(MODULE)_tb.v  $(AUXFILES)
 
 	iverilog $^ -o $(MODULE)_tb.out
 	./$(MODULE)_tb.out
 	gtkwave $@ $(MODULE)_tb.gtkw &
 
-$(MODULE).bin: syn/$(MODULE).pcf rtl/$(MODULE).v $(DEPS) $(AUXFILES)
+$(MODULE).bin: $(SYNTH_PATH)$(MODULE).pcf $(RTL_PATH)$(MODULE).v $(DEPS) $(AUXFILES)
 	yosys -p "synth_ice40 -blif $(MODULE).blif $(YOSYSOPT)"\
-              -l $(MODULE).log -q rtl/$(MODULE).v $(DEPS)
-	arachne-pnr -d $(MEMORY) -p syn/$(MODULE).pcf $(MODULE).blif -o $(MODULE).pnr
+              -l $(MODULE).log -q $(RTL_PATH)$(MODULE).v $(DEPS)
+	arachne-pnr -d $(MEMORY) -p $(SYNTH_PATH)$(MODULE).pcf $(MODULE).blif -o $(MODULE).pnr
 	icepack $(MODULE).pnr $(MODULE).bin
 
-$(MODULE).json: rtl/$(MODULE).v $(DEPS)
-	yosys -p "prep -top $(MODULE); write_json $(MODULE).json" rtl/$(MODULE).v $(DEPS)
+$(MODULE).json: $(MODULE).v $(DEPS)
+	yosys -p "prep -top $(MODULE); write_json $(MODULE).json" (MODULE).v $(DEPS)
 
 assets/$(MODULE).svg: $(MODULE).json
 	netlistsvg $(MODULE).json -o assets/$(MODULE).svg
