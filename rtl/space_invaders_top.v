@@ -7,7 +7,6 @@ module space_invaders_top(
 			                    input wire  i_left,
 			                    input wire  i_right,
 			                    input wire  i_shoot,
-			                    input wire  i_start,
 			                    output wire o_hsync, //horizontal sync out
 			                    output wire o_vsync, //vertical sync out
 			                    output wire o_red, //o_red vga output
@@ -75,7 +74,7 @@ module space_invaders_top(
 		              .i_hit(hit),
 		              .o_ship_x(ship_x),
 		              .o_bullet_x(bullet_x),
-		              .o_bullet_y(bullet_y),
+		              .o_bullet_y(bullet_y)
 		              );
 
    invaders invaders1(
