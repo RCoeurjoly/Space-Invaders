@@ -18,14 +18,12 @@ module invaders(
    timer_1us #(SPEED) speed_timer1(
 				                           .i_clk_36MHz(i_clk_36MHz),
 				                           .i_reset(i_reset),
-				                           .i_en(1),
 				                           .o_q(tick1)
 				                           );
 
    timer_1us #(2000) speed_timer2(
 				                          .i_clk_36MHz(i_clk_36MHz),
 				                          .i_reset(i_reset),
-				                          .i_en(1),
 				                          .o_q(tick2)
 				                          );
 

@@ -6,7 +6,6 @@ module ship(
 	    input wire       i_reset, //synchronous i_reset
 	    input wire       i_left_debounced,
 	    input wire       i_right_debounced,
-	    input wire       i_enable,
 	    output reg [4:0] o_ship_x
 	          );
 
@@ -25,7 +24,7 @@ module ship(
       o_ship_x <= next_x;
    end
 
-   always @(i_reset or i_left_debounced or i_right_debounced or i_enable or o_ship_x) begin
+   always @(*) begin
       if (i_reset == 0) begin
 	       next_x = i_reset_position;
 	    end

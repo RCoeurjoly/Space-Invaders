@@ -50,8 +50,7 @@ $(MODULE)_tb.vcd: $(RTL_PATH)$(MODULE).v $(DEPS) $(SIM_PATH)$(MODULE)_tb.v  $(AU
 	gtkwave $@ $(MODULE)_tb.gtkw &
 
 $(MODULE).bin: $(SYNTH_PATH)$(MODULE).pcf $(RTL_PATH)$(MODULE).v $(DEPS) $(AUXFILES)
-	yosys -p "synth_ice40 -blif $(MODULE).blif $(YOSYSOPT)"\
-              -l $(MODULE).log -q $(RTL_PATH)$(MODULE).v $(DEPS)
+	/usr/bin/yosys -p "synth_ice40 -blif $(MODULE).blif $(YOSYSOPT)" -l $(MODULE).log -q $(RTL_PATH)$(MODULE).v $(DEPS)
 	arachne-pnr -d $(MEMORY) -p $(SYNTH_PATH)$(MODULE).pcf $(MODULE).blif -o $(MODULE).pnr
 	icepack $(MODULE).pnr $(MODULE).bin
 

@@ -20,7 +20,6 @@ module bullet(
    timer_1us # (90000) timer_1us1(
 				                          .i_clk_36MHz(i_clk_36MHz),
 				                          .i_reset(i_reset),
-				                          .i_en(1),
 				                          .o_q(tick)
 				                          );
    initial begin

@@ -71,7 +71,6 @@ module space_invaders_top(
 		              .i_reset(i_reset),
 		              .i_left(i_left),
 		              .i_right(i_right),
-		              .i_start(i_start),
 		              .i_shoot(i_shoot),
 		              .i_hit(hit),
 		              .o_ship_x(ship_x),
@@ -82,7 +81,6 @@ module space_invaders_top(
    invaders invaders1(
 		                  .i_clk_36MHz(clk_36MHz),
 		                  .i_reset(i_reset),
-		                  .i_start(i_start),
 		                  .i_bullet_x(bullet_x),
 		                  .i_bullet_y(bullet_y),
 		                  .o_hit(hit),
