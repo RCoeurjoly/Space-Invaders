@@ -67,28 +67,28 @@ clean:
 	rm -f *.bin *.pnr *.blif *.out *.vcd *~
 
 verify_bullet:
-	sby -f  formal/bullet.sby
+	sby -f  $(FORMAL_PATH)bullet.sby
 verify_clk_36MHz_generator:
-	sby -f  formal/clk_36MHz_generator.sby
+	sby -f  $(FORMAL_PATH)clk_36MHz_generator.sby
 verify_edge_detector_debouncer:
-	sby -f  formal/edge_detector_debouncer.sby
+	sby -f  $(FORMAL_PATH)edge_detector_debouncer.sby
 verify_gameplay:
-	sby -f  formal/gameplay.sby
+	sby -f  $(FORMAL_PATH)gameplay.sby
 verify_invaders:
-	sby -f  formal/invaders.sby
+	sby -f  $(FORMAL_PATH)invaders.sby
 verify_player:
-	sby -f  formal/player.sby
+	sby -f  $(FORMAL_PATH)player.sby
 verify_ship:
-	sby -f  formal/ship.sby
+	sby -f  $(FORMAL_PATH)ship.sby
 verify_space_invaders_top:
-	sby -f  formal/space_invaders_top.sby
+	sby -f  $(FORMAL_PATH)space_invaders_top.sby
 verify_sprite_drawer:
-	sby -f  formal/sprite_.sby
+	sby -f  $(FORMAL_PATH)sprite_drawer.sby
 verify_timer_1us:
-	sby -f  formal/timer_1us.sby
+	sby -f  $(FORMAL_PATH)timer_1us.sby
 verify_tone_generator:
-	sby -f  formal/tone_generator.sby
+	sby -f  $(FORMAL_PATH)tone_generator.sby
 verify_vga_controller:
-	sby -f  formal/vga_controller.sby
+	sby -f  $(FORMAL_PATH)vga_controller.sby
 
 .PHONY: all clean json svg sim

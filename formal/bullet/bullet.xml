@@ -3,18 +3,18 @@
 <testsuite disabled="0" errors="1" failures="0" name="bullet" skipped="0" tests="1" time="0">
 <testcase classname="bullet" name="default" status="ERROR" time="0">
 <error message="ERROR" type="ERROR"/>
-<system-out>SBY 22:33:23 [formal/bullet] Removing direcory 'formal/bullet'.
-SBY 22:33:23 [formal/bullet] Copy 'rtl/clk_36MHz_generator.v' to 'formal/bullet/src/clk_36MHz_generator.v'.
-SBY 22:33:23 [formal/bullet] Copy 'rtl/timer_1us.v' to 'formal/bullet/src/timer_1us.v'.
-SBY 22:33:23 [formal/bullet] Copy 'rtl/bullet.v' to 'formal/bullet/src/bullet.v'.
-SBY 22:33:23 [formal/bullet] engine_0: smtbmc
-SBY 22:33:23 [formal/bullet] base: starting process &quot;cd formal/bullet/src; yosys -ql ../model/design.log ../model/design.ys&quot;
-SBY 22:33:23 [formal/bullet] base: finished (returncode=0)
-SBY 22:33:23 [formal/bullet] smt2: starting process &quot;cd formal/bullet/model; yosys -ql design_smt2.log design_smt2.ys&quot;
-SBY 22:33:23 [formal/bullet] smt2: ERROR: Unsupported cell type $dlatch for cell bullet.$auto$proc_dlatch.cc:409:proc_dlatch$299.
-SBY 22:33:23 [formal/bullet] smt2: finished (returncode=1)
-SBY 22:33:23 [formal/bullet] smt2: job failed. ERROR.
-SBY 22:33:23 [formal/bullet] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
-SBY 22:33:23 [formal/bullet] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
-SBY 22:33:23 [formal/bullet] DONE (ERROR, rc=16)
+<system-out>SBY 21:51:12 [/home/rcl/Space-Invaders/formal/bullet] Removing direcory '/home/rcl/Space-Invaders/formal/bullet'.
+SBY 21:51:12 [/home/rcl/Space-Invaders/formal/bullet] Copy 'timer_1us.v' to '/home/rcl/Space-Invaders/formal/bullet/src/timer_1us.v'.
+SBY 21:51:12 [/home/rcl/Space-Invaders/formal/bullet] Copy 'bullet.v' to '/home/rcl/Space-Invaders/formal/bullet/src/bullet.v'.
+SBY 21:51:12 [/home/rcl/Space-Invaders/formal/bullet] Copy 'clk_36MHz_generator.v' to '/home/rcl/Space-Invaders/formal/bullet/src/clk_36MHz_generator.v'.
+SBY 21:51:12 [/home/rcl/Space-Invaders/formal/bullet] engine_0: smtbmc
+SBY 21:51:13 [/home/rcl/Space-Invaders/formal/bullet] base: starting process &quot;cd /home/rcl/Space-Invaders/formal/bullet/src; yosys -ql ../model/design.log ../model/design.ys&quot;
+SBY 21:51:13 [/home/rcl/Space-Invaders/formal/bullet] base: finished (returncode=0)
+SBY 21:51:13 [/home/rcl/Space-Invaders/formal/bullet] smt2: starting process &quot;cd /home/rcl/Space-Invaders/formal/bullet/model; yosys -ql design_smt2.log design_smt2.ys&quot;
+SBY 21:51:13 [/home/rcl/Space-Invaders/formal/bullet] smt2: ERROR: Unsupported cell type $dlatch for cell bullet.$auto$proc_dlatch.cc:409:proc_dlatch$299.
+SBY 21:51:13 [/home/rcl/Space-Invaders/formal/bullet] smt2: finished (returncode=1)
+SBY 21:51:13 [/home/rcl/Space-Invaders/formal/bullet] smt2: job failed. ERROR.
+SBY 21:51:13 [/home/rcl/Space-Invaders/formal/bullet] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY 21:51:13 [/home/rcl/Space-Invaders/formal/bullet] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY 21:51:13 [/home/rcl/Space-Invaders/formal/bullet] DONE (ERROR, rc=16)
 </system-out></testcase></testsuite></testsuites>

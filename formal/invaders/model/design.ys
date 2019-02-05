@@ -1,6 +1,7 @@
-# running in formal/ship/src/
-read -formal ship.v
-prep -top ship
+# running in /home/rcl/Space-Invaders/formal/invaders/src/
+read -formal invaders.v
+read -formal timer_1us.v
+prep -top invaders
 
 memory_nordff
 async2sync

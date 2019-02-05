@@ -1,4 +1,4 @@
-# running in formal/ship/model/
+# running in /home/rcl/Space-Invaders/formal/invaders/model/
 read_ilang design.il
 stat
 write_smt2 -wires design_smt2.smt2

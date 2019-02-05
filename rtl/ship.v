@@ -13,11 +13,11 @@ module ship(
    reg [4:0]           i;
 
    localparam left_limit = 0;
-   localparam i_reset_position = 5;
+   localparam reset_position = 5;
    localparam right_limit = 19;
 
    initial begin
-      o_ship_x = i_reset_position;
+      o_ship_x = reset_position;
    end
 
    always @(posedge i_clk_36MHz) begin
@@ -26,7 +26,7 @@ module ship(
 
    always @(*) begin
       if (i_reset == 0) begin
-	       next_x = i_reset_position;
+	       next_x = reset_position;
 	    end
       else begin
          for(i = left_limit; i <= right_limit; i = i + 1) begin
