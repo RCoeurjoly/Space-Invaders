@@ -1,11 +1,11 @@
 # call with make MODULE=moduleName sim|svg|upload
 
 TOP:=space_invaders_top
-PATH:=~/Space-Invaders/
-FORMAL_PATH:=$(PATH)formal/
-RTL_PATH:=$(PATH)rtl/
-SIM_PATH:=$(PATH)sim/
-SYNTH_PATH:=$(PATH)syn/
+PROJECT_PATH:=~/Space-Invaders/
+FORMAL_PATH:=$(PROJECT_PATH)formal/
+RTL_PATH:=$(PROJECT_PATH)rtl/
+SIM_PATH:=$(PROJECT_PATH)sim/
+SYNTH_PATH:=$(PROJECT_PATH)syn/
 
 ifndef $(MODULE)
 	MODULE=$(TOP)
@@ -50,45 +50,45 @@ $(MODULE)_tb.vcd: $(RTL_PATH)$(MODULE).v $(DEPS) $(SIM_PATH)$(MODULE)_tb.v  $(AU
 	gtkwave $@ $(MODULE)_tb.gtkw &
 
 $(MODULE).bin: $(SYNTH_PATH)$(MODULE).pcf $(RTL_PATH)$(MODULE).v $(DEPS) $(AUXFILES)
-	/usr/local/bin/yosys -p "synth_ice40 -blif $(MODULE).blif $(YOSYSOPT)" -l $(MODULE).log -q $(RTL_PATH)$(MODULE).v $(DEPS)
-	/usr/local/bin/arachne-pnr -d $(MEMORY) -p $(SYNTH_PATH)$(MODULE).pcf $(MODULE).blif -o $(MODULE).pnr
-	/usr/local/bin/icepack $(MODULE).pnr $(MODULE).bin
+	yosys -p "synth_ice40 -blif $(MODULE).blif $(YOSYSOPT)" -l $(MODULE).log -q $(RTL_PATH)$(MODULE).v $(DEPS)
+	arachne-pnr -d $(MEMORY) -p $(SYNTH_PATH)$(MODULE).pcf $(MODULE).blif -o $(MODULE).pnr
+	icepack $(MODULE).pnr $(MODULE).bin
 
 $(MODULE).json: $(MODULE).v $(DEPS)
-	/usr/bin/yosys -p "prep -top $(MODULE); write_json $(MODULE).json" (MODULE).v $(DEPS)
+	yosys -p "prep -top $(MODULE); write_json $(MODULE).json" (MODULE).v $(DEPS)
 
 assets/$(MODULE).svg: $(MODULE).json
 	netlistsvg $(MODULE).json -o assets/$(MODULE).svg
 
 upload: $(MODULE).bin
-	/usr/local/bin/iceprog $(MODULE).bin
+	iceprog $(MODULE).bin
 
 clean:
-	/bin/rm -f *.bin *.pnr *.blif *.out *.vcd *~
+	rm -f *.bin *.pnr *.blif *.out *.vcd *~
 
 verify_bullet:
-	/usr/local/bin/sby -f  formal/bullet.sby
+	sby -f  formal/bullet.sby
 verify_clk_36MHz_generator:
-	/usr/local/bin/sby -f  formal/clk_36MHz_generator.sby
+	sby -f  formal/clk_36MHz_generator.sby
 verify_edge_detector_debouncer:
-	/usr/local/bin/sby -f  formal/edge_detector_debouncer.sby
+	sby -f  formal/edge_detector_debouncer.sby
 verify_gameplay:
-	/usr/local/bin/sby -f  formal/gameplay.sby
+	sby -f  formal/gameplay.sby
 verify_invaders:
-	/usr/local/bin/sby -f  formal/invaders.sby
+	sby -f  formal/invaders.sby
 verify_player:
-	/usr/local/bin/sby -f  formal/player.sby
+	sby -f  formal/player.sby
 verify_ship:
-	/usr/local/bin/sby -f  formal/ship.sby
+	sby -f  formal/ship.sby
 verify_space_invaders_top:
-	/usr/local/bin/sby -f  formal/space_invaders_top.sby
+	sby -f  formal/space_invaders_top.sby
 verify_sprite_drawer:
-	/usr/local/bin/sby -f  formal/sprite_.sby
+	sby -f  formal/sprite_.sby
 verify_timer_1us:
-	/usr/local/bin/sby -f  formal/timer_1us.sby
+	sby -f  formal/timer_1us.sby
 verify_tone_generator:
-	/usr/local/bin/sby -f  formal/tone_generator.sby
+	sby -f  formal/tone_generator.sby
 verify_vga_controller:
-	/usr/local/bin/sby -f  formal/vga_controller.sby
+	sby -f  formal/vga_controller.sby
 
 .PHONY: all clean json svg sim
