@@ -1,0 +1,14 @@
+[options]
+mode prove
+
+
+[engines]
+smtbmc
+
+[script]
+read -formal timer_1us.v
+read -formal clk_36MHz_generator.v
+prep -top timer_1u
+
+[files]
+timer_1us.v

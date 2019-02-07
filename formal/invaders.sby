@@ -1,5 +1,10 @@
+[tasks]
+proof
+cover
+
 [options]
-mode prove
+proof: mode prove
+cover: mode cover
 
 [engines]
 smtbmc z3

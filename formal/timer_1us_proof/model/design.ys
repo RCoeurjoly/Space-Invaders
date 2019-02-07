@@ -1,0 +1,15 @@
+# running in /home/rcl/Space-Invaders/formal/timer_1us_proof/src/
+read -formal timer_1us.v
+read -formal clk_36MHz_generator.v
+prep -top timer_1u
+
+memory_nordff
+async2sync
+chformal -assume -early
+chformal -live -fair -cover -remove
+opt_clean
+setundef -anyseq
+opt -keepdc -fast
+check
+hierarchy -simcheck
+write_ilang ../model/design.il

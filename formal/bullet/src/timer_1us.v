@@ -32,4 +32,10 @@ module timer_1us(
          o_q <= 0;
 	    end
    end // always @ (posedge i_clk_36MHz)
+`ifdef FORMAL
+   always @(*) begin
+      cover (count <= MAX );
+      cover (o_q);
+   end
+`endif
 endmodule

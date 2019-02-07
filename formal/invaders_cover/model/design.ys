@@ -1,0 +1,15 @@
+# running in /home/rcl/Space-Invaders/formal/invaders_cover/src/
+read -formal invaders.v
+read -formal timer_1us.v
+prep -top invaders
+
+memory_nordff
+async2sync
+chformal -assume -early
+chformal -live -fair -remove
+opt_clean
+setundef -anyseq
+opt -keepdc -fast
+check
+hierarchy -simcheck
+write_ilang ../model/design.il

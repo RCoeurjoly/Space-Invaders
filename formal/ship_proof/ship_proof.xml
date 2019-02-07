@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites disabled="0" errors="0" failures="0" tests="1" time="0">
+<testsuite disabled="0" errors="0" failures="0" name="ship" skipped="0" tests="1" time="0">
+<testcase classname="ship" name="proof" status="PASS" time="0">
+<system-out>SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] Removing direcory '/home/rcl/Space-Invaders/formal/ship_proof'.
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] Copy 'ship.v' to '/home/rcl/Space-Invaders/formal/ship_proof/src/ship.v'.
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0: smtbmc z3
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] base: starting process &quot;cd /home/rcl/Space-Invaders/formal/ship_proof/src; yosys -ql ../model/design.log ../model/design.ys&quot;
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] base: finished (returncode=0)
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] smt2: starting process &quot;cd /home/rcl/Space-Invaders/formal/ship_proof/model; yosys -ql design_smt2.log design_smt2.ys&quot;
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] smt2: finished (returncode=0)
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: starting process &quot;cd /home/rcl/Space-Invaders/formal/ship_proof; yosys-smtbmc -s z3 --presat --noprogress -t 20 --append 0 --dump-vcd engine_0/trace.vcd --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2&quot;
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.induction: starting process &quot;cd /home/rcl/Space-Invaders/formal/ship_proof; yosys-smtbmc -s z3 --presat -i --noprogress -t 20 --append 0 --dump-vcd engine_0/trace_induct.vcd --dump-vlogtb engine_0/trace_induct_tb.v --dump-smtc engine_0/trace_induct.smtc model/design_smt2.smt2&quot;
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Solver: z3
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.induction: ##   0:00:00  Solver: z3
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assumptions in step 0..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assertions in step 0..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assumptions in step 1..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assertions in step 1..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.induction: ##   0:00:00  Trying induction in step 20..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assumptions in step 2..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assertions in step 2..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assumptions in step 3..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assertions in step 3..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assumptions in step 4..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.induction: ##   0:00:00  Trying induction in step 19..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assertions in step 4..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assumptions in step 5..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.induction: ##   0:00:00  Trying induction in step 18..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assertions in step 5..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assumptions in step 6..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.induction: ##   0:00:00  Temporal induction successful.
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assertions in step 6..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assumptions in step 7..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assertions in step 7..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assumptions in step 8..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.induction: ##   0:00:00  Status: PASSED
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assertions in step 8..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assumptions in step 9..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assertions in step 9..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assumptions in step 10..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assertions in step 10..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assumptions in step 11..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assertions in step 11..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assumptions in step 12..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assertions in step 12..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.induction: finished (returncode=0)
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0: Status returned by engine for induction: PASS
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assumptions in step 13..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assertions in step 13..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assumptions in step 14..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assertions in step 14..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assumptions in step 15..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assertions in step 15..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assumptions in step 16..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assertions in step 16..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assumptions in step 17..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assertions in step 17..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assumptions in step 18..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assertions in step 18..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assumptions in step 19..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Checking assertions in step 19..
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: ##   0:00:00  Status: PASSED
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0.basecase: finished (returncode=0)
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] engine_0: Status returned by engine for basecase: PASS
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] summary: engine_0 (smtbmc z3) returned PASS for induction
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] summary: engine_0 (smtbmc z3) returned PASS for basecase
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] summary: successful proof by k-induction.
+SBY 23:41:53 [/home/rcl/Space-Invaders/formal/ship_proof] DONE (PASS, rc=0)
+</system-out></testcase></testsuite></testsuites>

@@ -95,7 +95,7 @@ module invaders(
 `ifdef FORMAL
    always @(*) begin
       assert (o_invaders_row == 1);
-      //assert (o_invaders_row == 0);
+      assert (o_invaders_row == 0);
    end
 `endif
 endmodule
