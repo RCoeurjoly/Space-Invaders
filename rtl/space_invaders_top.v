@@ -84,7 +84,7 @@ module space_invaders_top(
 		                  .i_bullet_y(bullet_y),
 		                  .o_hit(hit),
 		                  .o_invaders_array(invaders_array),
-		                  .o_invaders_line(invaders_line)
+		                  .o_invaders_row(invaders_line)
 		                  );
 
 endmodule
