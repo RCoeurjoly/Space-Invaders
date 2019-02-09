@@ -211,7 +211,7 @@ module sprite_drawer(
    wire [4:0]          index_y = i_y[4:0];
 
    always @(*) begin
-      if (i_reset == 1) begin
+      if (i_reset == 0) begin
 	       if (i_gameplay == YOU_WIN) begin
 	          if (smiley[index_y][index_x] == 1)
 	            o_rgb = BLACK;

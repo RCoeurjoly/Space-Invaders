@@ -47,7 +47,7 @@ module space_invaders_top(
    sprite_drawer sprite_drawer1(
 				                        .i_x(x),
 				                        .i_y(y),
-				                        .i_reset(1),
+				                        .i_reset(0),
 				                        .i_invaders_array(invaders_array),
 				                        .i_invaders_line(invaders_line),
 				                        .i_ship_x(ship_x),
@@ -59,7 +59,7 @@ module space_invaders_top(
 
    gameplay gameplay1(
 		                  .i_clk_25MHz(clk_25MHz),
-		                  .i_reset(i_reset),
+		                  .i_reset(0),
 		                  .i_invaders_array(invaders_array),
 		                  .i_invaders_line(invaders_line),
 		                  .o_gameplay(gameplay)
@@ -67,7 +67,7 @@ module space_invaders_top(
 
    player player1(
 		              .i_clk_25MHz(clk_25MHz),
-		              .i_reset(i_reset),
+		              .i_reset(0),
 		              .i_left(i_left),
 		              .i_right(i_right),
 		              .i_shoot(i_shoot),
@@ -79,7 +79,7 @@ module space_invaders_top(
 
    invaders invaders1(
 		                  .i_clk_25MHz(clk_25MHz),
-		                  .i_reset(i_reset),
+		                  .i_reset(0),
 		                  .i_bullet_x(bullet_x),
 		                  .i_bullet_y(bullet_y),
 		                  .o_hit(hit),

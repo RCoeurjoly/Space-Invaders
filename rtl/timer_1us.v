@@ -19,7 +19,7 @@ module timer_1us(
    end
 
    always @(posedge i_clk_25MHz) begin
-	    if (i_reset == 0) begin
+	    if (i_reset == 1) begin
 	       count <= 0;
          o_q <= 0;
       end
