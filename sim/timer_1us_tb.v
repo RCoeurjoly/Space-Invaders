@@ -4,7 +4,7 @@
 module timer_1us();
 
    //-- input registers
-   reg clk_36MHz = 0;
+   reg clk_25MHz = 0;
    reg reset = 0;
    reg en = 0;
    //-- outputs
@@ -14,7 +14,7 @@ module timer_1us();
    
    //-- Instanciar el contador
    timer_1us timer_1us1(
-			.clk_36MHz(clk_36MHz),
+			.clk_25MHz(clk_25MHz),
 			.reset(reset),
 			.en(en),
 			.q(q)

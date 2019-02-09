@@ -10,12 +10,12 @@ module testbench(input clock, output reg genclock);
   reg [31:0] cycle = 0;
   reg [4:0] PI_i_bullet_x;
   reg [3:0] PI_i_bullet_y;
-  reg [0:0] PI_i_clk_36MHz;
+  reg [0:0] PI_i_clk_25MHz;
   reg [0:0] PI_i_reset;
   invaders UUT (
     .i_bullet_x(PI_i_bullet_x),
     .i_bullet_y(PI_i_bullet_y),
-    .i_clk_36MHz(PI_i_clk_36MHz),
+    .i_clk_25MHz(PI_i_clk_25MHz),
     .i_reset(PI_i_reset)
   );
 `ifndef VERILATOR
@@ -45,7 +45,7 @@ module testbench(input clock, output reg genclock);
     // state 0
     PI_i_bullet_x = 5'b00000;
     PI_i_bullet_y = 4'b0000;
-    PI_i_clk_36MHz = 1'b0;
+    PI_i_clk_25MHz = 1'b0;
     PI_i_reset = 1'b0;
   end
   always @(posedge clock) begin

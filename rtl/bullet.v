@@ -2,7 +2,7 @@
 // This program is GPL Licensed. See LICENSE for the full license.
 
 module bullet(
-	            input wire       i_clk_36MHz,
+	            input wire       i_clk_25MHz,
 	            input wire       i_reset, //synchronous i_reset
 	            input wire       i_shoot,
 	            input wire       i_hit,
@@ -18,7 +18,7 @@ module bullet(
    localparam moving_state = 2;
 
    timer_1us # (90000) timer_1us1(
-				                          .i_clk_36MHz(i_clk_36MHz),
+				                          .i_clk_25MHz(i_clk_25MHz),
 				                          .i_reset(i_reset),
 				                          .o_q(tick)
 				                          );
@@ -29,11 +29,11 @@ module bullet(
       next_state = reset_state;
    end
 
-   always @(posedge i_clk_36MHz) begin
+   always @(posedge i_clk_25MHz) begin
       current_state <= next_state;
    end
 
-   always @(posedge i_clk_36MHz) begin
+   always @(posedge i_clk_25MHz) begin
       case (current_state)
         reset_state: begin
            if (i_shoot) begin
@@ -77,10 +77,10 @@ module bullet(
            next_state <= reset_state;
         end
       endcase
-   end // always @ (posedge i_clk_36MHz)
+   end // always @ (posedge i_clk_25MHz)
 `ifdef FORMAL
    reg [4:0] i;
-   always @(posedge i_clk_36MHz) begin
+   always @(posedge i_clk_25MHz) begin
       assert (o_bullet_y < 16);
       assert (o_bullet_y >= 0);
       for (i = 0; i < 17; i++) begin

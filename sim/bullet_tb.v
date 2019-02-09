@@ -4,7 +4,7 @@
 module bullet_tb();
 
    //-- input registers
-   reg clk_36MHz = 0;
+   reg clk_25MHz = 0;
    reg reset = 0;
    reg enable = 0;
    reg hit = 0;
@@ -19,7 +19,7 @@ module bullet_tb();
    
    //-- Instanciar el contador
    bullet bullet1(
-		  .clk_36MHz(clk_36MHz),
+		  .clk_25MHz(clk_25MHz),
 		  .reset(reset),
 		  .enable(enable),
 		  .hit(hit),
@@ -30,7 +30,7 @@ module bullet_tb();
 		  .bullet_y(bullet_y)
 		  );
 
-   always #1 clk_36MHz = ~clk_36MHz;
+   always #1 clk_25MHz = ~clk_25MHz;
    
    //-- Proceso al inicio
    initial begin

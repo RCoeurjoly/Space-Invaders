@@ -8,15 +8,15 @@ module testbench(input clock, output reg genclock);
 `endif
   reg genclock = 1;
   reg [31:0] cycle = 0;
-  reg [0:0] PI_i_left_debounced;
-  reg [0:0] PI_i_clk_36MHz;
   reg [0:0] PI_i_reset;
+  reg [0:0] PI_i_left_debounced;
   reg [0:0] PI_i_right_debounced;
+  reg [0:0] PI_i_clk_25MHz;
   ship UUT (
-    .i_left_debounced(PI_i_left_debounced),
-    .i_clk_36MHz(PI_i_clk_36MHz),
     .i_reset(PI_i_reset),
-    .i_right_debounced(PI_i_right_debounced)
+    .i_left_debounced(PI_i_left_debounced),
+    .i_right_debounced(PI_i_right_debounced),
+    .i_clk_25MHz(PI_i_clk_25MHz)
   );
 `ifndef VERILATOR
   initial begin
@@ -63,106 +63,106 @@ module testbench(input clock, output reg genclock);
     UUT.o_ship_x = 5'b00101;
 
     // state 0
-    PI_i_left_debounced = 1'b0;
-    PI_i_clk_36MHz = 1'b0;
     PI_i_reset = 1'b1;
+    PI_i_left_debounced = 1'b0;
     PI_i_right_debounced = 1'b0;
+    PI_i_clk_25MHz = 1'b0;
   end
   always @(posedge clock) begin
     // state 1
     if (cycle == 0) begin
-      PI_i_left_debounced <= 1'b1;
-      PI_i_clk_36MHz <= 1'b0;
       PI_i_reset <= 1'b1;
+      PI_i_left_debounced <= 1'b0;
       PI_i_right_debounced <= 1'b0;
+      PI_i_clk_25MHz <= 1'b0;
     end
 
     // state 2
     if (cycle == 1) begin
-      PI_i_left_debounced <= 1'b0;
-      PI_i_clk_36MHz <= 1'b0;
       PI_i_reset <= 1'b0;
+      PI_i_left_debounced <= 1'b0;
       PI_i_right_debounced <= 1'b0;
+      PI_i_clk_25MHz <= 1'b0;
     end
 
     // state 3
     if (cycle == 2) begin
-      PI_i_left_debounced <= 1'b1;
-      PI_i_clk_36MHz <= 1'b0;
       PI_i_reset <= 1'b0;
+      PI_i_left_debounced <= 1'b0;
       PI_i_right_debounced <= 1'b0;
+      PI_i_clk_25MHz <= 1'b0;
     end
 
     // state 4
     if (cycle == 3) begin
-      PI_i_left_debounced <= 1'b0;
-      PI_i_clk_36MHz <= 1'b0;
       PI_i_reset <= 1'b1;
+      PI_i_left_debounced <= 1'b1;
       PI_i_right_debounced <= 1'b0;
+      PI_i_clk_25MHz <= 1'b0;
     end
 
     // state 5
     if (cycle == 4) begin
-      PI_i_left_debounced <= 1'b1;
-      PI_i_clk_36MHz <= 1'b0;
       PI_i_reset <= 1'b0;
+      PI_i_left_debounced <= 1'b0;
       PI_i_right_debounced <= 1'b0;
+      PI_i_clk_25MHz <= 1'b0;
     end
 
     // state 6
     if (cycle == 5) begin
-      PI_i_left_debounced <= 1'b0;
-      PI_i_clk_36MHz <= 1'b0;
       PI_i_reset <= 1'b0;
+      PI_i_left_debounced <= 1'b0;
       PI_i_right_debounced <= 1'b0;
+      PI_i_clk_25MHz <= 1'b0;
     end
 
     // state 7
     if (cycle == 6) begin
+      PI_i_reset <= 1'b1;
       PI_i_left_debounced <= 1'b1;
-      PI_i_clk_36MHz <= 1'b0;
-      PI_i_reset <= 1'b0;
       PI_i_right_debounced <= 1'b0;
+      PI_i_clk_25MHz <= 1'b0;
     end
 
     // state 8
     if (cycle == 7) begin
-      PI_i_left_debounced <= 1'b1;
-      PI_i_clk_36MHz <= 1'b0;
       PI_i_reset <= 1'b0;
+      PI_i_left_debounced <= 1'b1;
       PI_i_right_debounced <= 1'b0;
+      PI_i_clk_25MHz <= 1'b0;
     end
 
     // state 9
     if (cycle == 8) begin
-      PI_i_left_debounced <= 1'b1;
-      PI_i_clk_36MHz <= 1'b0;
       PI_i_reset <= 1'b0;
+      PI_i_left_debounced <= 1'b1;
       PI_i_right_debounced <= 1'b0;
+      PI_i_clk_25MHz <= 1'b0;
     end
 
     // state 10
     if (cycle == 9) begin
-      PI_i_left_debounced <= 1'b1;
-      PI_i_clk_36MHz <= 1'b0;
       PI_i_reset <= 1'b1;
+      PI_i_left_debounced <= 1'b1;
       PI_i_right_debounced <= 1'b0;
+      PI_i_clk_25MHz <= 1'b0;
     end
 
     // state 11
     if (cycle == 10) begin
-      PI_i_left_debounced <= 1'b0;
-      PI_i_clk_36MHz <= 1'b0;
       PI_i_reset <= 1'b1;
+      PI_i_left_debounced <= 1'b1;
       PI_i_right_debounced <= 1'b0;
+      PI_i_clk_25MHz <= 1'b0;
     end
 
     // state 12
     if (cycle == 11) begin
-      PI_i_left_debounced <= 1'b1;
-      PI_i_clk_36MHz <= 1'b0;
       PI_i_reset <= 1'b0;
+      PI_i_left_debounced <= 1'b0;
       PI_i_right_debounced <= 1'b0;
+      PI_i_clk_25MHz <= 1'b0;
     end
 
     genclock <= cycle < 12;

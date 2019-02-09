@@ -20,7 +20,7 @@ ifeq ($(MODULE), $(TOP))
 	$(RTL_PATH)timer_1us.v \
 	$(RTL_PATH)player.v \
 	$(RTL_PATH)invaders.v \
-	$(RTL_PATH)clk_36MHz_generator.v \
+	$(RTL_PATH)clk_25MHz_generator.v \
 	$(RTL_PATH)bullet.v
 
 FORMAL:=\
@@ -68,8 +68,8 @@ clean:
 
 verify_bullet:
 	sby -f  $(FORMAL_PATH)bullet.sby
-verify_clk_36MHz_generator:
-	sby -f  $(FORMAL_PATH)clk_36MHz_generator.sby
+verify_clk_25MHz_generator:
+	sby -f  $(FORMAL_PATH)clk_25MHz_generator.sby
 verify_edge_detector_debouncer:
 	sby -f  $(FORMAL_PATH)edge_detector_debouncer.sby
 verify_gameplay:

@@ -2,7 +2,7 @@
 // This program is GPL Licensed. See LICENSE for the full license.
 
 module timer_1us(
-		             input wire i_clk_36MHz,
+		             input wire i_clk_25MHz,
 		             input wire i_reset, //synchronous reset
                  output reg o_q
 		             );
@@ -18,7 +18,7 @@ module timer_1us(
       count = 0;
    end
 
-   always @(posedge i_clk_36MHz) begin
+   always @(posedge i_clk_25MHz) begin
 	    if (i_reset == 0) begin
 	       count <= 0;
          o_q <= 0;
@@ -31,7 +31,7 @@ module timer_1us(
 	       count <= count + 1;
          o_q <= 0;
 	    end
-   end // always @ (posedge i_clk_36MHz)
+   end // always @ (posedge i_clk_25MHz)
 `ifdef FORMAL
    always @(*) begin
       cover (count <= MAX );

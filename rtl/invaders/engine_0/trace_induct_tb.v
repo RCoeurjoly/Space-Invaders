@@ -9,14 +9,14 @@ module testbench(input clock, output reg genclock);
   reg genclock = 1;
   reg [31:0] cycle = 0;
   reg [0:0] PI_start;
-  reg [0:0] PI_clk_36MHz;
+  reg [0:0] PI_clk_25MHz;
   reg [3:0] PI_bullet_y;
   reg [0:0] PI_level;
   reg [4:0] PI_bullet_x;
   reg [0:0] PI_reset;
   invaders UUT (
     .start(PI_start),
-    .clk_36MHz(PI_clk_36MHz),
+    .clk_25MHz(PI_clk_25MHz),
     .bullet_y(PI_bullet_y),
     .level(PI_level),
     .bullet_x(PI_bullet_x),
@@ -51,7 +51,7 @@ module testbench(input clock, output reg genclock);
 
     // state 0
     PI_start = 1'b0;
-    PI_clk_36MHz = 1'b0;
+    PI_clk_25MHz = 1'b0;
     PI_bullet_y = 4'b0000;
     PI_level = 1'b0;
     PI_bullet_x = 5'b00000;
@@ -61,7 +61,7 @@ module testbench(input clock, output reg genclock);
     // state 1
     if (cycle == 0) begin
       PI_start <= 1'b0;
-      PI_clk_36MHz <= 1'b0;
+      PI_clk_25MHz <= 1'b0;
       PI_bullet_y <= 4'b0000;
       PI_level <= 1'b0;
       PI_bullet_x <= 5'b00000;
@@ -71,7 +71,7 @@ module testbench(input clock, output reg genclock);
     // state 2
     if (cycle == 1) begin
       PI_start <= 1'b0;
-      PI_clk_36MHz <= 1'b0;
+      PI_clk_25MHz <= 1'b0;
       PI_bullet_y <= 4'b0000;
       PI_level <= 1'b0;
       PI_bullet_x <= 5'b00000;
@@ -81,7 +81,7 @@ module testbench(input clock, output reg genclock);
     // state 3
     if (cycle == 2) begin
       PI_start <= 1'b0;
-      PI_clk_36MHz <= 1'b0;
+      PI_clk_25MHz <= 1'b0;
       PI_bullet_y <= 4'b0000;
       PI_level <= 1'b0;
       PI_bullet_x <= 5'b00000;
@@ -91,7 +91,7 @@ module testbench(input clock, output reg genclock);
     // state 4
     if (cycle == 3) begin
       PI_start <= 1'b0;
-      PI_clk_36MHz <= 1'b0;
+      PI_clk_25MHz <= 1'b0;
       PI_bullet_y <= 4'b0000;
       PI_level <= 1'b0;
       PI_bullet_x <= 5'b00000;
@@ -101,7 +101,7 @@ module testbench(input clock, output reg genclock);
     // state 5
     if (cycle == 4) begin
       PI_start <= 1'b0;
-      PI_clk_36MHz <= 1'b0;
+      PI_clk_25MHz <= 1'b0;
       PI_bullet_y <= 4'b0000;
       PI_level <= 1'b0;
       PI_bullet_x <= 5'b00000;
@@ -111,7 +111,7 @@ module testbench(input clock, output reg genclock);
     // state 6
     if (cycle == 5) begin
       PI_start <= 1'b0;
-      PI_clk_36MHz <= 1'b0;
+      PI_clk_25MHz <= 1'b0;
       PI_bullet_y <= 4'b0000;
       PI_level <= 1'b0;
       PI_bullet_x <= 5'b00000;
@@ -121,7 +121,7 @@ module testbench(input clock, output reg genclock);
     // state 7
     if (cycle == 6) begin
       PI_start <= 1'b0;
-      PI_clk_36MHz <= 1'b0;
+      PI_clk_25MHz <= 1'b0;
       PI_bullet_y <= 4'b0000;
       PI_level <= 1'b0;
       PI_bullet_x <= 5'b00000;
@@ -131,7 +131,7 @@ module testbench(input clock, output reg genclock);
     // state 8
     if (cycle == 7) begin
       PI_start <= 1'b0;
-      PI_clk_36MHz <= 1'b0;
+      PI_clk_25MHz <= 1'b0;
       PI_bullet_y <= 4'b0000;
       PI_level <= 1'b0;
       PI_bullet_x <= 5'b00000;
@@ -141,7 +141,7 @@ module testbench(input clock, output reg genclock);
     // state 9
     if (cycle == 8) begin
       PI_start <= 1'b0;
-      PI_clk_36MHz <= 1'b0;
+      PI_clk_25MHz <= 1'b0;
       PI_bullet_y <= 4'b0000;
       PI_level <= 1'b0;
       PI_bullet_x <= 5'b00000;
@@ -151,7 +151,7 @@ module testbench(input clock, output reg genclock);
     // state 10
     if (cycle == 9) begin
       PI_start <= 1'b0;
-      PI_clk_36MHz <= 1'b0;
+      PI_clk_25MHz <= 1'b0;
       PI_bullet_y <= 4'b0000;
       PI_level <= 1'b0;
       PI_bullet_x <= 5'b00000;
@@ -161,7 +161,7 @@ module testbench(input clock, output reg genclock);
     // state 11
     if (cycle == 10) begin
       PI_start <= 1'b0;
-      PI_clk_36MHz <= 1'b0;
+      PI_clk_25MHz <= 1'b0;
       PI_bullet_y <= 4'b0000;
       PI_level <= 1'b0;
       PI_bullet_x <= 5'b00000;
@@ -171,7 +171,7 @@ module testbench(input clock, output reg genclock);
     // state 12
     if (cycle == 11) begin
       PI_start <= 1'b0;
-      PI_clk_36MHz <= 1'b0;
+      PI_clk_25MHz <= 1'b0;
       PI_bullet_y <= 4'b0000;
       PI_level <= 1'b0;
       PI_bullet_x <= 5'b00000;
@@ -181,7 +181,7 @@ module testbench(input clock, output reg genclock);
     // state 13
     if (cycle == 12) begin
       PI_start <= 1'b0;
-      PI_clk_36MHz <= 1'b0;
+      PI_clk_25MHz <= 1'b0;
       PI_bullet_y <= 4'b0000;
       PI_level <= 1'b0;
       PI_bullet_x <= 5'b00000;
@@ -191,7 +191,7 @@ module testbench(input clock, output reg genclock);
     // state 14
     if (cycle == 13) begin
       PI_start <= 1'b0;
-      PI_clk_36MHz <= 1'b0;
+      PI_clk_25MHz <= 1'b0;
       PI_bullet_y <= 4'b0000;
       PI_level <= 1'b0;
       PI_bullet_x <= 5'b00000;
@@ -201,7 +201,7 @@ module testbench(input clock, output reg genclock);
     // state 15
     if (cycle == 14) begin
       PI_start <= 1'b0;
-      PI_clk_36MHz <= 1'b0;
+      PI_clk_25MHz <= 1'b0;
       PI_bullet_y <= 4'b0000;
       PI_level <= 1'b0;
       PI_bullet_x <= 5'b00000;
@@ -211,7 +211,7 @@ module testbench(input clock, output reg genclock);
     // state 16
     if (cycle == 15) begin
       PI_start <= 1'b0;
-      PI_clk_36MHz <= 1'b0;
+      PI_clk_25MHz <= 1'b0;
       PI_bullet_y <= 4'b0000;
       PI_level <= 1'b0;
       PI_bullet_x <= 5'b00000;
@@ -221,7 +221,7 @@ module testbench(input clock, output reg genclock);
     // state 17
     if (cycle == 16) begin
       PI_start <= 1'b0;
-      PI_clk_36MHz <= 1'b0;
+      PI_clk_25MHz <= 1'b0;
       PI_bullet_y <= 4'b0000;
       PI_level <= 1'b0;
       PI_bullet_x <= 5'b00000;
@@ -231,7 +231,7 @@ module testbench(input clock, output reg genclock);
     // state 18
     if (cycle == 17) begin
       PI_start <= 1'b0;
-      PI_clk_36MHz <= 1'b0;
+      PI_clk_25MHz <= 1'b0;
       PI_bullet_y <= 4'b0000;
       PI_level <= 1'b0;
       PI_bullet_x <= 5'b00000;
@@ -241,7 +241,7 @@ module testbench(input clock, output reg genclock);
     // state 19
     if (cycle == 18) begin
       PI_start <= 1'b0;
-      PI_clk_36MHz <= 1'b0;
+      PI_clk_25MHz <= 1'b0;
       PI_bullet_y <= 4'b0000;
       PI_level <= 1'b0;
       PI_bullet_x <= 5'b00000;
@@ -251,7 +251,7 @@ module testbench(input clock, output reg genclock);
     // state 20
     if (cycle == 19) begin
       PI_start <= 1'b0;
-      PI_clk_36MHz <= 1'b0;
+      PI_clk_25MHz <= 1'b0;
       PI_bullet_y <= 4'b0000;
       PI_level <= 1'b0;
       PI_bullet_x <= 5'b00000;

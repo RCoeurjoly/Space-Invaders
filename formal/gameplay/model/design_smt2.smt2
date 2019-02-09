@@ -19,11 +19,11 @@
 ; yosys-smt2-wire i_invaders_array 20
 (declare-fun |gameplay#3| (|gameplay_s|) (_ BitVec 20)) ; \i_invaders_array
 (define-fun |gameplay_n i_invaders_array| ((state |gameplay_s|)) (_ BitVec 20) (|gameplay#3| state))
-; yosys-smt2-input i_clk_36MHz 1
-; yosys-smt2-wire i_clk_36MHz 1
-; yosys-smt2-clock i_clk_36MHz posedge
-(declare-fun |gameplay#4| (|gameplay_s|) Bool) ; \i_clk_36MHz
-(define-fun |gameplay_n i_clk_36MHz| ((state |gameplay_s|)) Bool (|gameplay#4| state))
+; yosys-smt2-input i_clk_25MHz 1
+; yosys-smt2-wire i_clk_25MHz 1
+; yosys-smt2-clock i_clk_25MHz posedge
+(declare-fun |gameplay#4| (|gameplay_s|) Bool) ; \i_clk_25MHz
+(define-fun |gameplay_n i_clk_25MHz| ((state |gameplay_s|)) Bool (|gameplay#4| state))
 ; yosys-smt2-register GAME_OVER_reached 1
 ; yosys-smt2-wire GAME_OVER_reached 1
 (declare-fun |gameplay#5| (|gameplay_s|) (_ BitVec 1)) ; \GAME_OVER_reached

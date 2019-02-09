@@ -25,7 +25,7 @@ module \ship
   attribute \src "ship.v:64"
   wire $formal$ship.v:64$24_CHECK
   attribute \src "ship.v:5"
-  wire input 1 \i_clk_36MHz
+  wire input 1 \i_clk_25MHz
   attribute \src "ship.v:9"
   wire input 5 \i_enable
   attribute \src "ship.v:7"
@@ -107,7 +107,7 @@ module \ship
   cell $dff $procdff$697
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \i_clk_36MHz
+    connect \CLK \i_clk_25MHz
     connect \D $0$formal$ship.v:61$21_CHECK[0:0]$69
     connect \Q $formal$ship.v:61$21_CHECK
   end
@@ -115,7 +115,7 @@ module \ship
   cell $dff $procdff$698
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \i_clk_36MHz
+    connect \CLK \i_clk_25MHz
     connect \D 1'1
     connect \Q $formal$ship.v:61$21_EN
   end
@@ -123,7 +123,7 @@ module \ship
   cell $dff $procdff$699
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \i_clk_36MHz
+    connect \CLK \i_clk_25MHz
     connect \D $0$formal$ship.v:62$22_CHECK[0:0]$71
     connect \Q $formal$ship.v:62$22_CHECK
   end
@@ -131,7 +131,7 @@ module \ship
   cell $dff $procdff$701
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \i_clk_36MHz
+    connect \CLK \i_clk_25MHz
     connect \D $0$formal$ship.v:63$23_CHECK[0:0]$73
     connect \Q $formal$ship.v:63$23_CHECK
   end
@@ -139,7 +139,7 @@ module \ship
   cell $dff $procdff$703
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \i_clk_36MHz
+    connect \CLK \i_clk_25MHz
     connect \D $0$formal$ship.v:64$24_CHECK[0:0]$75
     connect \Q $formal$ship.v:64$24_CHECK
   end
@@ -147,7 +147,7 @@ module \ship
   cell $dff $procdff$705
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 5
-    connect \CLK \i_clk_36MHz
+    connect \CLK \i_clk_25MHz
     connect \D \next_x
     connect \Q \o_ship_x
   end

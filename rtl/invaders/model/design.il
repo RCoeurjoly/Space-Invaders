@@ -14,7 +14,7 @@ module $paramod\timer_1us\PERIOD=100000
   wire width 32 $procmux$72_Y
   wire width 32 $procmux$74_Y
   attribute \src "timer_1us.v:5"
-  wire input 1 \clk_36MHz
+  wire input 1 \clk_25MHz
   attribute \init 0
   attribute \src "timer_1us.v:15"
   wire width 32 \count
@@ -51,7 +51,7 @@ module $paramod\timer_1us\PERIOD=100000
   cell $dff $procdff$835
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \clk_36MHz
+    connect \CLK \clk_25MHz
     connect \D $0\q[0:0]
     connect \Q \q
   end
@@ -59,7 +59,7 @@ module $paramod\timer_1us\PERIOD=100000
   cell $dff $procdff$836
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 32
-    connect \CLK \clk_36MHz
+    connect \CLK \clk_25MHz
     connect \D $0\count[31:0]
     connect \Q \count
   end
@@ -288,7 +288,7 @@ module \invaders
   attribute \src "invaders.v:9"
   wire width 4 input 5 \bullet_y
   attribute \src "invaders.v:5"
-  wire input 1 \clk_36MHz
+  wire input 1 \clk_25MHz
   attribute \init 1'0
   attribute \src "invaders.v:37"
   wire \direction
@@ -408,7 +408,7 @@ module \invaders
   cell $dff $procdff$837
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \clk_36MHz
+    connect \CLK \clk_25MHz
     connect \D $0$formal$invaders.v:106$1_CHECK[0:0]$24
     connect \Q $formal$invaders.v:106$1_CHECK
   end
@@ -416,7 +416,7 @@ module \invaders
   cell $dff $procdff$838
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \clk_36MHz
+    connect \CLK \clk_25MHz
     connect \D 1'1
     connect \Q $formal$invaders.v:106$1_EN
   end
@@ -424,7 +424,7 @@ module \invaders
   cell $dff $procdff$839
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \clk_36MHz
+    connect \CLK \clk_25MHz
     connect \D $0$formal$invaders.v:107$2_CHECK[0:0]$26
     connect \Q $formal$invaders.v:107$2_CHECK
   end
@@ -432,7 +432,7 @@ module \invaders
   cell $dff $procdff$841
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \clk_36MHz
+    connect \CLK \clk_25MHz
     connect \D $0\hit[0:0]
     connect \Q \hit
   end
@@ -440,7 +440,7 @@ module \invaders
   cell $dff $procdff$842
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 20
-    connect \CLK \clk_36MHz
+    connect \CLK \clk_25MHz
     connect \D $0\invaders_array[19:0]
     connect \Q \invaders_array
   end
@@ -448,7 +448,7 @@ module \invaders
   cell $dff $procdff$843
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 4
-    connect \CLK \clk_36MHz
+    connect \CLK \clk_25MHz
     connect \D $0\invaders_line[3:0]
     connect \Q \invaders_line
   end
@@ -456,7 +456,7 @@ module \invaders
   cell $dff $procdff$844
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \clk_36MHz
+    connect \CLK \clk_25MHz
     connect \D $0\direction[0:0]
     connect \Q \direction
   end
@@ -1914,7 +1914,7 @@ module \invaders
   end
   attribute \src "invaders.v:20"
   cell $paramod\timer_1us\PERIOD=100000 \speed_timer1
-    connect \clk_36MHz \clk_36MHz
+    connect \clk_25MHz \clk_25MHz
     connect \en 1'1
     connect \q \tick1
     connect \reset \reset

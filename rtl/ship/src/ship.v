@@ -2,7 +2,7 @@
 // This program is GPL Licensed. See LICENSE for the full license.
 
 module ship(
-	    input wire       clk_36MHz,
+	    input wire       clk_25MHz,
 	    input wire       reset, //synchronous reset
 	    input wire       left_debounced,
 	    input wire       right_debounced,
@@ -21,7 +21,7 @@ module ship(
       ship_x <= reset_position;
    end
 
-   always @(posedge clk_36MHz) begin
+   always @(posedge clk_25MHz) begin
       ship_x <= next_x;
    end
 
@@ -57,7 +57,7 @@ module ship(
    end // always @ (reset or left_debounced or right_debounced or enable or current_state)
 
 `ifdef FORMAL
-always @(posedge clk_36MHz) begin
+always @(posedge clk_25MHz) begin
    assert (ship_x >= left_limit);
    assert (ship_x <= right_limit);
    assert (next_x >= left_limit);

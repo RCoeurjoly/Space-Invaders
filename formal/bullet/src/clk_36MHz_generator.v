@@ -1,14 +1,14 @@
 // Copyright (c) 2017-2018 Roland Coeurjoly
 // This program is GPL Licensed. See LICENSE for the full license.
 
-module clk_36MHz_generator(
+module clk_25MHz_generator(
 			   input wire  i_clk_12MHz,
-			   output wire o_clk_36MHz
+			   output wire o_clk_25MHz
 			   );
 
 `ifndef SYNTHESIS
    // SIMULATION
-   assign o_clk_36MHz = i_clk_12MHz;
+   assign o_clk_25MHz = i_clk_12MHz;
 `else
    // SYNTHESIS
    SB_PLL40_CORE #(
@@ -20,7 +20,7 @@ module clk_36MHz_generator(
 		   .FILTER_RANGE(3'b001),
 		   ) uut (
 			  .REFERENCECLK(i_clk_12MHz),
-			  .PLLOUTCORE(o_clk_36MHz),
+			  .PLLOUTCORE(o_clk_25MHz),
 			  .RESETB(1'b1),
 			  .BYPASS(1'b0)
 			  );

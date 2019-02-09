@@ -5,25 +5,25 @@ assume (= [GAME_OVER_reached] false)
 assume (= [o_gameplay] #b00)
 
 state 0
-assume (= [i_clk_36MHz] false)
+assume (= [i_clk_25MHz] false)
 assume (= [i_invaders_array] #b00000000000000000000)
 assume (= [i_invaders_line] #b1101)
 assume (= [i_reset] true)
 
 state 1
-assume (= [i_clk_36MHz] false)
+assume (= [i_clk_25MHz] false)
 assume (= [i_invaders_array] #b00000000000000000000)
 assume (= [i_invaders_line] #b0000)
 assume (= [i_reset] false)
 
 state 2
-assume (= [i_clk_36MHz] false)
+assume (= [i_clk_25MHz] false)
 assume (= [i_invaders_array] #b00000000000000000000)
 assume (= [i_invaders_line] #b0000)
 assume (= [i_reset] false)
 
 state 3
-assume (= [i_clk_36MHz] false)
+assume (= [i_clk_25MHz] false)
 assume (= [i_invaders_array] #b00000000000000000000)
 assume (= [i_invaders_line] #b0000)
 assume (= [i_reset] false)

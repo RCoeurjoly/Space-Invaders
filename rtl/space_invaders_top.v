@@ -14,7 +14,7 @@ module space_invaders_top(
 			                    output wire o_blue //o_blue vga output
 			                    );
 
-   wire                               clk_36MHz;
+   wire                               clk_25MHz;
    wire [2:0]                         rgb;
    wire [9:0]                         x;
    wire [9:0]                         y;
@@ -27,13 +27,13 @@ module space_invaders_top(
    wire                               bullet_flying;
    wire [1:0]                         gameplay;
 
-   clk_36MHz_generator clk_36MHz_generator1(
+   clk_25MHz_generator clk_25MHz_generator1(
 					                                  .i_clk_12MHz(i_clk_12MHz),
-					                                  .o_clk_36MHz(clk_36MHz)
+					                                  .o_clk_25MHz(clk_25MHz)
 					                                  );
 
    vga_controller vga_controller1(
-				                          .i_clk_36MHz(clk_36MHz),
+				                          .i_clk_25MHz(clk_25MHz),
 				                          .i_rgb(rgb),
 				                          .o_hsync(o_hsync),
 				                          .o_vsync(o_vsync),
@@ -47,7 +47,7 @@ module space_invaders_top(
    sprite_drawer sprite_drawer1(
 				                        .i_x(x),
 				                        .i_y(y),
-				                        .i_reset(i_reset),
+				                        .i_reset(1),
 				                        .i_invaders_array(invaders_array),
 				                        .i_invaders_line(invaders_line),
 				                        .i_ship_x(ship_x),
@@ -58,7 +58,7 @@ module space_invaders_top(
 				                        );
 
    gameplay gameplay1(
-		                  .i_clk_36MHz(clk_36MHz),
+		                  .i_clk_25MHz(clk_25MHz),
 		                  .i_reset(i_reset),
 		                  .i_invaders_array(invaders_array),
 		                  .i_invaders_line(invaders_line),
@@ -66,7 +66,7 @@ module space_invaders_top(
 		                  );
 
    player player1(
-		              .i_clk_36MHz(clk_36MHz),
+		              .i_clk_25MHz(clk_25MHz),
 		              .i_reset(i_reset),
 		              .i_left(i_left),
 		              .i_right(i_right),
@@ -78,7 +78,7 @@ module space_invaders_top(
 		              );
 
    invaders invaders1(
-		                  .i_clk_36MHz(clk_36MHz),
+		                  .i_clk_25MHz(clk_25MHz),
 		                  .i_reset(i_reset),
 		                  .i_bullet_x(bullet_x),
 		                  .i_bullet_y(bullet_y),

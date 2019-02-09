@@ -27,73 +27,73 @@ assume (= [$formal$ship.v:86$44_CHECK] false)
 assume (= [o_ship_x] #b00101)
 
 state 0
-assume (= [i_clk_36MHz] false)
+assume (= [i_clk_25MHz] false)
 assume (= [i_left_debounced] true)
 assume (= [i_reset] true)
 assume (= [i_right_debounced] false)
 
 state 1
-assume (= [i_clk_36MHz] false)
+assume (= [i_clk_25MHz] false)
 assume (= [i_left_debounced] false)
 assume (= [i_reset] false)
 assume (= [i_right_debounced] false)
 
 state 2
-assume (= [i_clk_36MHz] false)
+assume (= [i_clk_25MHz] false)
 assume (= [i_left_debounced] false)
 assume (= [i_reset] true)
 assume (= [i_right_debounced] false)
 
 state 3
-assume (= [i_clk_36MHz] false)
+assume (= [i_clk_25MHz] false)
 assume (= [i_left_debounced] false)
 assume (= [i_reset] true)
 assume (= [i_right_debounced] false)
 
 state 4
-assume (= [i_clk_36MHz] false)
+assume (= [i_clk_25MHz] false)
 assume (= [i_left_debounced] true)
 assume (= [i_reset] false)
 assume (= [i_right_debounced] false)
 
 state 5
-assume (= [i_clk_36MHz] false)
+assume (= [i_clk_25MHz] false)
 assume (= [i_left_debounced] true)
 assume (= [i_reset] false)
 assume (= [i_right_debounced] false)
 
 state 6
-assume (= [i_clk_36MHz] false)
+assume (= [i_clk_25MHz] false)
 assume (= [i_left_debounced] true)
 assume (= [i_reset] false)
 assume (= [i_right_debounced] false)
 
 state 7
-assume (= [i_clk_36MHz] false)
+assume (= [i_clk_25MHz] false)
 assume (= [i_left_debounced] true)
 assume (= [i_reset] false)
 assume (= [i_right_debounced] false)
 
 state 8
-assume (= [i_clk_36MHz] false)
+assume (= [i_clk_25MHz] false)
 assume (= [i_left_debounced] true)
 assume (= [i_reset] false)
 assume (= [i_right_debounced] false)
 
 state 9
-assume (= [i_clk_36MHz] false)
+assume (= [i_clk_25MHz] false)
 assume (= [i_left_debounced] true)
 assume (= [i_reset] false)
 assume (= [i_right_debounced] false)
 
 state 10
-assume (= [i_clk_36MHz] false)
+assume (= [i_clk_25MHz] false)
 assume (= [i_left_debounced] true)
 assume (= [i_reset] true)
 assume (= [i_right_debounced] false)
 
 state 11
-assume (= [i_clk_36MHz] false)
+assume (= [i_clk_25MHz] false)
 assume (= [i_left_debounced] true)
 assume (= [i_reset] false)
 assume (= [i_right_debounced] false)

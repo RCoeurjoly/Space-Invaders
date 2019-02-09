@@ -38,7 +38,7 @@ module \gameplay
   attribute \src "gameplay.v:38"
   wire \GAME_OVER_reached
   attribute \src "gameplay.v:5"
-  wire input 1 \i_clk_36MHz
+  wire input 1 \i_clk_25MHz
   attribute \src "gameplay.v:7"
   wire width 20 input 3 \i_invaders_array
   attribute \src "gameplay.v:8"
@@ -139,7 +139,7 @@ module \gameplay
   cell $dff $procdff$31
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \i_clk_36MHz
+    connect \CLK \i_clk_25MHz
     connect \D $0\GAME_OVER_reached[0:0]
     connect \Q \GAME_OVER_reached
   end
@@ -147,7 +147,7 @@ module \gameplay
   cell $dff $procdff$32
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \i_clk_36MHz
+    connect \CLK \i_clk_25MHz
     connect \D $0$formal$gameplay.v:45$1_CHECK[0:0]$7
     connect \Q $formal$gameplay.v:45$1_CHECK
   end
@@ -155,7 +155,7 @@ module \gameplay
   cell $dff $procdff$33
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \i_clk_36MHz
+    connect \CLK \i_clk_25MHz
     connect \D 1'1
     connect \Q $formal$gameplay.v:45$1_EN
   end
@@ -163,7 +163,7 @@ module \gameplay
   cell $dff $procdff$34
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 2
-    connect \CLK \i_clk_36MHz
+    connect \CLK \i_clk_25MHz
     connect \D $0\o_gameplay[1:0]
     connect \Q \o_gameplay
   end

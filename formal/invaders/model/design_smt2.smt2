@@ -11,11 +11,11 @@
 ; yosys-smt2-wire i_reset 1
 (declare-fun |$paramod/timer_1us/PERIOD=100000#1| (|$paramod/timer_1us/PERIOD=100000_s|) Bool) ; \i_reset
 (define-fun |$paramod/timer_1us/PERIOD=100000_n i_reset| ((state |$paramod/timer_1us/PERIOD=100000_s|)) Bool (|$paramod/timer_1us/PERIOD=100000#1| state))
-; yosys-smt2-input i_clk_36MHz 1
-; yosys-smt2-wire i_clk_36MHz 1
-; yosys-smt2-clock i_clk_36MHz posedge
-(declare-fun |$paramod/timer_1us/PERIOD=100000#2| (|$paramod/timer_1us/PERIOD=100000_s|) Bool) ; \i_clk_36MHz
-(define-fun |$paramod/timer_1us/PERIOD=100000_n i_clk_36MHz| ((state |$paramod/timer_1us/PERIOD=100000_s|)) Bool (|$paramod/timer_1us/PERIOD=100000#2| state))
+; yosys-smt2-input i_clk_25MHz 1
+; yosys-smt2-wire i_clk_25MHz 1
+; yosys-smt2-clock i_clk_25MHz posedge
+(declare-fun |$paramod/timer_1us/PERIOD=100000#2| (|$paramod/timer_1us/PERIOD=100000_s|) Bool) ; \i_clk_25MHz
+(define-fun |$paramod/timer_1us/PERIOD=100000_n i_clk_25MHz| ((state |$paramod/timer_1us/PERIOD=100000_s|)) Bool (|$paramod/timer_1us/PERIOD=100000#2| state))
 ; yosys-smt2-register count 32
 ; yosys-smt2-wire count 32
 (declare-fun |$paramod/timer_1us/PERIOD=100000#3| (|$paramod/timer_1us/PERIOD=100000_s|) (_ BitVec 32)) ; \count
@@ -64,11 +64,11 @@
 ; yosys-smt2-wire i_reset 1
 (declare-fun |invaders#4| (|invaders_s|) Bool) ; \i_reset
 (define-fun |invaders_n i_reset| ((state |invaders_s|)) Bool (|invaders#4| state))
-; yosys-smt2-input i_clk_36MHz 1
-; yosys-smt2-wire i_clk_36MHz 1
-; yosys-smt2-clock i_clk_36MHz posedge
-(declare-fun |invaders#5| (|invaders_s|) Bool) ; \i_clk_36MHz
-(define-fun |invaders_n i_clk_36MHz| ((state |invaders_s|)) Bool (|invaders#5| state))
+; yosys-smt2-input i_clk_25MHz 1
+; yosys-smt2-wire i_clk_25MHz 1
+; yosys-smt2-clock i_clk_25MHz posedge
+(declare-fun |invaders#5| (|invaders_s|) Bool) ; \i_clk_25MHz
+(define-fun |invaders_n i_clk_25MHz| ((state |invaders_s|)) Bool (|invaders#5| state))
 ; yosys-smt2-input i_bullet_y 4
 ; yosys-smt2-wire i_bullet_y 4
 (declare-fun |invaders#6| (|invaders_s|) (_ BitVec 4)) ; \i_bullet_y
@@ -264,7 +264,7 @@
   (= (|invaders_is| state) (|$paramod/timer_1us/PERIOD=100000_is| (|invaders_h speed_timer1| state)))
   (= (|invaders#0| state) (|$paramod/timer_1us/PERIOD=100000_n o_q| (|invaders_h speed_timer1| state))) ; $paramod/timer_1us/PERIOD=100000.o_q
   (= (|invaders#4| state) (|$paramod/timer_1us/PERIOD=100000_n i_reset| (|invaders_h speed_timer1| state))) ; $paramod/timer_1us/PERIOD=100000.i_reset
-  (= (|invaders#5| state) (|$paramod/timer_1us/PERIOD=100000_n i_clk_36MHz| (|invaders_h speed_timer1| state))) ; $paramod/timer_1us/PERIOD=100000.i_clk_36MHz
+  (= (|invaders#5| state) (|$paramod/timer_1us/PERIOD=100000_n i_clk_25MHz| (|invaders_h speed_timer1| state))) ; $paramod/timer_1us/PERIOD=100000.i_clk_25MHz
   (|$paramod/timer_1us/PERIOD=100000_h| (|invaders_h speed_timer1| state))
 ))
 (define-fun |invaders_t| ((state |invaders_s|) (next_state |invaders_s|)) Bool (and

@@ -11,11 +11,11 @@
 ; yosys-smt2-wire i_reset 1
 (declare-fun |$paramod/timer_1us/PERIOD=90000#1| (|$paramod/timer_1us/PERIOD=90000_s|) Bool) ; \i_reset
 (define-fun |$paramod/timer_1us/PERIOD=90000_n i_reset| ((state |$paramod/timer_1us/PERIOD=90000_s|)) Bool (|$paramod/timer_1us/PERIOD=90000#1| state))
-; yosys-smt2-input i_clk_36MHz 1
-; yosys-smt2-wire i_clk_36MHz 1
-; yosys-smt2-clock i_clk_36MHz posedge
-(declare-fun |$paramod/timer_1us/PERIOD=90000#2| (|$paramod/timer_1us/PERIOD=90000_s|) Bool) ; \i_clk_36MHz
-(define-fun |$paramod/timer_1us/PERIOD=90000_n i_clk_36MHz| ((state |$paramod/timer_1us/PERIOD=90000_s|)) Bool (|$paramod/timer_1us/PERIOD=90000#2| state))
+; yosys-smt2-input i_clk_25MHz 1
+; yosys-smt2-wire i_clk_25MHz 1
+; yosys-smt2-clock i_clk_25MHz posedge
+(declare-fun |$paramod/timer_1us/PERIOD=90000#2| (|$paramod/timer_1us/PERIOD=90000_s|) Bool) ; \i_clk_25MHz
+(define-fun |$paramod/timer_1us/PERIOD=90000_n i_clk_25MHz| ((state |$paramod/timer_1us/PERIOD=90000_s|)) Bool (|$paramod/timer_1us/PERIOD=90000#2| state))
 ; yosys-smt2-register count 32
 ; yosys-smt2-wire count 32
 (declare-fun |$paramod/timer_1us/PERIOD=90000#3| (|$paramod/timer_1us/PERIOD=90000_s|) (_ BitVec 32)) ; \count
@@ -75,11 +75,11 @@
 ; yosys-smt2-wire i_hit 1
 (declare-fun |bullet#7| (|bullet_s|) Bool) ; \i_hit
 (define-fun |bullet_n i_hit| ((state |bullet_s|)) Bool (|bullet#7| state))
-; yosys-smt2-input i_clk_36MHz 1
-; yosys-smt2-wire i_clk_36MHz 1
-; yosys-smt2-clock i_clk_36MHz posedge
-(declare-fun |bullet#8| (|bullet_s|) Bool) ; \i_clk_36MHz
-(define-fun |bullet_n i_clk_36MHz| ((state |bullet_s|)) Bool (|bullet#8| state))
+; yosys-smt2-input i_clk_25MHz 1
+; yosys-smt2-wire i_clk_25MHz 1
+; yosys-smt2-clock i_clk_25MHz posedge
+(declare-fun |bullet#8| (|bullet_s|) Bool) ; \i_clk_25MHz
+(define-fun |bullet_n i_clk_25MHz| ((state |bullet_s|)) Bool (|bullet#8| state))
 ; yosys-smt2-register current_state 2
 ; yosys-smt2-wire current_state 2
 (declare-fun |bullet#9| (|bullet_s|) (_ BitVec 2)) ; \current_state
@@ -142,7 +142,7 @@
   (= (|bullet_is| state) (|$paramod/timer_1us/PERIOD=90000_is| (|bullet_h timer_1us1| state)))
   (= (|bullet#0| state) (|$paramod/timer_1us/PERIOD=90000_n o_q| (|bullet_h timer_1us1| state))) ; $paramod/timer_1us/PERIOD=90000.o_q
   (= (|bullet#6| state) (|$paramod/timer_1us/PERIOD=90000_n i_reset| (|bullet_h timer_1us1| state))) ; $paramod/timer_1us/PERIOD=90000.i_reset
-  (= (|bullet#8| state) (|$paramod/timer_1us/PERIOD=90000_n i_clk_36MHz| (|bullet_h timer_1us1| state))) ; $paramod/timer_1us/PERIOD=90000.i_clk_36MHz
+  (= (|bullet#8| state) (|$paramod/timer_1us/PERIOD=90000_n i_clk_25MHz| (|bullet_h timer_1us1| state))) ; $paramod/timer_1us/PERIOD=90000.i_clk_25MHz
   (|$paramod/timer_1us/PERIOD=90000_h| (|bullet_h timer_1us1| state))
 ))
 (define-fun |bullet_t| ((state |bullet_s|) (next_state |bullet_s|)) Bool (and

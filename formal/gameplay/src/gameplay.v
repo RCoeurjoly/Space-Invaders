@@ -2,7 +2,7 @@
 // This program is GPL Licensed. See LICENSE for the full license.
 
 module gameplay(
-		            input wire        i_clk_36MHz,
+		            input wire        i_clk_25MHz,
 		            input wire        i_reset,
 		            input wire [19:0] i_invaders_array,
 		            input wire [3:0]  i_invaders_line,
@@ -18,7 +18,7 @@ module gameplay(
 	      o_gameplay = PLAYING;
      end
 
-   always @(posedge i_clk_36MHz)
+   always @(posedge i_clk_25MHz)
      begin
         if (i_reset == 0)
 	        begin
@@ -33,13 +33,13 @@ module gameplay(
 	           else
 	             o_gameplay <= PLAYING;
 	        end
-     end // always @ (posedge i_clk_36MHz)
+     end // always @ (posedge i_clk_25MHz)
 `ifdef FORMAL
    reg GAME_OVER_reached;
    initial begin
       GAME_OVER_reached = 0;
    end
-   always @(posedge i_clk_36MHz) begin
+   always @(posedge i_clk_25MHz) begin
       if (o_gameplay == GAME_OVER)
         GAME_OVER_reached <= 1;
       assert (!(GAME_OVER_reached && (o_gameplay <= PLAYING || o_gameplay <= YOU_WIN)));

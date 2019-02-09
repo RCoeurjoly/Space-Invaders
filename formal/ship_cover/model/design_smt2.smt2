@@ -23,11 +23,11 @@
 ; yosys-smt2-input i_left_debounced 1
 ; yosys-smt2-wire i_left_debounced 1
 (define-fun |ship_n i_left_debounced| ((state |ship_s|)) Bool (= ((_ extract 0 0) (|ship#1| state)) #b1))
-; yosys-smt2-input i_clk_36MHz 1
-; yosys-smt2-wire i_clk_36MHz 1
-; yosys-smt2-clock i_clk_36MHz posedge
-(declare-fun |ship#6| (|ship_s|) Bool) ; \i_clk_36MHz
-(define-fun |ship_n i_clk_36MHz| ((state |ship_s|)) Bool (|ship#6| state))
+; yosys-smt2-input i_clk_25MHz 1
+; yosys-smt2-wire i_clk_25MHz 1
+; yosys-smt2-clock i_clk_25MHz posedge
+(declare-fun |ship#6| (|ship_s|) Bool) ; \i_clk_25MHz
+(define-fun |ship_n i_clk_25MHz| ((state |ship_s|)) Bool (|ship#6| state))
 ; yosys-smt2-register $formal$ship.v:86$44_CHECK 1
 (declare-fun |ship#7| (|ship_s|) (_ BitVec 1)) ; $formal$ship.v:86$44_CHECK
 (define-fun |ship_n $formal$ship.v:86$44_CHECK| ((state |ship_s|)) Bool (= ((_ extract 0 0) (|ship#7| state)) #b1))

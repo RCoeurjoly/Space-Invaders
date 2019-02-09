@@ -19,11 +19,11 @@
 ; yosys-smt2-wire count 32
 (declare-fun |$paramod/timer_1us/PERIOD=100000#3| (|$paramod/timer_1us/PERIOD=100000_s|) (_ BitVec 32)) ; \count
 (define-fun |$paramod/timer_1us/PERIOD=100000_n count| ((state |$paramod/timer_1us/PERIOD=100000_s|)) (_ BitVec 32) (|$paramod/timer_1us/PERIOD=100000#3| state))
-; yosys-smt2-input clk_36MHz 1
-; yosys-smt2-wire clk_36MHz 1
-; yosys-smt2-clock clk_36MHz posedge
-(declare-fun |$paramod/timer_1us/PERIOD=100000#4| (|$paramod/timer_1us/PERIOD=100000_s|) Bool) ; \clk_36MHz
-(define-fun |$paramod/timer_1us/PERIOD=100000_n clk_36MHz| ((state |$paramod/timer_1us/PERIOD=100000_s|)) Bool (|$paramod/timer_1us/PERIOD=100000#4| state))
+; yosys-smt2-input clk_25MHz 1
+; yosys-smt2-wire clk_25MHz 1
+; yosys-smt2-clock clk_25MHz posedge
+(declare-fun |$paramod/timer_1us/PERIOD=100000#4| (|$paramod/timer_1us/PERIOD=100000_s|) Bool) ; \clk_25MHz
+(define-fun |$paramod/timer_1us/PERIOD=100000_n clk_25MHz| ((state |$paramod/timer_1us/PERIOD=100000_s|)) Bool (|$paramod/timer_1us/PERIOD=100000#4| state))
 (define-fun |$paramod/timer_1us/PERIOD=100000#5| ((state |$paramod/timer_1us/PERIOD=100000_s|)) (_ BitVec 32) (bvadd (|$paramod/timer_1us/PERIOD=100000#3| state) #b00000000000000000000000000000001)) ; $add$timer_1us.v:30$55_Y
 (define-fun |$paramod/timer_1us/PERIOD=100000#6| ((state |$paramod/timer_1us/PERIOD=100000_s|)) Bool (= (|$paramod/timer_1us/PERIOD=100000#3| state) #b00000000001101101110111001111111)) ; $eq$timer_1us.v:27$54_Y
 (define-fun |$paramod/timer_1us/PERIOD=100000#7| ((state |$paramod/timer_1us/PERIOD=100000_s|)) (_ BitVec 32) (ite (|$paramod/timer_1us/PERIOD=100000#6| state) #b00000000000000000000000000000000 (|$paramod/timer_1us/PERIOD=100000#5| state))) ; $procmux$72_Y
@@ -80,11 +80,11 @@
 ; yosys-smt2-wire direction 1
 (declare-fun |invaders#7| (|invaders_s|) (_ BitVec 1)) ; \direction
 (define-fun |invaders_n direction| ((state |invaders_s|)) Bool (= ((_ extract 0 0) (|invaders#7| state)) #b1))
-; yosys-smt2-input clk_36MHz 1
-; yosys-smt2-wire clk_36MHz 1
-; yosys-smt2-clock clk_36MHz posedge
-(declare-fun |invaders#8| (|invaders_s|) Bool) ; \clk_36MHz
-(define-fun |invaders_n clk_36MHz| ((state |invaders_s|)) Bool (|invaders#8| state))
+; yosys-smt2-input clk_25MHz 1
+; yosys-smt2-wire clk_25MHz 1
+; yosys-smt2-clock clk_25MHz posedge
+(declare-fun |invaders#8| (|invaders_s|) Bool) ; \clk_25MHz
+(define-fun |invaders_n clk_25MHz| ((state |invaders_s|)) Bool (|invaders#8| state))
 ; yosys-smt2-input bullet_y 4
 ; yosys-smt2-wire bullet_y 4
 (declare-fun |invaders#9| (|invaders_s|) (_ BitVec 4)) ; \bullet_y
@@ -309,7 +309,7 @@
   (= (|invaders#2| state) (|$paramod/timer_1us/PERIOD=100000_n reset| (|invaders_h speed_timer1| state))) ; $paramod/timer_1us/PERIOD=100000.reset
   (= (|invaders#0| state) (|$paramod/timer_1us/PERIOD=100000_n q| (|invaders_h speed_timer1| state))) ; $paramod/timer_1us/PERIOD=100000.q
   (= true (|$paramod/timer_1us/PERIOD=100000_n en| (|invaders_h speed_timer1| state))) ; $paramod/timer_1us/PERIOD=100000.en
-  (= (|invaders#8| state) (|$paramod/timer_1us/PERIOD=100000_n clk_36MHz| (|invaders_h speed_timer1| state))) ; $paramod/timer_1us/PERIOD=100000.clk_36MHz
+  (= (|invaders#8| state) (|$paramod/timer_1us/PERIOD=100000_n clk_25MHz| (|invaders_h speed_timer1| state))) ; $paramod/timer_1us/PERIOD=100000.clk_25MHz
   (|$paramod/timer_1us/PERIOD=100000_h| (|invaders_h speed_timer1| state))
 ))
 (define-fun |invaders_t| ((state |invaders_s|) (next_state |invaders_s|)) Bool (and

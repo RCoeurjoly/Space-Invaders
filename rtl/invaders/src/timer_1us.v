@@ -2,7 +2,7 @@
 // This program is GPL Licensed. See LICENSE for the full license.
 
 module timer_1us(
-		 input wire clk_36MHz,
+		 input wire clk_25MHz,
 		 input wire reset, //synchronous reset
 		 input wire en,
 		 output reg q	       
@@ -19,7 +19,7 @@ module timer_1us(
       count <= 0;
    end
    
-   always @(posedge clk_36MHz)
+   always @(posedge clk_25MHz)
      begin
 	if (reset == 0)
 	  count <= 0;
@@ -35,5 +35,5 @@ module timer_1us(
 	  q <= 1;
 	else
 	  q <= 0;
-     end // always @ (posedge clk_36MHz)
+     end // always @ (posedge clk_25MHz)
 endmodule

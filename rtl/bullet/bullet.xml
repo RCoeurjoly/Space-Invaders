@@ -3,7 +3,7 @@
 <testsuite disabled="0" errors="0" failures="0" name="bullet" skipped="0" tests="1" time="0">
 <testcase classname="bullet" name="default" status="PASS" time="0">
 <system-out>SBY 23:20:47 [bullet] Removing direcory 'bullet'.
-SBY 23:20:47 [bullet] Copy 'clk_36MHz_generator.v' to 'bullet/src/clk_36MHz_generator.v'.
+SBY 23:20:47 [bullet] Copy 'clk_25MHz_generator.v' to 'bullet/src/clk_25MHz_generator.v'.
 SBY 23:20:47 [bullet] Copy 'timer_1us.v' to 'bullet/src/timer_1us.v'.
 SBY 23:20:47 [bullet] Copy 'bullet.v' to 'bullet/src/bullet.v'.
 SBY 23:20:47 [bullet] engine_0: smtbmc

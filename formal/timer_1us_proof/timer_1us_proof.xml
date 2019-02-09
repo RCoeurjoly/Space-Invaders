@@ -7,7 +7,7 @@
 SBY 23:09:15 [/home/rcl/Space-Invaders/formal/timer_1us_proof] Copy 'timer_1us.v' to '/home/rcl/Space-Invaders/formal/timer_1us_proof/src/timer_1us.v'.
 SBY 23:09:15 [/home/rcl/Space-Invaders/formal/timer_1us_proof] engine_0: smtbmc
 SBY 23:09:15 [/home/rcl/Space-Invaders/formal/timer_1us_proof] base: starting process &quot;cd /home/rcl/Space-Invaders/formal/timer_1us_proof/src; yosys -ql ../model/design.log ../model/design.ys&quot;
-SBY 23:09:15 [/home/rcl/Space-Invaders/formal/timer_1us_proof] base: ERROR: Can't open input file `clk_36MHz_generator.v' for reading: No such file or directory
+SBY 23:09:15 [/home/rcl/Space-Invaders/formal/timer_1us_proof] base: ERROR: Can't open input file `clk_25MHz_generator.v' for reading: No such file or directory
 SBY 23:09:15 [/home/rcl/Space-Invaders/formal/timer_1us_proof] base: finished (returncode=1)
 SBY 23:09:15 [/home/rcl/Space-Invaders/formal/timer_1us_proof] base: job failed. ERROR.
 SBY 23:09:15 [/home/rcl/Space-Invaders/formal/timer_1us_proof] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)

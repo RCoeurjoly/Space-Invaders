@@ -2,7 +2,7 @@
 // This program is GPL Licensed. See LICENSE for the full license.
 
 module invaders(
-		            input wire        i_clk_36MHz, //input clock: 12MHz
+		            input wire        i_clk_25MHz, //input clock: 12MHz
 		            input wire        i_reset, //synchronous i_reset
  		            input wire [4:0]  i_bullet_x,
 		            input wire [3:0]  i_bullet_y,
@@ -15,7 +15,7 @@ module invaders(
    parameter SPEED = 100000;
 
    timer_1us #(SPEED) speed_timer1(
-				                           .i_clk_36MHz(i_clk_36MHz),
+				                           .i_clk_25MHz(i_clk_25MHz),
 				                           .i_reset(i_reset),
 				                           .o_q(tick)
 				                           );
@@ -34,7 +34,7 @@ module invaders(
       o_hit = 0;
    end
 
-   always @(posedge i_clk_36MHz) begin
+   always @(posedge i_clk_25MHz) begin
       if (i_reset == 1) begin
 	       o_invaders_array <= 20'b00000000000111111111;
 	       o_invaders_row <= 4'b0001;
@@ -45,6 +45,13 @@ module invaders(
       else if ((i_bullet_y == o_invaders_row + 1) && (o_invaders_array[i_bullet_x] == 1)) begin
 	       o_hit <= 1;
 	       o_invaders_array[i_bullet_x] <= 0;
+      end
+	    else if (o_invaders_row == 14) begin
+         o_invaders_array <= o_invaders_array;
+	       o_invaders_row <= o_invaders_row;
+	       moving <= moving;
+	       direction <= direction;
+	       o_hit <= 0;
       end
       else if (tick == 1) begin
          if (direction == LEFT) begin
@@ -69,13 +76,6 @@ module invaders(
 	             moving <= 1;
             end
          end // if (direction == RIGHT)
-	       else if (o_invaders_row == 14) begin
-            o_invaders_array <= o_invaders_array;
-	          o_invaders_row <= o_invaders_row;
-	          moving <= moving;
-	          direction <= direction;
-	          o_hit <= 0;
-         end
          else begin
 	          o_invaders_array <= o_invaders_array;
 	          o_invaders_row <= o_invaders_row;

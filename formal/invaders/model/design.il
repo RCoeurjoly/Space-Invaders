@@ -17,7 +17,7 @@ module $paramod\timer_1us\PERIOD=100000
   attribute \src "timer_1us.v:14"
   wire width 32 \count
   attribute \src "timer_1us.v:5"
-  wire input 1 \i_clk_36MHz
+  wire input 1 \i_clk_25MHz
   attribute \src "timer_1us.v:6"
   wire input 2 \i_reset
   attribute \init 1'0
@@ -49,7 +49,7 @@ module $paramod\timer_1us\PERIOD=100000
   cell $dff $procdff$800
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \i_clk_36MHz
+    connect \CLK \i_clk_25MHz
     connect \D $0\o_q[0:0]
     connect \Q \o_q
   end
@@ -57,7 +57,7 @@ module $paramod\timer_1us\PERIOD=100000
   cell $dff $procdff$801
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 32
-    connect \CLK \i_clk_36MHz
+    connect \CLK \i_clk_25MHz
     connect \D $0\count[31:0]
     connect \Q \count
   end
@@ -257,7 +257,7 @@ module \invaders
   attribute \src "invaders.v:8"
   wire width 4 input 4 \i_bullet_y
   attribute \src "invaders.v:5"
-  wire input 1 \i_clk_36MHz
+  wire input 1 \i_clk_25MHz
   attribute \src "invaders.v:6"
   wire input 2 \i_reset
   attribute \init 1'0
@@ -337,7 +337,7 @@ module \invaders
   cell $dff $procdff$802
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \i_clk_36MHz
+    connect \CLK \i_clk_25MHz
     connect \D $0\o_hit[0:0]
     connect \Q \o_hit
   end
@@ -345,7 +345,7 @@ module \invaders
   cell $dff $procdff$803
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 20
-    connect \CLK \i_clk_36MHz
+    connect \CLK \i_clk_25MHz
     connect \D $0\o_invaders_array[19:0]
     connect \Q \o_invaders_array
   end
@@ -353,7 +353,7 @@ module \invaders
   cell $dff $procdff$804
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 4
-    connect \CLK \i_clk_36MHz
+    connect \CLK \i_clk_25MHz
     connect \D $0\o_invaders_row[3:0]
     connect \Q \o_invaders_row
   end
@@ -361,7 +361,7 @@ module \invaders
   cell $dff $procdff$805
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \i_clk_36MHz
+    connect \CLK \i_clk_25MHz
     connect \D $0\direction[0:0]
     connect \Q \direction
   end
@@ -1667,7 +1667,7 @@ module \invaders
   end
   attribute \src "invaders.v:17"
   cell $paramod\timer_1us\PERIOD=100000 \speed_timer1
-    connect \i_clk_36MHz \i_clk_36MHz
+    connect \i_clk_25MHz \i_clk_25MHz
     connect \i_reset \i_reset
     connect \o_q \tick
   end

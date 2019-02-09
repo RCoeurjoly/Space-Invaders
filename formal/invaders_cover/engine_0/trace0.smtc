@@ -9,5 +9,5 @@ assume (= [speed_timer1.o_q] false)
 state 0
 assume (= [i_bullet_x] #b00000)
 assume (= [i_bullet_y] #x0)
-assume (= [i_clk_36MHz] false)
+assume (= [i_clk_25MHz] false)
 assume (= [i_reset] false)

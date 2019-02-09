@@ -14,7 +14,7 @@ module $paramod\timer_1us\PERIOD=90000
   wire width 32 $procmux$41_Y
   wire width 32 $procmux$43_Y
   attribute \src "timer_1us.v:5"
-  wire input 1 \clk_36MHz
+  wire input 1 \clk_25MHz
   attribute \init 0
   attribute \src "timer_1us.v:15"
   wire width 32 \count
@@ -51,7 +51,7 @@ module $paramod\timer_1us\PERIOD=90000
   cell $dff $procdff$121
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \clk_36MHz
+    connect \CLK \clk_25MHz
     connect \D $0\q[0:0]
     connect \Q \q
   end
@@ -59,7 +59,7 @@ module $paramod\timer_1us\PERIOD=90000
   cell $dff $procdff$122
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 32
-    connect \CLK \clk_36MHz
+    connect \CLK \clk_25MHz
     connect \D $0\count[31:0]
     connect \Q \count
   end
@@ -148,7 +148,7 @@ module \bullet
   attribute \src "bullet.v:13"
   wire width 4 output 9 \bullet_y
   attribute \src "bullet.v:5"
-  wire input 1 \clk_36MHz
+  wire input 1 \clk_25MHz
   attribute \src "bullet.v:7"
   wire input 3 \enable
   attribute \src "bullet.v:8"
@@ -216,7 +216,7 @@ module \bullet
   cell $dff $procdff$123
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \clk_36MHz
+    connect \CLK \clk_25MHz
     connect \D $0$formal$bullet.v:69$1_CHECK[0:0]$12
     connect \Q $formal$bullet.v:69$1_CHECK
   end
@@ -224,7 +224,7 @@ module \bullet
   cell $dff $procdff$124
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \clk_36MHz
+    connect \CLK \clk_25MHz
     connect \D 1'1
     connect \Q $formal$bullet.v:69$1_EN
   end
@@ -232,7 +232,7 @@ module \bullet
   cell $dff $procdff$125
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \clk_36MHz
+    connect \CLK \clk_25MHz
     connect \D $0$formal$bullet.v:70$2_CHECK[0:0]$14
     connect \Q $formal$bullet.v:70$2_CHECK
   end
@@ -240,7 +240,7 @@ module \bullet
   cell $dff $procdff$127
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 1
-    connect \CLK \clk_36MHz
+    connect \CLK \clk_25MHz
     connect \D $0\bullet_flying[0:0]
     connect \Q \bullet_flying
   end
@@ -248,7 +248,7 @@ module \bullet
   cell $dff $procdff$128
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 5
-    connect \CLK \clk_36MHz
+    connect \CLK \clk_25MHz
     connect \D $0\bullet_x[4:0]
     connect \Q \bullet_x
   end
@@ -256,7 +256,7 @@ module \bullet
   cell $dff $procdff$129
     parameter \CLK_POLARITY 1'1
     parameter \WIDTH 4
-    connect \CLK \clk_36MHz
+    connect \CLK \clk_25MHz
     connect \D $0\bullet_y[3:0]
     connect \Q \bullet_y
   end
@@ -377,7 +377,7 @@ module \bullet
   end
   attribute \src "bullet.v:17"
   cell $paramod\timer_1us\PERIOD=90000 \timer_1us1
-    connect \clk_36MHz \clk_36MHz
+    connect \clk_25MHz \clk_25MHz
     connect \en 1'1
     connect \q \tick
     connect \reset \reset

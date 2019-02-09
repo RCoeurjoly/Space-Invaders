@@ -2,7 +2,7 @@
 // This program is GPL Licensed. See LICENSE for the full license.
 
 module edge_detector_debouncer(
-			                         input wire i_clk_36MHz,
+			                         input wire i_clk_25MHz,
 			                         input wire i_reset, //asynchronous i_reset
 			                         input wire i_in,
 			                         output reg o_debounced
@@ -18,7 +18,7 @@ module edge_detector_debouncer(
    parameter [1:0] waiting = 2'b10;
 
    timer_1us  # (1000) timer_1us1(
-				                          .i_clk_36MHz(i_clk_36MHz),
+				                          .i_clk_25MHz(i_clk_25MHz),
 				                          .i_reset(i_reset),
 				                          .o_q(timeout)
 				                          );
@@ -29,7 +29,7 @@ module edge_detector_debouncer(
       o_debounced = 1'b0;
    end
 
-   always @(posedge i_clk_36MHz)
+   always @(posedge i_clk_25MHz)
      begin
 	      // i_reset condition
 	      if (i_reset == 0)
@@ -37,7 +37,7 @@ module edge_detector_debouncer(
 	           current_state <= not_detected;
 	        end
 	      else current_state <= next_state;
-     end // always @ (posedge i_clk_36MHz)
+     end // always @ (posedge i_clk_25MHz)
 
    always @(*) begin
 	    case (current_state)

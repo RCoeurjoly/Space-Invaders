@@ -4,7 +4,7 @@
 module ship_tb();
 
    //-- input registers
-   reg clk_36MHz = 0;
+   reg clk_25MHz = 0;
    reg reset = 0;
    reg left_debounced = 0;
    reg right_debounced = 0;
@@ -17,7 +17,7 @@ module ship_tb();
 
    
    ship ship1(
-	      .clk_36MHz(clk_36MHz),
+	      .clk_25MHz(clk_25MHz),
 	      .reset(reset),
 	      .left_debounced(left_debounced),
 	      .right_debounced(right_debounced),
@@ -25,7 +25,7 @@ module ship_tb();
 	      .ship_x(ship_h)
 	      );
 
-   always #1 clk_36MHz = ~clk_36MHz;
+   always #1 clk_25MHz = ~clk_25MHz;
    
    //-- Proceso al inicio
    initial begin

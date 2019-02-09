@@ -1,11 +1,11 @@
 set_io i_clk_12MHz 21
-set_io i_reset 119
+set_io i_reset 116
 set_io i_left 47
 set_io i_right 48
 set_io i_shoot 56
 set_io i_start 60
 set_io o_hsync 113
 set_io o_vsync 112
-set_io o_red 114
-set_io o_green 116
-set_io o_blue 118
+set_io o_red 119
+set_io o_green 118
+set_io o_blue 117

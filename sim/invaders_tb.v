@@ -7,7 +7,7 @@
 module invaders_tb();
 
    //-- input registers
-   reg clk_36MHz = 0;
+   reg clk_25MHz = 0;
    reg reset = 0;
    reg start = 0;
    reg [4:0] bullet_x = 0;
@@ -21,7 +21,7 @@ module invaders_tb();
    
    //-- Instanciar el contador
    invaders #(1) invaders1(
-			   .clk_36MHz(clk_36MHz),
+			   .clk_25MHz(clk_25MHz),
 			   .reset(reset),
 			   .start(start),
 			   .bullet_x(bullet_x),
@@ -32,7 +32,7 @@ module invaders_tb();
 			   .invaders_line(invaders_line)
 			   );
    
-   always #1 clk_36MHz = ~clk_36MHz;
+   always #1 clk_25MHz = ~clk_25MHz;
    
    //-- Proceso al inicio
    initial begin

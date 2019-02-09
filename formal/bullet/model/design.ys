@@ -1,7 +1,7 @@
 # running in /home/rcl/Space-Invaders/formal/bullet/src/
 read -formal bullet.v
 read -formal timer_1us.v
-read -formal clk_36MHz_generator.v
+read -formal clk_25MHz_generator.v
 prep -top bullet
 
 memory_nordff

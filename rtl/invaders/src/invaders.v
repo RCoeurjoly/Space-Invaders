@@ -2,7 +2,7 @@
 // This program is GPL Licensed. See LICENSE for the full license.
 
 module invaders(
-		            input wire        clk_36MHz, //input clock: 12MHz
+		            input wire        clk_25MHz, //input clock: 12MHz
 		            input wire        reset, //synchronous reset
 		            input wire        start,
  		            input wire [4:0]  bullet_x,
@@ -18,14 +18,14 @@ module invaders(
    parameter SPEED = 100000;
 
    timer_1us #(SPEED) speed_timer1(
-				                           .clk_36MHz(clk_36MHz),
+				                           .clk_25MHz(clk_25MHz),
 				                           .reset(reset),
 				                           .en(1),
 				                           .q(tick1)
 				                           );
 
    timer_1us #(2000) speed_timer2(
-				                          .clk_36MHz(clk_36MHz),
+				                          .clk_25MHz(clk_25MHz),
 				                          .reset(reset),
 				                          .en(1),
 				                          .q(tick2)
@@ -47,7 +47,7 @@ module invaders(
       state <= 0;
    end
 
-   always @(posedge clk_36MHz) begin
+   always @(posedge clk_25MHz) begin
       if (reset == 0) begin
 	       invaders_array <= 20'b00000000000111111111;
 	       invaders_line <= 4'b0001;
@@ -100,9 +100,9 @@ module invaders(
 	       state <= 7;
 	       hit <= 0;
       end // else: !if(tick1)
-   end // always @ (posedge clk_36MHz)
+   end // always @ (posedge clk_25MHz)
 `ifdef FORMAL
-   always @(posedge clk_36MHz) begin
+   always @(posedge clk_25MHz) begin
       assert (invaders_line < 14);
       assert (invaders_line >= 0);
    end

@@ -8,7 +8,7 @@ SBY 23:09:15 [/home/rcl/Space-Invaders/formal/timer_1us_cover] Removing direcory
 SBY 23:09:15 [/home/rcl/Space-Invaders/formal/timer_1us_cover] Copy 'timer_1us.v' to '/home/rcl/Space-Invaders/formal/timer_1us_cover/src/timer_1us.v'.
 SBY 23:09:15 [/home/rcl/Space-Invaders/formal/timer_1us_cover] engine_0: smtbmc
 SBY 23:09:15 [/home/rcl/Space-Invaders/formal/timer_1us_cover] base: starting process &quot;cd /home/rcl/Space-Invaders/formal/timer_1us_cover/src; yosys -ql ../model/design.log ../model/design.ys&quot;
-SBY 23:09:15 [/home/rcl/Space-Invaders/formal/timer_1us_cover] base: ERROR: Can't open input file `clk_36MHz_generator.v' for reading: No such file or directory
+SBY 23:09:15 [/home/rcl/Space-Invaders/formal/timer_1us_cover] base: ERROR: Can't open input file `clk_25MHz_generator.v' for reading: No such file or directory
 SBY 23:09:15 [/home/rcl/Space-Invaders/formal/timer_1us_cover] base: finished (returncode=1)
 SBY 23:09:15 [/home/rcl/Space-Invaders/formal/timer_1us_cover] base: job failed. ERROR.
 SBY 23:09:15 [/home/rcl/Space-Invaders/formal/timer_1us_cover] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)

@@ -2,7 +2,7 @@
 // This program is GPL Licensed. See LICENSE for the full license.
 
 module bullet(
-	            input wire       clk_36MHz,
+	            input wire       clk_25MHz,
 	            input wire       reset, //synchronous reset
 	            input wire       enable,
 	            input wire       hit,
@@ -15,7 +15,7 @@ module bullet(
    wire                        tick;
 
    timer_1us # (90000) timer_1us1(
-				                          .clk_36MHz(clk_36MHz),
+				                          .clk_25MHz(clk_25MHz),
 				                          .reset(reset),
 				                          .en(1),
 				                          .q(tick)
@@ -26,7 +26,7 @@ module bullet(
       bullet_y <= 14;
    end
 
-   always @(posedge clk_36MHz) begin
+   always @(posedge clk_25MHz) begin
       // reset condition
       if (reset == 0) begin
 	       bullet_flying <= 0;
@@ -63,9 +63,9 @@ module bullet(
 	          end
 	       end // else: !if(bullet_flying == 0)
       end // else: !if(reset == 0)
-   end // always @ (posedge clk_36MHz)
+   end // always @ (posedge clk_25MHz)
 `ifdef FORMAL
-   always @(posedge clk_36MHz) begin
+   always @(posedge clk_25MHz) begin
       assert (bullet_y < 16);
       assert (bullet_y >= 0);
    end

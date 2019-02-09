@@ -11,11 +11,11 @@
 ; yosys-smt2-wire i_reset 1
 (declare-fun |$paramod/timer_1us/PERIOD=100000#1| (|$paramod/timer_1us/PERIOD=100000_s|) Bool) ; \i_reset
 (define-fun |$paramod/timer_1us/PERIOD=100000_n i_reset| ((state |$paramod/timer_1us/PERIOD=100000_s|)) Bool (|$paramod/timer_1us/PERIOD=100000#1| state))
-; yosys-smt2-input i_clk_36MHz 1
-; yosys-smt2-wire i_clk_36MHz 1
-; yosys-smt2-clock i_clk_36MHz posedge
-(declare-fun |$paramod/timer_1us/PERIOD=100000#2| (|$paramod/timer_1us/PERIOD=100000_s|) Bool) ; \i_clk_36MHz
-(define-fun |$paramod/timer_1us/PERIOD=100000_n i_clk_36MHz| ((state |$paramod/timer_1us/PERIOD=100000_s|)) Bool (|$paramod/timer_1us/PERIOD=100000#2| state))
+; yosys-smt2-input i_clk_25MHz 1
+; yosys-smt2-wire i_clk_25MHz 1
+; yosys-smt2-clock i_clk_25MHz posedge
+(declare-fun |$paramod/timer_1us/PERIOD=100000#2| (|$paramod/timer_1us/PERIOD=100000_s|) Bool) ; \i_clk_25MHz
+(define-fun |$paramod/timer_1us/PERIOD=100000_n i_clk_25MHz| ((state |$paramod/timer_1us/PERIOD=100000_s|)) Bool (|$paramod/timer_1us/PERIOD=100000#2| state))
 ; yosys-smt2-register count 32
 ; yosys-smt2-wire count 32
 (declare-fun |$paramod/timer_1us/PERIOD=100000#3| (|$paramod/timer_1us/PERIOD=100000_s|) (_ BitVec 32)) ; \count
@@ -39,8 +39,8 @@
 ))
 (define-fun |$paramod/timer_1us/PERIOD=100000_h| ((state |$paramod/timer_1us/PERIOD=100000_s|)) Bool true)
 (define-fun |$paramod/timer_1us/PERIOD=100000_t| ((state |$paramod/timer_1us/PERIOD=100000_s|) (next_state |$paramod/timer_1us/PERIOD=100000_s|)) Bool (and
-  (= (|$paramod/timer_1us/PERIOD=100000#8| state) (|$paramod/timer_1us/PERIOD=100000#3| next_state)) ; $procdff$913 \count
-  (= (|$paramod/timer_1us/PERIOD=100000#10| state) (|$paramod/timer_1us/PERIOD=100000#0| next_state)) ; $procdff$912 \o_q
+  (= (|$paramod/timer_1us/PERIOD=100000#8| state) (|$paramod/timer_1us/PERIOD=100000#3| next_state)) ; $procdff$937 \count
+  (= (|$paramod/timer_1us/PERIOD=100000#10| state) (|$paramod/timer_1us/PERIOD=100000#0| next_state)) ; $procdff$936 \o_q
 )) ; end of module $paramod/timer_1us/PERIOD=100000
 ; yosys-smt2-module invaders
 (declare-sort |invaders_s| 0)
@@ -69,11 +69,11 @@
 ; yosys-smt2-wire i_reset 1
 (declare-fun |invaders#4| (|invaders_s|) Bool) ; \i_reset
 (define-fun |invaders_n i_reset| ((state |invaders_s|)) Bool (|invaders#4| state))
-; yosys-smt2-input i_clk_36MHz 1
-; yosys-smt2-wire i_clk_36MHz 1
-; yosys-smt2-clock i_clk_36MHz posedge
-(declare-fun |invaders#5| (|invaders_s|) Bool) ; \i_clk_36MHz
-(define-fun |invaders_n i_clk_36MHz| ((state |invaders_s|)) Bool (|invaders#5| state))
+; yosys-smt2-input i_clk_25MHz 1
+; yosys-smt2-wire i_clk_25MHz 1
+; yosys-smt2-clock i_clk_25MHz posedge
+(declare-fun |invaders#5| (|invaders_s|) Bool) ; \i_clk_25MHz
+(define-fun |invaders_n i_clk_25MHz| ((state |invaders_s|)) Bool (|invaders#5| state))
 ; yosys-smt2-input i_bullet_y 4
 ; yosys-smt2-wire i_bullet_y 4
 (declare-fun |invaders#6| (|invaders_s|) (_ BitVec 4)) ; \i_bullet_y
@@ -136,164 +136,187 @@
 (define-fun |invaders#24| ((state |invaders_s|)) Bool (not (or  (= ((_ extract 0 0) (|invaders#1| state)) #b1) (= ((_ extract 1 1) (|invaders#1| state)) #b1) (= ((_ extract 2 2) (|invaders#1| state)) #b1) (= ((_ extract 3 3) (|invaders#1| state)) #b1)))) ; $0$formal$invaders.v:99$18_CHECK[0:0]$53
 ; yosys-smt2-cover 16 invaders.v:99
 (define-fun |invaders_c 16| ((state |invaders_s|)) Bool (and (|invaders#24| state) true)) ; $cover$invaders.v:99$104
-(define-fun |invaders#25| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) #b0 #b1)) ; $procmux$844_Y
-(define-fun |invaders#26| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#25| state) #b0)) ; $procmux$846_Y
-(define-fun |invaders#27| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#26| state) (|invaders#8| state))) ; $procmux$848_Y
-(define-fun |invaders#28| ((state |invaders_s|)) (_ BitVec 5) (bvadd (concat #b0 (|invaders#1| state)) #b00001)) ; $add$invaders.v:45$37_Y
-(define-fun |invaders#29| ((state |invaders_s|)) Bool (= (concat #b0 (|invaders#6| state)) (|invaders#28| state))) ; $eq$invaders.v:45$38_Y
-(define-fun |invaders#30| ((state |invaders_s|)) (_ BitVec 1) ((_ extract 0 0) (bvlshr (|invaders#2| state) (concat #b000000000000000 (|invaders#7| state))))) ; $eq$invaders.v:45$40_Y
-(define-fun |invaders#31| ((state |invaders_s|)) Bool (and (or  (|invaders#29| state) false) (or  (= ((_ extract 0 0) (|invaders#30| state)) #b1) false))) ; $logic_and$invaders.v:45$41_Y
-(define-fun |invaders#32| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) (|invaders#8| state) (|invaders#27| state))) ; $procmux$851_Y
-(define-fun |invaders#33| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#32| state))) ; $0\direction[0:0]
-(define-fun |invaders#34| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#3| state) #b0)) ; $procmux$902_Y
-(define-fun |invaders#35| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#34| state) #b0)) ; $procmux$904_Y
-(define-fun |invaders#36| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) #b1 (|invaders#35| state))) ; $procmux$907_Y
-(define-fun |invaders#37| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#36| state))) ; $0\o_hit[0:0]
-(define-fun |invaders#38| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) #b1 ((_ extract 1 1) (|invaders#2| state)))) ; $procmux$666_Y
-(define-fun |invaders#39| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#38| state) ((_ extract 0 0) (|invaders#2| state)))) ; $procmux$668_Y
-(define-fun |invaders#40| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#39| state) ((_ extract 0 0) (|invaders#2| state)))) ; $procmux$670_Y
-(define-fun |invaders#41| ((state |invaders_s|)) Bool (not (or  (= ((_ extract 0 0) (|invaders#7| state)) #b1) (= ((_ extract 1 1) (|invaders#7| state)) #b1) (= ((_ extract 2 2) (|invaders#7| state)) #b1) (= ((_ extract 3 3) (|invaders#7| state)) #b1) (= ((_ extract 4 4) (|invaders#7| state)) #b1)))) ; $procmux$693_CMP
-(define-fun |invaders#42| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#41| state) #b0 ((_ extract 0 0) (|invaders#2| state)))) ; $procmux$692_Y
-(define-fun |invaders#43| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) (|invaders#42| state) (|invaders#40| state))) ; $procmux$694_Y
-(define-fun |invaders#44| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b1 (|invaders#43| state))) ; $0\o_invaders_array[19:0] [0]
-(define-fun |invaders#45| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 1 1) (|invaders#2| state)) ((_ extract 2 2) (|invaders#2| state)))) ; $procmux$624_Y
-(define-fun |invaders#46| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#45| state) ((_ extract 1 1) (|invaders#2| state)))) ; $procmux$626_Y
-(define-fun |invaders#47| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#46| state) ((_ extract 1 1) (|invaders#2| state)))) ; $procmux$628_Y
-(define-fun |invaders#48| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b00001)) ; $procmux$650_CMP
-(define-fun |invaders#49| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#48| state) #b0 ((_ extract 1 1) (|invaders#2| state)))) ; $procmux$649_Y
-(define-fun |invaders#50| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) (|invaders#49| state) (|invaders#47| state))) ; $procmux$651_Y
-(define-fun |invaders#51| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b1 (|invaders#50| state))) ; $0\o_invaders_array[19:0] [1]
-(define-fun |invaders#52| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 2 2) (|invaders#2| state)) ((_ extract 3 3) (|invaders#2| state)))) ; $procmux$583_Y
-(define-fun |invaders#53| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#52| state) ((_ extract 2 2) (|invaders#2| state)))) ; $procmux$585_Y
-(define-fun |invaders#54| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#53| state) ((_ extract 2 2) (|invaders#2| state)))) ; $procmux$587_Y
-(define-fun |invaders#55| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b00010)) ; $procmux$608_CMP
-(define-fun |invaders#56| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#55| state) #b0 ((_ extract 2 2) (|invaders#2| state)))) ; $procmux$607_Y
-(define-fun |invaders#57| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) (|invaders#56| state) (|invaders#54| state))) ; $procmux$609_Y
-(define-fun |invaders#58| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b1 (|invaders#57| state))) ; $0\o_invaders_array[19:0] [2]
-(define-fun |invaders#59| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 3 3) (|invaders#2| state)) ((_ extract 4 4) (|invaders#2| state)))) ; $procmux$543_Y
-(define-fun |invaders#60| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#59| state) ((_ extract 3 3) (|invaders#2| state)))) ; $procmux$545_Y
-(define-fun |invaders#61| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#60| state) ((_ extract 3 3) (|invaders#2| state)))) ; $procmux$547_Y
-(define-fun |invaders#62| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b00011)) ; $procmux$567_CMP
-(define-fun |invaders#63| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#62| state) #b0 ((_ extract 3 3) (|invaders#2| state)))) ; $procmux$566_Y
-(define-fun |invaders#64| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) (|invaders#63| state) (|invaders#61| state))) ; $procmux$568_Y
-(define-fun |invaders#65| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b1 (|invaders#64| state))) ; $0\o_invaders_array[19:0] [3]
-(define-fun |invaders#66| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 4 4) (|invaders#2| state)) ((_ extract 5 5) (|invaders#2| state)))) ; $procmux$504_Y
-(define-fun |invaders#67| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#66| state) ((_ extract 4 4) (|invaders#2| state)))) ; $procmux$506_Y
-(define-fun |invaders#68| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#67| state) ((_ extract 4 4) (|invaders#2| state)))) ; $procmux$508_Y
-(define-fun |invaders#69| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b00100)) ; $procmux$527_CMP
-(define-fun |invaders#70| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#69| state) #b0 ((_ extract 4 4) (|invaders#2| state)))) ; $procmux$526_Y
-(define-fun |invaders#71| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) (|invaders#70| state) (|invaders#68| state))) ; $procmux$528_Y
-(define-fun |invaders#72| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b1 (|invaders#71| state))) ; $0\o_invaders_array[19:0] [4]
-(define-fun |invaders#73| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 5 5) (|invaders#2| state)) ((_ extract 6 6) (|invaders#2| state)))) ; $procmux$466_Y
-(define-fun |invaders#74| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#73| state) ((_ extract 5 5) (|invaders#2| state)))) ; $procmux$468_Y
-(define-fun |invaders#75| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#74| state) ((_ extract 5 5) (|invaders#2| state)))) ; $procmux$470_Y
-(define-fun |invaders#76| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b00101)) ; $procmux$488_CMP
-(define-fun |invaders#77| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#76| state) #b0 ((_ extract 5 5) (|invaders#2| state)))) ; $procmux$487_Y
-(define-fun |invaders#78| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) (|invaders#77| state) (|invaders#75| state))) ; $procmux$489_Y
-(define-fun |invaders#79| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b1 (|invaders#78| state))) ; $0\o_invaders_array[19:0] [5]
-(define-fun |invaders#80| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 6 6) (|invaders#2| state)) ((_ extract 7 7) (|invaders#2| state)))) ; $procmux$429_Y
-(define-fun |invaders#81| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#80| state) ((_ extract 6 6) (|invaders#2| state)))) ; $procmux$431_Y
-(define-fun |invaders#82| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#81| state) ((_ extract 6 6) (|invaders#2| state)))) ; $procmux$433_Y
-(define-fun |invaders#83| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b00110)) ; $procmux$450_CMP
-(define-fun |invaders#84| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#83| state) #b0 ((_ extract 6 6) (|invaders#2| state)))) ; $procmux$449_Y
-(define-fun |invaders#85| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) (|invaders#84| state) (|invaders#82| state))) ; $procmux$451_Y
-(define-fun |invaders#86| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b1 (|invaders#85| state))) ; $0\o_invaders_array[19:0] [6]
-(define-fun |invaders#87| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 7 7) (|invaders#2| state)) ((_ extract 8 8) (|invaders#2| state)))) ; $procmux$393_Y
-(define-fun |invaders#88| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#87| state) ((_ extract 7 7) (|invaders#2| state)))) ; $procmux$395_Y
-(define-fun |invaders#89| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#88| state) ((_ extract 7 7) (|invaders#2| state)))) ; $procmux$397_Y
-(define-fun |invaders#90| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b00111)) ; $procmux$413_CMP
-(define-fun |invaders#91| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#90| state) #b0 ((_ extract 7 7) (|invaders#2| state)))) ; $procmux$412_Y
-(define-fun |invaders#92| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) (|invaders#91| state) (|invaders#89| state))) ; $procmux$414_Y
-(define-fun |invaders#93| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b1 (|invaders#92| state))) ; $0\o_invaders_array[19:0] [7]
-(define-fun |invaders#94| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 8 8) (|invaders#2| state)) ((_ extract 9 9) (|invaders#2| state)))) ; $procmux$358_Y
-(define-fun |invaders#95| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#94| state) ((_ extract 8 8) (|invaders#2| state)))) ; $procmux$360_Y
-(define-fun |invaders#96| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#95| state) ((_ extract 8 8) (|invaders#2| state)))) ; $procmux$362_Y
-(define-fun |invaders#97| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b01000)) ; $procmux$377_CMP
-(define-fun |invaders#98| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#97| state) #b0 ((_ extract 8 8) (|invaders#2| state)))) ; $procmux$376_Y
-(define-fun |invaders#99| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) (|invaders#98| state) (|invaders#96| state))) ; $procmux$378_Y
-(define-fun |invaders#100| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b1 (|invaders#99| state))) ; $0\o_invaders_array[19:0] [8]
-(define-fun |invaders#101| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 9 9) (|invaders#2| state)) ((_ extract 10 10) (|invaders#2| state)))) ; $procmux$324_Y
-(define-fun |invaders#102| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#101| state) ((_ extract 9 9) (|invaders#2| state)))) ; $procmux$326_Y
-(define-fun |invaders#103| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#102| state) ((_ extract 9 9) (|invaders#2| state)))) ; $procmux$328_Y
-(define-fun |invaders#104| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b01001)) ; $procmux$342_CMP
-(define-fun |invaders#105| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#104| state) #b0 ((_ extract 9 9) (|invaders#2| state)))) ; $procmux$341_Y
-(define-fun |invaders#106| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) (|invaders#105| state) (|invaders#103| state))) ; $procmux$343_Y
-(define-fun |invaders#107| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#106| state))) ; $0\o_invaders_array[19:0] [9]
-(define-fun |invaders#108| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 10 10) (|invaders#2| state)) ((_ extract 11 11) (|invaders#2| state)))) ; $procmux$291_Y
-(define-fun |invaders#109| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#108| state) ((_ extract 10 10) (|invaders#2| state)))) ; $procmux$293_Y
-(define-fun |invaders#110| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#109| state) ((_ extract 10 10) (|invaders#2| state)))) ; $procmux$295_Y
-(define-fun |invaders#111| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b01010)) ; $procmux$308_CMP
-(define-fun |invaders#112| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#111| state) #b0 ((_ extract 10 10) (|invaders#2| state)))) ; $procmux$307_Y
-(define-fun |invaders#113| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) (|invaders#112| state) (|invaders#110| state))) ; $procmux$309_Y
-(define-fun |invaders#114| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#113| state))) ; $0\o_invaders_array[19:0] [10]
-(define-fun |invaders#115| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 11 11) (|invaders#2| state)) ((_ extract 12 12) (|invaders#2| state)))) ; $procmux$259_Y
-(define-fun |invaders#116| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#115| state) ((_ extract 11 11) (|invaders#2| state)))) ; $procmux$261_Y
-(define-fun |invaders#117| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#116| state) ((_ extract 11 11) (|invaders#2| state)))) ; $procmux$263_Y
-(define-fun |invaders#118| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b01011)) ; $procmux$275_CMP
-(define-fun |invaders#119| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#118| state) #b0 ((_ extract 11 11) (|invaders#2| state)))) ; $procmux$274_Y
-(define-fun |invaders#120| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) (|invaders#119| state) (|invaders#117| state))) ; $procmux$276_Y
-(define-fun |invaders#121| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#120| state))) ; $0\o_invaders_array[19:0] [11]
-(define-fun |invaders#122| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 12 12) (|invaders#2| state)) ((_ extract 13 13) (|invaders#2| state)))) ; $procmux$228_Y
-(define-fun |invaders#123| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#122| state) ((_ extract 12 12) (|invaders#2| state)))) ; $procmux$230_Y
-(define-fun |invaders#124| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#123| state) ((_ extract 12 12) (|invaders#2| state)))) ; $procmux$232_Y
-(define-fun |invaders#125| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b01100)) ; $procmux$243_CMP
-(define-fun |invaders#126| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#125| state) #b0 ((_ extract 12 12) (|invaders#2| state)))) ; $procmux$242_Y
-(define-fun |invaders#127| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) (|invaders#126| state) (|invaders#124| state))) ; $procmux$244_Y
-(define-fun |invaders#128| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#127| state))) ; $0\o_invaders_array[19:0] [12]
-(define-fun |invaders#129| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 13 13) (|invaders#2| state)) ((_ extract 14 14) (|invaders#2| state)))) ; $procmux$198_Y
-(define-fun |invaders#130| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#129| state) ((_ extract 13 13) (|invaders#2| state)))) ; $procmux$200_Y
-(define-fun |invaders#131| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#130| state) ((_ extract 13 13) (|invaders#2| state)))) ; $procmux$202_Y
-(define-fun |invaders#132| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b01101)) ; $procmux$212_CMP
-(define-fun |invaders#133| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#132| state) #b0 ((_ extract 13 13) (|invaders#2| state)))) ; $procmux$211_Y
-(define-fun |invaders#134| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) (|invaders#133| state) (|invaders#131| state))) ; $procmux$213_Y
-(define-fun |invaders#135| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#134| state))) ; $0\o_invaders_array[19:0] [13]
-(define-fun |invaders#136| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 14 14) (|invaders#2| state)) ((_ extract 15 15) (|invaders#2| state)))) ; $procmux$815_Y
-(define-fun |invaders#137| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#136| state) ((_ extract 14 14) (|invaders#2| state)))) ; $procmux$817_Y
-(define-fun |invaders#138| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#137| state) ((_ extract 14 14) (|invaders#2| state)))) ; $procmux$819_Y
-(define-fun |invaders#139| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b01110)) ; $procmux$828_CMP
-(define-fun |invaders#140| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#139| state) #b0 ((_ extract 14 14) (|invaders#2| state)))) ; $procmux$827_Y
-(define-fun |invaders#141| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) (|invaders#140| state) (|invaders#138| state))) ; $procmux$829_Y
-(define-fun |invaders#142| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#141| state))) ; $0\o_invaders_array[19:0] [14]
-(define-fun |invaders#143| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 15 15) (|invaders#2| state)) ((_ extract 16 16) (|invaders#2| state)))) ; $procmux$787_Y
-(define-fun |invaders#144| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#143| state) ((_ extract 15 15) (|invaders#2| state)))) ; $procmux$789_Y
-(define-fun |invaders#145| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#144| state) ((_ extract 15 15) (|invaders#2| state)))) ; $procmux$791_Y
-(define-fun |invaders#146| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b01111)) ; $procmux$799_CMP
-(define-fun |invaders#147| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#146| state) #b0 ((_ extract 15 15) (|invaders#2| state)))) ; $procmux$798_Y
-(define-fun |invaders#148| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) (|invaders#147| state) (|invaders#145| state))) ; $procmux$800_Y
-(define-fun |invaders#149| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#148| state))) ; $0\o_invaders_array[19:0] [15]
-(define-fun |invaders#150| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 16 16) (|invaders#2| state)) ((_ extract 17 17) (|invaders#2| state)))) ; $procmux$760_Y
-(define-fun |invaders#151| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#150| state) ((_ extract 16 16) (|invaders#2| state)))) ; $procmux$762_Y
-(define-fun |invaders#152| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#151| state) ((_ extract 16 16) (|invaders#2| state)))) ; $procmux$764_Y
-(define-fun |invaders#153| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b10000)) ; $procmux$771_CMP
-(define-fun |invaders#154| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#153| state) #b0 ((_ extract 16 16) (|invaders#2| state)))) ; $procmux$770_Y
-(define-fun |invaders#155| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) (|invaders#154| state) (|invaders#152| state))) ; $procmux$772_Y
-(define-fun |invaders#156| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#155| state))) ; $0\o_invaders_array[19:0] [16]
-(define-fun |invaders#157| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 17 17) (|invaders#2| state)) ((_ extract 18 18) (|invaders#2| state)))) ; $procmux$734_Y
-(define-fun |invaders#158| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#157| state) ((_ extract 17 17) (|invaders#2| state)))) ; $procmux$736_Y
-(define-fun |invaders#159| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#158| state) ((_ extract 17 17) (|invaders#2| state)))) ; $procmux$738_Y
-(define-fun |invaders#160| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b10001)) ; $procmux$744_CMP
-(define-fun |invaders#161| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#160| state) #b0 ((_ extract 17 17) (|invaders#2| state)))) ; $procmux$743_Y
-(define-fun |invaders#162| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) (|invaders#161| state) (|invaders#159| state))) ; $procmux$745_Y
-(define-fun |invaders#163| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#162| state))) ; $0\o_invaders_array[19:0] [17]
-(define-fun |invaders#164| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 18 18) (|invaders#2| state)) ((_ extract 19 19) (|invaders#2| state)))) ; $procmux$709_Y
-(define-fun |invaders#165| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#164| state) ((_ extract 18 18) (|invaders#2| state)))) ; $procmux$711_Y
-(define-fun |invaders#166| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#165| state) ((_ extract 18 18) (|invaders#2| state)))) ; $procmux$713_Y
-(define-fun |invaders#167| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b10010)) ; $procmux$718_CMP
-(define-fun |invaders#168| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#167| state) #b0 ((_ extract 18 18) (|invaders#2| state)))) ; $procmux$717_Y
-(define-fun |invaders#169| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) (|invaders#168| state) (|invaders#166| state))) ; $procmux$719_Y
-(define-fun |invaders#170| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#169| state))) ; $0\o_invaders_array[19:0] [18]
-(define-fun |invaders#171| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 19 19) (|invaders#2| state)) #b0)) ; $procmux$174_Y
-(define-fun |invaders#172| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#171| state) ((_ extract 19 19) (|invaders#2| state)))) ; $procmux$176_Y
-(define-fun |invaders#173| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#172| state) ((_ extract 19 19) (|invaders#2| state)))) ; $procmux$178_Y
-(define-fun |invaders#174| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b10011)) ; $procmux$182_CMP
-(define-fun |invaders#175| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#174| state) #b0 ((_ extract 19 19) (|invaders#2| state)))) ; $procmux$181_Y
-(define-fun |invaders#176| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#31| state) (|invaders#175| state) (|invaders#173| state))) ; $procmux$183_Y
-(define-fun |invaders#177| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#176| state))) ; $0\o_invaders_array[19:0] [19]
-(define-fun |invaders#178| ((state |invaders_s|)) (_ BitVec 4) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 3 0) (|invaders#28| state)) (|invaders#1| state))) ; $procmux$866_Y
-(define-fun |invaders#179| ((state |invaders_s|)) (_ BitVec 4) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#178| state) (|invaders#1| state))) ; $procmux$868_Y
-(define-fun |invaders#180| ((state |invaders_s|)) (_ BitVec 4) (ite (|invaders#0| state) (|invaders#179| state) (|invaders#1| state))) ; $procmux$870_Y
-(define-fun |invaders#181| ((state |invaders_s|)) (_ BitVec 4) (ite (|invaders#31| state) (|invaders#1| state) (|invaders#180| state))) ; $procmux$873_Y
-(define-fun |invaders#182| ((state |invaders_s|)) (_ BitVec 4) (ite (|invaders#4| state) #b0001 (|invaders#181| state))) ; $0\o_invaders_row[3:0]
+(define-fun |invaders#25| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) #b0 #b1)) ; $procmux$862_Y
+(define-fun |invaders#26| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#25| state) #b0)) ; $procmux$864_Y
+(define-fun |invaders#27| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#26| state) (|invaders#8| state))) ; $procmux$866_Y
+(define-fun |invaders#28| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) (|invaders#8| state) (|invaders#27| state))) ; $procmux$869_Y
+(define-fun |invaders#29| ((state |invaders_s|)) (_ BitVec 5) (bvadd (concat #b0 (|invaders#1| state)) #b00001)) ; $add$invaders.v:45$37_Y
+(define-fun |invaders#30| ((state |invaders_s|)) Bool (= (concat #b0 (|invaders#6| state)) (|invaders#29| state))) ; $eq$invaders.v:45$38_Y
+(define-fun |invaders#31| ((state |invaders_s|)) (_ BitVec 1) ((_ extract 0 0) (bvlshr (|invaders#2| state) (concat #b000000000000000 (|invaders#7| state))))) ; $eq$invaders.v:45$40_Y
+(define-fun |invaders#32| ((state |invaders_s|)) Bool (and (or  (|invaders#30| state) false) (or  (= ((_ extract 0 0) (|invaders#31| state)) #b1) false))) ; $logic_and$invaders.v:45$41_Y
+(define-fun |invaders#33| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) (|invaders#8| state) (|invaders#28| state))) ; $procmux$872_Y
+(define-fun |invaders#34| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#33| state))) ; $0\direction[0:0]
+(define-fun |invaders#35| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#3| state) #b0)) ; $procmux$923_Y
+(define-fun |invaders#36| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#35| state) #b0)) ; $procmux$925_Y
+(define-fun |invaders#37| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) #b0 (|invaders#36| state))) ; $procmux$928_Y
+(define-fun |invaders#38| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) #b1 (|invaders#37| state))) ; $procmux$931_Y
+(define-fun |invaders#39| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#38| state))) ; $0\o_hit[0:0]
+(define-fun |invaders#40| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) #b1 ((_ extract 1 1) (|invaders#2| state)))) ; $procmux$678_Y
+(define-fun |invaders#41| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#40| state) ((_ extract 0 0) (|invaders#2| state)))) ; $procmux$680_Y
+(define-fun |invaders#42| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#41| state) ((_ extract 0 0) (|invaders#2| state)))) ; $procmux$682_Y
+(define-fun |invaders#43| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) ((_ extract 0 0) (|invaders#2| state)) (|invaders#42| state))) ; $procmux$685_Y
+(define-fun |invaders#44| ((state |invaders_s|)) Bool (not (or  (= ((_ extract 0 0) (|invaders#7| state)) #b1) (= ((_ extract 1 1) (|invaders#7| state)) #b1) (= ((_ extract 2 2) (|invaders#7| state)) #b1) (= ((_ extract 3 3) (|invaders#7| state)) #b1) (= ((_ extract 4 4) (|invaders#7| state)) #b1)))) ; $procmux$708_CMP
+(define-fun |invaders#45| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#44| state) #b0 ((_ extract 0 0) (|invaders#2| state)))) ; $procmux$707_Y
+(define-fun |invaders#46| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) (|invaders#45| state) (|invaders#43| state))) ; $procmux$709_Y
+(define-fun |invaders#47| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b1 (|invaders#46| state))) ; $0\o_invaders_array[19:0] [0]
+(define-fun |invaders#48| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 1 1) (|invaders#2| state)) ((_ extract 2 2) (|invaders#2| state)))) ; $procmux$635_Y
+(define-fun |invaders#49| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#48| state) ((_ extract 1 1) (|invaders#2| state)))) ; $procmux$637_Y
+(define-fun |invaders#50| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#49| state) ((_ extract 1 1) (|invaders#2| state)))) ; $procmux$639_Y
+(define-fun |invaders#51| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) ((_ extract 1 1) (|invaders#2| state)) (|invaders#50| state))) ; $procmux$642_Y
+(define-fun |invaders#52| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b00001)) ; $procmux$664_CMP
+(define-fun |invaders#53| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#52| state) #b0 ((_ extract 1 1) (|invaders#2| state)))) ; $procmux$663_Y
+(define-fun |invaders#54| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) (|invaders#53| state) (|invaders#51| state))) ; $procmux$665_Y
+(define-fun |invaders#55| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b1 (|invaders#54| state))) ; $0\o_invaders_array[19:0] [1]
+(define-fun |invaders#56| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 2 2) (|invaders#2| state)) ((_ extract 3 3) (|invaders#2| state)))) ; $procmux$593_Y
+(define-fun |invaders#57| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#56| state) ((_ extract 2 2) (|invaders#2| state)))) ; $procmux$595_Y
+(define-fun |invaders#58| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#57| state) ((_ extract 2 2) (|invaders#2| state)))) ; $procmux$597_Y
+(define-fun |invaders#59| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) ((_ extract 2 2) (|invaders#2| state)) (|invaders#58| state))) ; $procmux$600_Y
+(define-fun |invaders#60| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b00010)) ; $procmux$621_CMP
+(define-fun |invaders#61| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#60| state) #b0 ((_ extract 2 2) (|invaders#2| state)))) ; $procmux$620_Y
+(define-fun |invaders#62| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) (|invaders#61| state) (|invaders#59| state))) ; $procmux$622_Y
+(define-fun |invaders#63| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b1 (|invaders#62| state))) ; $0\o_invaders_array[19:0] [2]
+(define-fun |invaders#64| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 3 3) (|invaders#2| state)) ((_ extract 4 4) (|invaders#2| state)))) ; $procmux$552_Y
+(define-fun |invaders#65| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#64| state) ((_ extract 3 3) (|invaders#2| state)))) ; $procmux$554_Y
+(define-fun |invaders#66| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#65| state) ((_ extract 3 3) (|invaders#2| state)))) ; $procmux$556_Y
+(define-fun |invaders#67| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) ((_ extract 3 3) (|invaders#2| state)) (|invaders#66| state))) ; $procmux$559_Y
+(define-fun |invaders#68| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b00011)) ; $procmux$579_CMP
+(define-fun |invaders#69| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#68| state) #b0 ((_ extract 3 3) (|invaders#2| state)))) ; $procmux$578_Y
+(define-fun |invaders#70| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) (|invaders#69| state) (|invaders#67| state))) ; $procmux$580_Y
+(define-fun |invaders#71| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b1 (|invaders#70| state))) ; $0\o_invaders_array[19:0] [3]
+(define-fun |invaders#72| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 4 4) (|invaders#2| state)) ((_ extract 5 5) (|invaders#2| state)))) ; $procmux$512_Y
+(define-fun |invaders#73| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#72| state) ((_ extract 4 4) (|invaders#2| state)))) ; $procmux$514_Y
+(define-fun |invaders#74| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#73| state) ((_ extract 4 4) (|invaders#2| state)))) ; $procmux$516_Y
+(define-fun |invaders#75| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) ((_ extract 4 4) (|invaders#2| state)) (|invaders#74| state))) ; $procmux$519_Y
+(define-fun |invaders#76| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b00100)) ; $procmux$538_CMP
+(define-fun |invaders#77| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#76| state) #b0 ((_ extract 4 4) (|invaders#2| state)))) ; $procmux$537_Y
+(define-fun |invaders#78| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) (|invaders#77| state) (|invaders#75| state))) ; $procmux$539_Y
+(define-fun |invaders#79| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b1 (|invaders#78| state))) ; $0\o_invaders_array[19:0] [4]
+(define-fun |invaders#80| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 5 5) (|invaders#2| state)) ((_ extract 6 6) (|invaders#2| state)))) ; $procmux$473_Y
+(define-fun |invaders#81| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#80| state) ((_ extract 5 5) (|invaders#2| state)))) ; $procmux$475_Y
+(define-fun |invaders#82| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#81| state) ((_ extract 5 5) (|invaders#2| state)))) ; $procmux$477_Y
+(define-fun |invaders#83| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) ((_ extract 5 5) (|invaders#2| state)) (|invaders#82| state))) ; $procmux$480_Y
+(define-fun |invaders#84| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b00101)) ; $procmux$498_CMP
+(define-fun |invaders#85| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#84| state) #b0 ((_ extract 5 5) (|invaders#2| state)))) ; $procmux$497_Y
+(define-fun |invaders#86| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) (|invaders#85| state) (|invaders#83| state))) ; $procmux$499_Y
+(define-fun |invaders#87| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b1 (|invaders#86| state))) ; $0\o_invaders_array[19:0] [5]
+(define-fun |invaders#88| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 6 6) (|invaders#2| state)) ((_ extract 7 7) (|invaders#2| state)))) ; $procmux$435_Y
+(define-fun |invaders#89| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#88| state) ((_ extract 6 6) (|invaders#2| state)))) ; $procmux$437_Y
+(define-fun |invaders#90| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#89| state) ((_ extract 6 6) (|invaders#2| state)))) ; $procmux$439_Y
+(define-fun |invaders#91| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) ((_ extract 6 6) (|invaders#2| state)) (|invaders#90| state))) ; $procmux$442_Y
+(define-fun |invaders#92| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b00110)) ; $procmux$459_CMP
+(define-fun |invaders#93| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#92| state) #b0 ((_ extract 6 6) (|invaders#2| state)))) ; $procmux$458_Y
+(define-fun |invaders#94| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) (|invaders#93| state) (|invaders#91| state))) ; $procmux$460_Y
+(define-fun |invaders#95| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b1 (|invaders#94| state))) ; $0\o_invaders_array[19:0] [6]
+(define-fun |invaders#96| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 7 7) (|invaders#2| state)) ((_ extract 8 8) (|invaders#2| state)))) ; $procmux$398_Y
+(define-fun |invaders#97| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#96| state) ((_ extract 7 7) (|invaders#2| state)))) ; $procmux$400_Y
+(define-fun |invaders#98| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#97| state) ((_ extract 7 7) (|invaders#2| state)))) ; $procmux$402_Y
+(define-fun |invaders#99| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) ((_ extract 7 7) (|invaders#2| state)) (|invaders#98| state))) ; $procmux$405_Y
+(define-fun |invaders#100| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b00111)) ; $procmux$421_CMP
+(define-fun |invaders#101| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#100| state) #b0 ((_ extract 7 7) (|invaders#2| state)))) ; $procmux$420_Y
+(define-fun |invaders#102| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) (|invaders#101| state) (|invaders#99| state))) ; $procmux$422_Y
+(define-fun |invaders#103| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b1 (|invaders#102| state))) ; $0\o_invaders_array[19:0] [7]
+(define-fun |invaders#104| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 8 8) (|invaders#2| state)) ((_ extract 9 9) (|invaders#2| state)))) ; $procmux$362_Y
+(define-fun |invaders#105| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#104| state) ((_ extract 8 8) (|invaders#2| state)))) ; $procmux$364_Y
+(define-fun |invaders#106| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#105| state) ((_ extract 8 8) (|invaders#2| state)))) ; $procmux$366_Y
+(define-fun |invaders#107| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) ((_ extract 8 8) (|invaders#2| state)) (|invaders#106| state))) ; $procmux$369_Y
+(define-fun |invaders#108| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b01000)) ; $procmux$384_CMP
+(define-fun |invaders#109| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#108| state) #b0 ((_ extract 8 8) (|invaders#2| state)))) ; $procmux$383_Y
+(define-fun |invaders#110| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) (|invaders#109| state) (|invaders#107| state))) ; $procmux$385_Y
+(define-fun |invaders#111| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b1 (|invaders#110| state))) ; $0\o_invaders_array[19:0] [8]
+(define-fun |invaders#112| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 9 9) (|invaders#2| state)) ((_ extract 10 10) (|invaders#2| state)))) ; $procmux$327_Y
+(define-fun |invaders#113| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#112| state) ((_ extract 9 9) (|invaders#2| state)))) ; $procmux$329_Y
+(define-fun |invaders#114| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#113| state) ((_ extract 9 9) (|invaders#2| state)))) ; $procmux$331_Y
+(define-fun |invaders#115| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) ((_ extract 9 9) (|invaders#2| state)) (|invaders#114| state))) ; $procmux$334_Y
+(define-fun |invaders#116| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b01001)) ; $procmux$348_CMP
+(define-fun |invaders#117| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#116| state) #b0 ((_ extract 9 9) (|invaders#2| state)))) ; $procmux$347_Y
+(define-fun |invaders#118| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) (|invaders#117| state) (|invaders#115| state))) ; $procmux$349_Y
+(define-fun |invaders#119| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#118| state))) ; $0\o_invaders_array[19:0] [9]
+(define-fun |invaders#120| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 10 10) (|invaders#2| state)) ((_ extract 11 11) (|invaders#2| state)))) ; $procmux$293_Y
+(define-fun |invaders#121| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#120| state) ((_ extract 10 10) (|invaders#2| state)))) ; $procmux$295_Y
+(define-fun |invaders#122| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#121| state) ((_ extract 10 10) (|invaders#2| state)))) ; $procmux$297_Y
+(define-fun |invaders#123| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) ((_ extract 10 10) (|invaders#2| state)) (|invaders#122| state))) ; $procmux$300_Y
+(define-fun |invaders#124| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b01010)) ; $procmux$313_CMP
+(define-fun |invaders#125| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#124| state) #b0 ((_ extract 10 10) (|invaders#2| state)))) ; $procmux$312_Y
+(define-fun |invaders#126| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) (|invaders#125| state) (|invaders#123| state))) ; $procmux$314_Y
+(define-fun |invaders#127| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#126| state))) ; $0\o_invaders_array[19:0] [10]
+(define-fun |invaders#128| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 11 11) (|invaders#2| state)) ((_ extract 12 12) (|invaders#2| state)))) ; $procmux$260_Y
+(define-fun |invaders#129| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#128| state) ((_ extract 11 11) (|invaders#2| state)))) ; $procmux$262_Y
+(define-fun |invaders#130| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#129| state) ((_ extract 11 11) (|invaders#2| state)))) ; $procmux$264_Y
+(define-fun |invaders#131| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) ((_ extract 11 11) (|invaders#2| state)) (|invaders#130| state))) ; $procmux$267_Y
+(define-fun |invaders#132| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b01011)) ; $procmux$279_CMP
+(define-fun |invaders#133| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#132| state) #b0 ((_ extract 11 11) (|invaders#2| state)))) ; $procmux$278_Y
+(define-fun |invaders#134| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) (|invaders#133| state) (|invaders#131| state))) ; $procmux$280_Y
+(define-fun |invaders#135| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#134| state))) ; $0\o_invaders_array[19:0] [11]
+(define-fun |invaders#136| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 12 12) (|invaders#2| state)) ((_ extract 13 13) (|invaders#2| state)))) ; $procmux$228_Y
+(define-fun |invaders#137| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#136| state) ((_ extract 12 12) (|invaders#2| state)))) ; $procmux$230_Y
+(define-fun |invaders#138| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#137| state) ((_ extract 12 12) (|invaders#2| state)))) ; $procmux$232_Y
+(define-fun |invaders#139| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) ((_ extract 12 12) (|invaders#2| state)) (|invaders#138| state))) ; $procmux$235_Y
+(define-fun |invaders#140| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b01100)) ; $procmux$246_CMP
+(define-fun |invaders#141| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#140| state) #b0 ((_ extract 12 12) (|invaders#2| state)))) ; $procmux$245_Y
+(define-fun |invaders#142| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) (|invaders#141| state) (|invaders#139| state))) ; $procmux$247_Y
+(define-fun |invaders#143| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#142| state))) ; $0\o_invaders_array[19:0] [12]
+(define-fun |invaders#144| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 13 13) (|invaders#2| state)) ((_ extract 14 14) (|invaders#2| state)))) ; $procmux$197_Y
+(define-fun |invaders#145| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#144| state) ((_ extract 13 13) (|invaders#2| state)))) ; $procmux$199_Y
+(define-fun |invaders#146| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#145| state) ((_ extract 13 13) (|invaders#2| state)))) ; $procmux$201_Y
+(define-fun |invaders#147| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) ((_ extract 13 13) (|invaders#2| state)) (|invaders#146| state))) ; $procmux$204_Y
+(define-fun |invaders#148| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b01101)) ; $procmux$214_CMP
+(define-fun |invaders#149| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#148| state) #b0 ((_ extract 13 13) (|invaders#2| state)))) ; $procmux$213_Y
+(define-fun |invaders#150| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) (|invaders#149| state) (|invaders#147| state))) ; $procmux$215_Y
+(define-fun |invaders#151| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#150| state))) ; $0\o_invaders_array[19:0] [13]
+(define-fun |invaders#152| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 14 14) (|invaders#2| state)) ((_ extract 15 15) (|invaders#2| state)))) ; $procmux$832_Y
+(define-fun |invaders#153| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#152| state) ((_ extract 14 14) (|invaders#2| state)))) ; $procmux$834_Y
+(define-fun |invaders#154| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#153| state) ((_ extract 14 14) (|invaders#2| state)))) ; $procmux$836_Y
+(define-fun |invaders#155| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) ((_ extract 14 14) (|invaders#2| state)) (|invaders#154| state))) ; $procmux$839_Y
+(define-fun |invaders#156| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b01110)) ; $procmux$848_CMP
+(define-fun |invaders#157| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#156| state) #b0 ((_ extract 14 14) (|invaders#2| state)))) ; $procmux$847_Y
+(define-fun |invaders#158| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) (|invaders#157| state) (|invaders#155| state))) ; $procmux$849_Y
+(define-fun |invaders#159| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#158| state))) ; $0\o_invaders_array[19:0] [14]
+(define-fun |invaders#160| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 15 15) (|invaders#2| state)) ((_ extract 16 16) (|invaders#2| state)))) ; $procmux$803_Y
+(define-fun |invaders#161| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#160| state) ((_ extract 15 15) (|invaders#2| state)))) ; $procmux$805_Y
+(define-fun |invaders#162| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#161| state) ((_ extract 15 15) (|invaders#2| state)))) ; $procmux$807_Y
+(define-fun |invaders#163| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) ((_ extract 15 15) (|invaders#2| state)) (|invaders#162| state))) ; $procmux$810_Y
+(define-fun |invaders#164| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b01111)) ; $procmux$818_CMP
+(define-fun |invaders#165| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#164| state) #b0 ((_ extract 15 15) (|invaders#2| state)))) ; $procmux$817_Y
+(define-fun |invaders#166| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) (|invaders#165| state) (|invaders#163| state))) ; $procmux$819_Y
+(define-fun |invaders#167| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#166| state))) ; $0\o_invaders_array[19:0] [15]
+(define-fun |invaders#168| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 16 16) (|invaders#2| state)) ((_ extract 17 17) (|invaders#2| state)))) ; $procmux$775_Y
+(define-fun |invaders#169| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#168| state) ((_ extract 16 16) (|invaders#2| state)))) ; $procmux$777_Y
+(define-fun |invaders#170| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#169| state) ((_ extract 16 16) (|invaders#2| state)))) ; $procmux$779_Y
+(define-fun |invaders#171| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) ((_ extract 16 16) (|invaders#2| state)) (|invaders#170| state))) ; $procmux$782_Y
+(define-fun |invaders#172| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b10000)) ; $procmux$789_CMP
+(define-fun |invaders#173| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#172| state) #b0 ((_ extract 16 16) (|invaders#2| state)))) ; $procmux$788_Y
+(define-fun |invaders#174| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) (|invaders#173| state) (|invaders#171| state))) ; $procmux$790_Y
+(define-fun |invaders#175| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#174| state))) ; $0\o_invaders_array[19:0] [16]
+(define-fun |invaders#176| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 17 17) (|invaders#2| state)) ((_ extract 18 18) (|invaders#2| state)))) ; $procmux$748_Y
+(define-fun |invaders#177| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#176| state) ((_ extract 17 17) (|invaders#2| state)))) ; $procmux$750_Y
+(define-fun |invaders#178| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#177| state) ((_ extract 17 17) (|invaders#2| state)))) ; $procmux$752_Y
+(define-fun |invaders#179| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) ((_ extract 17 17) (|invaders#2| state)) (|invaders#178| state))) ; $procmux$755_Y
+(define-fun |invaders#180| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b10001)) ; $procmux$761_CMP
+(define-fun |invaders#181| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#180| state) #b0 ((_ extract 17 17) (|invaders#2| state)))) ; $procmux$760_Y
+(define-fun |invaders#182| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) (|invaders#181| state) (|invaders#179| state))) ; $procmux$762_Y
+(define-fun |invaders#183| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#182| state))) ; $0\o_invaders_array[19:0] [17]
+(define-fun |invaders#184| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 18 18) (|invaders#2| state)) ((_ extract 19 19) (|invaders#2| state)))) ; $procmux$722_Y
+(define-fun |invaders#185| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#184| state) ((_ extract 18 18) (|invaders#2| state)))) ; $procmux$724_Y
+(define-fun |invaders#186| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#185| state) ((_ extract 18 18) (|invaders#2| state)))) ; $procmux$726_Y
+(define-fun |invaders#187| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) ((_ extract 18 18) (|invaders#2| state)) (|invaders#186| state))) ; $procmux$729_Y
+(define-fun |invaders#188| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b10010)) ; $procmux$734_CMP
+(define-fun |invaders#189| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#188| state) #b0 ((_ extract 18 18) (|invaders#2| state)))) ; $procmux$733_Y
+(define-fun |invaders#190| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) (|invaders#189| state) (|invaders#187| state))) ; $procmux$735_Y
+(define-fun |invaders#191| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#190| state))) ; $0\o_invaders_array[19:0] [18]
+(define-fun |invaders#192| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 19 19) (|invaders#2| state)) #b0)) ; $procmux$172_Y
+(define-fun |invaders#193| ((state |invaders_s|)) (_ BitVec 1) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#192| state) ((_ extract 19 19) (|invaders#2| state)))) ; $procmux$174_Y
+(define-fun |invaders#194| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#0| state) (|invaders#193| state) ((_ extract 19 19) (|invaders#2| state)))) ; $procmux$176_Y
+(define-fun |invaders#195| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#10| state) ((_ extract 19 19) (|invaders#2| state)) (|invaders#194| state))) ; $procmux$179_Y
+(define-fun |invaders#196| ((state |invaders_s|)) Bool (= (|invaders#7| state) #b10011)) ; $procmux$183_CMP
+(define-fun |invaders#197| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#196| state) #b0 ((_ extract 19 19) (|invaders#2| state)))) ; $procmux$182_Y
+(define-fun |invaders#198| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#32| state) (|invaders#197| state) (|invaders#195| state))) ; $procmux$184_Y
+(define-fun |invaders#199| ((state |invaders_s|)) (_ BitVec 1) (ite (|invaders#4| state) #b0 (|invaders#198| state))) ; $0\o_invaders_array[19:0] [19]
+(define-fun |invaders#200| ((state |invaders_s|)) (_ BitVec 4) (ite (= ((_ extract 0 0) (|invaders#2| state)) #b1) ((_ extract 3 0) (|invaders#29| state)) (|invaders#1| state))) ; $procmux$885_Y
+(define-fun |invaders#201| ((state |invaders_s|)) (_ BitVec 4) (ite (= ((_ extract 0 0) (|invaders#8| state)) #b1) (|invaders#200| state) (|invaders#1| state))) ; $procmux$887_Y
+(define-fun |invaders#202| ((state |invaders_s|)) (_ BitVec 4) (ite (|invaders#0| state) (|invaders#201| state) (|invaders#1| state))) ; $procmux$889_Y
+(define-fun |invaders#203| ((state |invaders_s|)) (_ BitVec 4) (ite (|invaders#10| state) (|invaders#1| state) (|invaders#202| state))) ; $procmux$892_Y
+(define-fun |invaders#204| ((state |invaders_s|)) (_ BitVec 4) (ite (|invaders#32| state) (|invaders#1| state) (|invaders#203| state))) ; $procmux$895_Y
+(define-fun |invaders#205| ((state |invaders_s|)) (_ BitVec 4) (ite (|invaders#4| state) #b0001 (|invaders#204| state))) ; $0\o_invaders_row[3:0]
 (define-fun |invaders_a| ((state |invaders_s|)) Bool 
   (|$paramod/timer_1us/PERIOD=100000_a| (|invaders_h speed_timer1| state))
 )
@@ -311,14 +334,14 @@
   (= (|invaders_is| state) (|$paramod/timer_1us/PERIOD=100000_is| (|invaders_h speed_timer1| state)))
   (= (|invaders#0| state) (|$paramod/timer_1us/PERIOD=100000_n o_q| (|invaders_h speed_timer1| state))) ; $paramod/timer_1us/PERIOD=100000.o_q
   (= (|invaders#4| state) (|$paramod/timer_1us/PERIOD=100000_n i_reset| (|invaders_h speed_timer1| state))) ; $paramod/timer_1us/PERIOD=100000.i_reset
-  (= (|invaders#5| state) (|$paramod/timer_1us/PERIOD=100000_n i_clk_36MHz| (|invaders_h speed_timer1| state))) ; $paramod/timer_1us/PERIOD=100000.i_clk_36MHz
+  (= (|invaders#5| state) (|$paramod/timer_1us/PERIOD=100000_n i_clk_25MHz| (|invaders_h speed_timer1| state))) ; $paramod/timer_1us/PERIOD=100000.i_clk_25MHz
   (|$paramod/timer_1us/PERIOD=100000_h| (|invaders_h speed_timer1| state))
 ))
 (define-fun |invaders_t| ((state |invaders_s|) (next_state |invaders_s|)) Bool (and
-  (= (|invaders#33| state) (|invaders#8| next_state)) ; $procdff$917 \direction
-  (= (|invaders#37| state) (|invaders#3| next_state)) ; $procdff$914 \o_hit
-  (= (concat (|invaders#177| state) (concat (|invaders#170| state) (concat (|invaders#163| state) (concat (|invaders#156| state) (concat (|invaders#149| state) (concat (|invaders#142| state) (concat (|invaders#135| state) (concat (|invaders#128| state) (concat (|invaders#121| state) (concat (|invaders#114| state) (concat (|invaders#107| state) (concat (|invaders#100| state) (concat (|invaders#93| state) (concat (|invaders#86| state) (concat (|invaders#79| state) (concat (|invaders#72| state) (concat (|invaders#65| state) (concat (|invaders#58| state) (concat (|invaders#51| state) (|invaders#44| state)))))))))))))))))))) (|invaders#2| next_state)) ; $procdff$915 \o_invaders_array
-  (= (|invaders#182| state) (|invaders#1| next_state)) ; $procdff$916 \o_invaders_row
+  (= (|invaders#34| state) (|invaders#8| next_state)) ; $procdff$941 \direction
+  (= (|invaders#39| state) (|invaders#3| next_state)) ; $procdff$938 \o_hit
+  (= (concat (|invaders#199| state) (concat (|invaders#191| state) (concat (|invaders#183| state) (concat (|invaders#175| state) (concat (|invaders#167| state) (concat (|invaders#159| state) (concat (|invaders#151| state) (concat (|invaders#143| state) (concat (|invaders#135| state) (concat (|invaders#127| state) (concat (|invaders#119| state) (concat (|invaders#111| state) (concat (|invaders#103| state) (concat (|invaders#95| state) (concat (|invaders#87| state) (concat (|invaders#79| state) (concat (|invaders#71| state) (concat (|invaders#63| state) (concat (|invaders#55| state) (|invaders#47| state)))))))))))))))))))) (|invaders#2| next_state)) ; $procdff$939 \o_invaders_array
+  (= (|invaders#205| state) (|invaders#1| next_state)) ; $procdff$940 \o_invaders_row
   (|$paramod/timer_1us/PERIOD=100000_t| (|invaders_h speed_timer1| state) (|invaders_h speed_timer1| next_state))
 )) ; end of module invaders
 ; yosys-smt2-topmod invaders

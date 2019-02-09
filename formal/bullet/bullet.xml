@@ -3,7 +3,7 @@
 <testsuite disabled="0" errors="0" failures="0" name="bullet" skipped="0" tests="1" time="0">
 <testcase classname="bullet" name="default" status="PASS" time="0">
 <system-out>SBY 23:37:11 [/home/rcl/Space-Invaders/formal/bullet] Removing direcory '/home/rcl/Space-Invaders/formal/bullet'.
-SBY 23:37:11 [/home/rcl/Space-Invaders/formal/bullet] Copy 'clk_36MHz_generator.v' to '/home/rcl/Space-Invaders/formal/bullet/src/clk_36MHz_generator.v'.
+SBY 23:37:11 [/home/rcl/Space-Invaders/formal/bullet] Copy 'clk_25MHz_generator.v' to '/home/rcl/Space-Invaders/formal/bullet/src/clk_25MHz_generator.v'.
 SBY 23:37:11 [/home/rcl/Space-Invaders/formal/bullet] Copy 'timer_1us.v' to '/home/rcl/Space-Invaders/formal/bullet/src/timer_1us.v'.
 SBY 23:37:11 [/home/rcl/Space-Invaders/formal/bullet] Copy 'bullet.v' to '/home/rcl/Space-Invaders/formal/bullet/src/bullet.v'.
 SBY 23:37:11 [/home/rcl/Space-Invaders/formal/bullet] engine_0: smtbmc

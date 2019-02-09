@@ -1,8 +1,8 @@
-// Copo_yright (c) 2017-2018 Roland Coeurjolo_y
+// Copyright (c) 2017-2018 Roland Coeurjoly
 // This program is GPL Licensed. See LICENSE for the full license.
 
 module vga_controller(
-		                  input wire       i_clk_36MHz,
+		                  input wire       i_clk_25MHz,
 		                  input wire [2:0] i_rgb,
 		                  output wire      o_hsync, //horizontal sync out
 		                  output wire      o_vsync, //vertical sync out
@@ -17,12 +17,12 @@ module vga_controller(
    // video structure constants
    parameter ACTIVE_H_VIDEO = 640;
    parameter ACTIVE_V_VIDEO = 480;
-   parameter HFP = 32; 	// horizontal front porch length
-   parameter H_PULSE = 48; 	// hsync pulse length
-   parameter HBP = 112; 	// horizontal back porch length
-   parameter VFP = 1; 		// vertical front porch length
-   parameter V_PULSE = 3; 	// vsync pulse length
-   parameter VBP = 25; 	// vertical back porch length
+   parameter HFP = 16; 	// horizontal front porch length
+   parameter H_PULSE = 96; 	// hsync pulse length
+   parameter HBP = 48; 	// horizontal back porch length
+   parameter VFP = 10; 		// vertical front porch length
+   parameter V_PULSE = 2; 	// vsync pulse length
+   parameter VBP = 33; 	// vertical back porch length
    parameter BLACK_H = HFP + H_PULSE + HBP;
    parameter BLACK_V = VFP + V_PULSE + VBP;
    parameter H_PIXELS = BLACK_H + ACTIVE_H_VIDEO;
@@ -45,7 +45,7 @@ module vga_controller(
       h_counter = 0;
       v_counter = 0;
    end
-   always @(posedge i_clk_36MHz)
+   always @(posedge i_clk_25MHz)
      begin
 	      // keep counting until the end of the line
 	      if (h_counter < H_PIXELS - 1)
@@ -62,7 +62,7 @@ module vga_controller(
 	           else
 	             v_counter <= 0;
 	        end // else: !if(h_counters < H_PIXELS - 1)
-     end // always @ (posedge i_clk_36MHz)
+     end // always @ (posedge i_clk_25MHz)
 
    // generate sync pulses (active low)
    // ----------------
@@ -85,25 +85,20 @@ module vga_controller(
    // equivalent to the following: always @(hc, vc)
    // Assignment statements can only be used on type "reg" and should be of the "blocking" type: =
 
-   always @(posedge i_clk_36MHz)
-     begin
-	      // first check if we're within vertical active video range
-	      if (active_video == 1)
-	        // we're outside active video range so display black
-	        begin
-	           o_red <= i_rgb[2];
-	           o_green <= i_rgb[1];
-	           o_blue <= i_rgb[0];
-	           o_x <= h_counter - HFP - H_PULSE - HBP;
-	           o_y <= v_counter - VFP - V_PULSE - VBP;
-	        end // if (active_video == 1)
-	      else
-	        begin
-	           o_red <= 0;
-	           o_green <= 0;
-	           o_blue <= 0;
-	           o_x <= 0;
-	           o_y <= 0;
-	        end // else: !if(active_video == 1)
-     end // always @ (posedge i_clk_36MHz)
+   always @(posedge i_clk_25MHz) begin
+	    if (active_video == 1) begin
+	       o_red <= i_rgb[2];
+	       o_green <= i_rgb[1];
+	       o_blue <= i_rgb[0];
+	       o_x <= h_counter - HFP - H_PULSE - HBP;
+	       o_y <= v_counter - VFP - V_PULSE - VBP;
+	    end // if (active_video == 1)
+	    else begin
+	       o_red <= 0;
+	       o_green <= 0;
+	       o_blue <= 0;
+	       o_x <= 0;
+	       o_y <= 0;
+	    end // else: !if(active_video == 1)
+   end // always @ (posedge i_clk_25MHz)
 endmodule
