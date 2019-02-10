@@ -7,8 +7,10 @@ smtbmc z3
 [script]
 read -formal invaders.v
 read -formal timer_1us.v
+read -formal clk_25MHz_generator.v
 prep -top invaders
 
 [files]
 invaders.v
 timer_1us.v
+clk_25MHz_generator.v

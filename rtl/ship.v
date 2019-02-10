@@ -25,7 +25,7 @@ module ship(
    end
 
    always @(*) begin
-      if (i_reset == 0) begin
+      if (i_reset == 1) begin
 	       next_x = reset_position;
 	    end
       else begin

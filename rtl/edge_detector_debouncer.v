@@ -29,58 +29,51 @@ module edge_detector_debouncer(
       o_debounced = 1'b0;
    end
 
-   always @(posedge i_clk_25MHz)
-     begin
-	      // i_reset condition
-	      if (i_reset == 0)
-	        begin
-	           current_state <= not_detected;
-	        end
-	      else current_state <= next_state;
-     end // always @ (posedge i_clk_25MHz)
+   always @(posedge i_clk_25MHz) begin
+	    // i_reset condition
+	    if (i_reset == 1)
+	      begin
+	         current_state <= not_detected;
+	      end
+	    else current_state <= next_state;
+   end // always @ (posedge i_clk_25MHz)
 
    always @(*) begin
 	    case (current_state)
-	      not_detected:
-	        begin
-	           o_debounced = 0;
-	           if (i_in == 0)
-		           next_state = not_detected;
-	           else
-		           next_state = edge_detected;
-	        end
-	      edge_detected:
-	        begin
-	           o_debounced = 1;
-	           next_state = disabled;
-	        end
-	      disabled:
-	        begin
-	           o_debounced = 0;
-	           if (timeout == 1)
-		           begin
-		              if (i_in == 0)
-		                next_state = not_detected;
-		              else
-		                next_state = waiting;
-		           end
-	        end // case: disabled
-	      waiting:
-	        begin
-	           o_debounced = 0;
-	           if (i_in == 0)
-		           next_state = not_detected;
-	           else
-		           next_state = waiting;
-	        end
-	      default:
-	        begin
-	           o_debounced = 0;
-	           if (i_in == 0)
-		           next_state = not_detected;
-	           else
-		           next_state = waiting;
-	          end
+	      not_detected: begin
+	         o_debounced = 0;
+	         if (i_in == 0)
+		         next_state = not_detected;
+	         else
+		         next_state = edge_detected;
+	      end
+	      edge_detected: begin
+	         o_debounced = 1;
+	         next_state = disabled;
+	      end
+	      disabled: begin
+	         o_debounced = 0;
+	         if (timeout == 1) begin
+		          if (i_in == 0)
+		            next_state = not_detected;
+		          else
+		            next_state = waiting;
+		       end
+	      end // case: disabled
+	      waiting: begin
+	         o_debounced = 0;
+	         if (i_in == 0)
+		         next_state = not_detected;
+	         else
+		         next_state = waiting;
+	      end
+	      default: begin
+	         o_debounced = 0;
+	         if (i_in == 0)
+		         next_state = not_detected;
+	         else
+		         next_state = waiting;
+	      end
 	    endcase
    end // always @ (*)
 endmodule

@@ -28,7 +28,7 @@ module invaders(
 
    initial begin
       o_invaders_array = 20'b00000000000111111111;
-      o_invaders_row = 4'b0001;
+      o_invaders_row = 4'b0000;
       moving = 0;
       direction = LEFT;
       o_hit = 0;
@@ -37,7 +37,7 @@ module invaders(
    always @(posedge i_clk_25MHz) begin
       if (i_reset == 1) begin
 	       o_invaders_array <= 20'b00000000000111111111;
-	       o_invaders_row <= 4'b0001;
+	       o_invaders_row <= 4'b0000;
 	       moving <= 0;
 	       direction <= LEFT;
 	       o_hit <= 0;
@@ -65,7 +65,7 @@ module invaders(
 	             moving <= 1;
             end
          end // if (direction == LEFT)
-         if (direction == RIGHT) begin
+         else if (direction == RIGHT) begin
             if (o_invaders_array[0] == 1) begin
 	             o_invaders_row <= o_invaders_row + 1;
 	             moving <= 1;
@@ -93,11 +93,25 @@ module invaders(
       end // else: !if(tick1)
    end
 `ifdef FORMAL
-   reg [4:0]           i;
    always @(*) begin
-      for (i = 0; i < 17; i++) begin
-         cover (o_invaders_row == i);
-      end
+      cover (o_invaders_row == 0);
+      cover (o_invaders_row == 1);
+      cover (o_invaders_row == 2);
+      cover (o_invaders_row == 3);
+      cover (o_invaders_row == 4);
+      cover (o_invaders_row == 5);
+      cover (o_invaders_row == 6);
+      cover (o_invaders_row == 7);
+      cover (o_invaders_row == 8);
+      cover (o_invaders_row == 9);
+      cover (o_invaders_row == 10);
+      cover (o_invaders_row == 11);
+      cover (o_invaders_row == 12);
+      cover (o_invaders_row == 13);
+      cover (o_invaders_row == 14);
+      cover (o_invaders_row == 15);
+      cover (o_invaders_row == 16);
+      cover (o_invaders_row == 17);
    end
 `endif
 endmodule

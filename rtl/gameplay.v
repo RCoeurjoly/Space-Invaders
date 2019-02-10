@@ -20,13 +20,13 @@ module gameplay(
 
    always @(posedge i_clk_25MHz)
      begin
-        if (i_reset == 0)
+        if (i_reset == 1)
 	        begin
 	           o_gameplay <= PLAYING;
 	        end
 	      else
 	        begin
-	           if (i_invaders_line == 13)
+	           if (i_invaders_line == 14)
 	             o_gameplay <= GAME_OVER;
 	           else if (i_invaders_array == 0)
 	             o_gameplay <= YOU_WIN;

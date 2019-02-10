@@ -1,6 +1,7 @@
 # running in /home/rcl/Space-Invaders/formal/invaders_proof/src/
 read -formal invaders.v
 read -formal timer_1us.v
+read -formal clk_25MHz_generator.v
 prep -top invaders
 
 memory_nordff

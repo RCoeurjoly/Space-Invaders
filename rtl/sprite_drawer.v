@@ -233,7 +233,7 @@ module sprite_drawer(
 		             o_rgb = BLACK;
 	          end
 	          // drawing ship (it is always in row 13)
-	          else if (sprite_x == i_ship_x && sprite_y == 13) begin
+	          else if (sprite_x == i_ship_x && sprite_y == 14) begin
 	             if (ship[index_y][index_x] == 1)
 		             o_rgb = RED;
 	             else

@@ -24,7 +24,7 @@ module bullet(
 				                          );
    initial begin
       o_bullet_x = 0;
-      o_bullet_y = 14;
+      o_bullet_y = 15;
       current_state = reset_state;
       next_state = reset_state;
    end
@@ -41,7 +41,10 @@ module bullet(
               o_bullet_y <= 12;
               next_state <= initial_state;
            end
-           else next_state <= reset_state;
+           else begin
+              o_bullet_x <= 0;
+              o_bullet_y <= 15;
+           end
         end
         initial_state: begin
            if (i_hit) begin
