@@ -48,9 +48,9 @@ $(MODULE)_tb.vcd: $(RTL_PATH)$(MODULE).v $(DEPS) $(SIM_PATH)$(MODULE)_tb.v  $(AU
 	./$(MODULE)_tb.out
 	gtkwave $@ $(MODULE)_tb.gtkw &
 
-$(MODULE).bin: $(SYNTH_PATH)$(MODULE).pcf $(RTL_PATH)$(MODULE).v $(DEPS) $(AUXFILES)
+$(MODULE).bin: $(SYNTH_PATH)$(MODULE)_iCE40-HX8K.pcf $(RTL_PATH)$(MODULE).v $(DEPS) $(AUXFILES)
 	yosys -p "synth_ice40 -blif $(MODULE).blif $(YOSYSOPT) -json $(MODULE).json" -l $(MODULE).log -q $(RTL_PATH)$(MODULE).v $(DEPS)
-	nextpnr-ice40 --hx8k --package ct256 --pcf-allow-unconstrained --pcf $(SYNTH_PATH)$(MODULE).pcf --json $(MODULE).json --asc $(MODULE).asc
+	nextpnr-ice40 --hx8k --package ct256 --pcf-allow-unconstrained --pcf $(SYNTH_PATH)$(MODULE)_iCE40-HX8K.pcf --json $(MODULE).json --asc $(MODULE).asc
 	icepack $(MODULE).asc $(MODULE).bin
 
 $(MODULE).json: $(MODULE).v $(DEPS)
