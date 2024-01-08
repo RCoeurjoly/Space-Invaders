@@ -1,7 +1,7 @@
 # call with make MODULE=moduleName sim|svg|upload
 
 TOP:=space_invaders_top
-PROJECT_PATH:=~/Space-Invaders/
+PROJECT_PATH:=$(shell pwd)/
 FORMAL_PATH:=$(PROJECT_PATH)formal/
 RTL_PATH:=$(PROJECT_PATH)rtl/
 SIM_PATH:=$(PROJECT_PATH)sim/
@@ -42,7 +42,6 @@ sim: $(MODULE)_tb.vcd
 json: $(MODULE).json
 svg: assets/$(MODULE).svg
 
-
 $(MODULE)_tb.vcd: $(RTL_PATH)$(MODULE).v $(DEPS) $(SIM_PATH)$(MODULE)_tb.v  $(AUXFILES)
 
 	iverilog $^ -o $(MODULE)_tb.out
@@ -50,9 +49,9 @@ $(MODULE)_tb.vcd: $(RTL_PATH)$(MODULE).v $(DEPS) $(SIM_PATH)$(MODULE)_tb.v  $(AU
 	gtkwave $@ $(MODULE)_tb.gtkw &
 
 $(MODULE).bin: $(SYNTH_PATH)$(MODULE).pcf $(RTL_PATH)$(MODULE).v $(DEPS) $(AUXFILES)
-	yosys -p "synth_ice40 -blif $(MODULE).blif $(YOSYSOPT)" -l $(MODULE).log -q $(RTL_PATH)$(MODULE).v $(DEPS)
-	arachne-pnr -d $(MEMORY) -p $(SYNTH_PATH)$(MODULE).pcf $(MODULE).blif -o $(MODULE).pnr
-	icepack $(MODULE).pnr $(MODULE).bin
+	yosys -p "synth_ice40 -blif $(MODULE).blif $(YOSYSOPT) -json $(MODULE).json" -l $(MODULE).log -q $(RTL_PATH)$(MODULE).v $(DEPS)
+	nextpnr-ice40 --hx8k --package ct256 --pcf-allow-unconstrained --pcf $(SYNTH_PATH)$(MODULE).pcf --json $(MODULE).json --asc $(MODULE).asc
+	icepack $(MODULE).asc $(MODULE).bin
 
 $(MODULE).json: $(MODULE).v $(DEPS)
 	yosys -p "prep -top $(MODULE); write_json $(MODULE).json" (MODULE).v $(DEPS)

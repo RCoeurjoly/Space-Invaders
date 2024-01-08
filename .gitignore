@@ -7,3 +7,4 @@
 *.vcd
 *.pnr
 #*.*# //temporal emacs files
+result
