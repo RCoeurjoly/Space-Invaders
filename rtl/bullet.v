@@ -84,9 +84,11 @@ module bullet(
 `ifdef FORMAL
    reg [4:0] i;
    always @(posedge i_clk_25MHz) begin
-      assert (o_bullet_y < 16);
+      // Bullet position always between 0 and 15
+      assert (o_bullet_y <= 15);
       assert (o_bullet_y >= 0);
-      for (i = 0; i < 17; i++) begin
+      // Bullet position goes through all y positions
+      for (i = 0; i < 16; i++) begin
          cover (o_bullet_y == i);
       end
    end
