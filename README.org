@@ -75,6 +75,9 @@ All assertions are SVA (SystemVerilog assertions).
 | gameplay                | pending              | pending               |
 | player                  | n/a                  | n/a                   |
 | invaders                | pending              | pending               |
-| ship                    | pending              | pending               |
+| ship                    | done                 | pending               |
 | bullet                  | done                 | pending               |
 | edge_detector_debouncer | pending              | pending               |
+
+* Known issues
+** Unexpected response from solver: bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)

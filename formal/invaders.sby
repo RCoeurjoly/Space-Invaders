@@ -13,10 +13,10 @@ smtbmc z3
 [script]
 read -formal invaders.v
 read -formal timer_1us.v
-read -formal clk_25MHz_generator.v
+read -formal pll.v
 prep -top invaders
 
 [files]
-invaders.v
-timer_1us.v
-clk_25MHz_generator.v
+rtl/invaders.v
+rtl/timer_1us.v
+rtl/pll.v

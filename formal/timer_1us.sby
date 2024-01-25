@@ -4,16 +4,16 @@ cover
 
 [options]
 proof: mode prove
-
 cover: mode cover
 
 [engines]
-smtbmc
+smtbmc z3
 
 [script]
 read -formal timer_1us.v
-read -formal clk_25MHz_generator.v
-prep -top timer_1u
+read -formal pll.v
+prep -top timer_1us
 
 [files]
-timer_1us.v
+rtl/timer_1us.v
+rtl/pll.v

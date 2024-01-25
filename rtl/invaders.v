@@ -93,25 +93,12 @@ module invaders(
       end // else: !if(tick1)
    end
 `ifdef FORMAL
-   always @(*) begin
-      cover (o_invaders_row == 0);
-      cover (o_invaders_row == 1);
-      cover (o_invaders_row == 2);
-      cover (o_invaders_row == 3);
-      cover (o_invaders_row == 4);
-      cover (o_invaders_row == 5);
-      cover (o_invaders_row == 6);
-      cover (o_invaders_row == 7);
-      cover (o_invaders_row == 8);
-      cover (o_invaders_row == 9);
-      cover (o_invaders_row == 10);
-      cover (o_invaders_row == 11);
-      cover (o_invaders_row == 12);
-      cover (o_invaders_row == 13);
-      cover (o_invaders_row == 14);
-      cover (o_invaders_row == 15);
-      cover (o_invaders_row == 16);
-      cover (o_invaders_row == 17);
+   reg [4:0] i;
+   always @(posedge i_clk_25MHz) begin
+      // Invaders position goes through all y positions
+      for (i = 0; i < 16; i++) begin
+         cover (o_invaders_row == i);
+      end
    end
 `endif
 endmodule

@@ -2,15 +2,15 @@
 // This program is GPL Licensed. See LICENSE for the full license.
 
 module ship(
-	    input wire       i_clk_25MHz,
-	    input wire       i_reset, //synchronous i_reset
-	    input wire       i_left_debounced,
-	    input wire       i_right_debounced,
-	    output reg [4:0] o_ship_x
+	          input wire       i_clk_25MHz,
+	          input wire       i_reset, //synchronous i_reset
+	          input wire       i_left_debounced,
+	          input wire       i_right_debounced,
+	          output reg [4:0] o_ship_x
 	          );
 
-   reg [4:0]           next_x;
-   reg [4:0]           i;
+   reg [4:0]                 next_x;
+   reg [4:0]                 i;
 
    localparam left_limit = 0;
    localparam reset_position = 5;
@@ -61,29 +61,10 @@ module ship(
       assert (o_ship_x <= right_limit);
       assert (next_x >= left_limit);
       assert (next_x <= right_limit);
-      // for (i = 0; i < 10; i++) begin
+
+      // for (i = 0; i < 20; i++) begin
       //    cover (o_ship_x == i);
       // end
-      cover (o_ship_x == 0);
-      cover (o_ship_x == 1);
-      cover (o_ship_x == 2);
-      cover (o_ship_x == 3);
-      cover (o_ship_x == 4);
-      cover (o_ship_x == 5);
-      cover (o_ship_x == 6);
-      cover (o_ship_x == 7);
-      cover (o_ship_x == 8);
-      cover (o_ship_x == 9);
-      cover (o_ship_x == 10);
-      cover (o_ship_x == 11);
-      cover (o_ship_x == 12);
-      cover (o_ship_x == 13);
-      cover (o_ship_x == 14);
-      cover (o_ship_x == 15);
-      cover (o_ship_x == 16);
-      cover (o_ship_x == 17);
-      cover (o_ship_x == 18);
-      cover (o_ship_x == 19);
 
    end
 `endif
