@@ -20,7 +20,7 @@ ifeq ($(MODULE), $(TOP))
 	$(RTL_PATH)timer_1us.v \
 	$(RTL_PATH)player.v \
 	$(RTL_PATH)invaders.v \
-	$(RTL_PATH)clk_25MHz_generator.v \
+	$(RTL_PATH)pll.v \
 	$(RTL_PATH)bullet.v
 
 FORMAL:=\

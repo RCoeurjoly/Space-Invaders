@@ -15,18 +15,50 @@ module vga_controller(
 
    /**/
    // video structure constants
-   parameter ACTIVE_H_VIDEO = 640;
-   parameter ACTIVE_V_VIDEO = 480;
-   parameter HFP = 16; 	// horizontal front porch length
-   parameter H_PULSE = 96; 	// hsync pulse length
-   parameter HBP = 48; 	// horizontal back porch length
-   parameter VFP = 10; 		// vertical front porch length
-   parameter V_PULSE = 2; 	// vsync pulse length
-   parameter VBP = 33; 	// vertical back porch length
+   // 640x480
+   // parameter ACTIVE_H_VIDEO = 640;
+   // parameter ACTIVE_V_VIDEO = 480;
+   // parameter HFP = 16; 	// horizontal front porch length
+   // parameter H_PULSE = 96; 	// hsync pulse length
+   // parameter HBP = 48; 	// horizontal back porch length
+   // parameter VFP = 10; 		// vertical front porch length
+   // parameter V_PULSE = 2; 	// vsync pulse length
+   // parameter VBP = 33; 	// vertical back porch length
+   // parameter BLACK_H = HFP + H_PULSE + HBP;
+   // parameter BLACK_V = VFP + V_PULSE + VBP;
+   // parameter H_PIXELS = BLACK_H + ACTIVE_H_VIDEO;
+   // parameter V_LINES = BLACK_V + ACTIVE_V_VIDEO;
+
+   // 1920x1080
+   //  Pixel Clock        148.5 MHz
+   // parameter ACTIVE_H_VIDEO = 1920;
+   // parameter ACTIVE_V_VIDEO = 1080;
+   // parameter HFP = 88; 	// horizontal front porch length
+   // parameter H_PULSE = 44; 	// hsync pulse length
+   // parameter HBP = 148; 	// horizontal back porch length
+   // parameter VFP = 4; 		// vertical front porch length
+   // parameter V_PULSE = 5; 	// vsync pulse length
+   // parameter VBP = 36; 	// vertical back porch length
+   // parameter BLACK_H = HFP + H_PULSE + HBP;
+   // parameter BLACK_V = VFP + V_PULSE + VBP;
+   // parameter H_PIXELS = BLACK_H + ACTIVE_H_VIDEO;
+   // parameter V_LINES = BLACK_V + ACTIVE_V_VIDEO;
+
+   // 1920x1080
+   //  Pixel Clock        74.250 MHz
+   parameter ACTIVE_H_VIDEO = 1920;
+   parameter ACTIVE_V_VIDEO = 1080;
+   parameter HFP = 88; 	// horizontal front porch length
+   parameter H_PULSE = 44; 	// hsync pulse length
+   parameter HBP = 148; 	// horizontal back porch length
+   parameter VFP = 4; 		// vertical front porch length
+   parameter V_PULSE = 5; 	// vsync pulse length
+   parameter VBP = 36; 	// vertical back porch length
    parameter BLACK_H = HFP + H_PULSE + HBP;
    parameter BLACK_V = VFP + V_PULSE + VBP;
    parameter H_PIXELS = BLACK_H + ACTIVE_H_VIDEO;
    parameter V_LINES = BLACK_V + ACTIVE_V_VIDEO;
+
 
    // active horizontal video is therefore: 784 - 144 = 640
    // active vertical video is therefore: 515 - 35 = 480
@@ -76,7 +108,7 @@ module vga_controller(
    assign active_video = (h_counter >= HFP + H_PULSE + HBP && v_counter >= VFP + V_PULSE + VBP) ? 1:0;
 
 
-   // displao_y 100% saturation colorbars
+   // display 100% saturation colorbars
    // ------------------------
    // Combinational "always block", which is a block that is
    // triggered when anything in the "sensitivity list" changes.
@@ -87,9 +119,12 @@ module vga_controller(
 
    always @(posedge i_clk_25MHz) begin
 	    if (active_video == 1) begin
-	       o_red <= i_rgb[2];
-	       o_green <= i_rgb[1];
-	       o_blue <= i_rgb[0];
+         o_red <= 1;
+	       o_green <= 1;
+	       o_blue <= 1;
+	       // o_red <= i_rgb[2];
+	       // o_green <= i_rgb[1];
+	       // o_blue <= i_rgb[0];
 	       o_x <= h_counter - HFP - H_PULSE - HBP;
 	       o_y <= v_counter - VFP - V_PULSE - VBP;
 	    end // if (active_video == 1)

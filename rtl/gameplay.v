@@ -34,6 +34,7 @@ module gameplay(
 	             o_gameplay <= PLAYING;
 	        end
      end // always @ (posedge i_clk_25MHz)
+
 `ifdef FORMAL
    reg GAME_OVER_reached;
    initial begin
@@ -45,4 +46,5 @@ module gameplay(
       assert (!(GAME_OVER_reached && (o_gameplay <= PLAYING || o_gameplay <= YOU_WIN)));
    end
 `endif
+
 endmodule

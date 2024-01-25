@@ -27,7 +27,7 @@ module space_invaders_top(
    wire                               bullet_flying;
    wire [1:0]                         gameplay;
 
-   clk_25MHz_generator clk_25MHz_generator1(
+   pll pll1(
 					                                  .i_clk_12MHz(i_clk_12MHz),
 					                                  .o_clk_25MHz(clk_25MHz)
 					                                  );
