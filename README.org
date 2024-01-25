@@ -70,11 +70,11 @@ Given a submodule called =file.v=, and a corresponding testbench called
 All assertions are SVA (SystemVerilog assertions).
 | Module                  | inmediate assertions | concurrent assertions |
 |-------------------------+----------------------+-----------------------|
-| vga_controller          |                      |                       |
-| sprite_drawer           |                      |                       |
-| ship                    |                      |                       |
-| bullet                  |                      |                       |
-| gameplay                |                      |                       |
-| player                  |                      |                       |
-| invaders                |                      |                       |
-| edge_detector_debouncer |                      |                       |
+| vga_controller          | pending              | pending               |
+| sprite_drawer           | pending              | pending               |
+| gameplay                | pending              | pending               |
+| player                  | pending              | pending               |
+| invaders                | pending              | pending               |
+| ship                    | pending              | pending               |
+| bullet                  | pending              | pending               |
+| edge_detector_debouncer | pending              | pending               |
