@@ -1,0 +1,80 @@
+- Space-Invaders
+
+Port of VHDL Space Invaders
+(https://github.com/David-Estevez/spaceinvaders) to Verilog for the
+iCE40 H1K
+
+* Video
+
+https://www.youtube.com/watch?v=zD_Xy7i3Ies
+
+TODO
+
+1.  Tone generator
+2.  Two players
+3.  Different Levels
+4.  Keeping score of how many invaders you have destroyed
+5.  Read the sprite info from a plain text file. Research how to make
+    32x32 pixel map from picture
+6.  Create extensive testbenches for all modules
+7.  Use SystemVerilog asserts to verify model
+8.  Trunk modules should only have instantiations of other modules. Leaf
+    modules should implement the logic
+9.  Use Mealy FSM for sequential logic (All modules but sprite_drawer).
+    More specifically, use two process design method (Gaisler)
+10. Use homogenous naming and coding convention
+
+* How to sinthesize & simulate
+  :PROPERTIES:
+  :CUSTOM_ID: how-to-sinthesize-simulate
+  :END:
+
+** Top Module
+   :PROPERTIES:
+   :CUSTOM_ID: top-module
+   :END:
+
+- Simulate top module
+
+#+BEGIN_EXAMPLE
+  $ make sim
+#+END_EXAMPLE
+
+- Sinthesize top module:
+
+#+BEGIN_EXAMPLE
+  $ make bin
+#+END_EXAMPLE
+
+- Upload to FPGA
+
+#+BEGIN_EXAMPLE
+  $ make upload
+#+END_EXAMPLE
+
+** Submodules
+   :PROPERTIES:
+   :CUSTOM_ID: submodules
+   :END:
+
+- Simulate sub-module
+
+Given a submodule called =file.v=, and a corresponding testbench called
+=file_tb.v=, you can simulate the sub-module using:
+
+#+BEGIN_EXAMPLE
+  $ make MODULE=module sim
+#+END_EXAMPLE
+
+* Formal verification status
+All assertions are SVA (SystemVerilog assertions).
+| Module                  | inmediate assertions | concurrent assertions |
+|-------------------------+----------------------+-----------------------|
+| vga_controller          |                      |                       |
+| sprite_drawer           |                      |                       |
+| ship                    |                      |                       |
+| bullet                  |                      |                       |
+| gameplay                |                      |                       |
+| player                  |                      |                       |
+| invaders                |                      |                       |
+| edge_detector_debouncer |                      |                       |
