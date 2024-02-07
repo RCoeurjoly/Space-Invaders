@@ -78,6 +78,7 @@ All assertions are SVA (SystemVerilog assertions).
 | ship                    | done                 | pending               |
 | bullet                  | done                 | pending               |
 | edge_detector_debouncer | pending              | pending               |
+| timer_1us               | done                 | done                  |
 
 * Known issues
 ** Unexpected response from solver: bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)

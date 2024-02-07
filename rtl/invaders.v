@@ -93,12 +93,28 @@ module invaders(
       end // else: !if(tick1)
    end
 `ifdef FORMAL
-   reg [4:0] i;
+   // Immediate assemrtion to ensure that when a reset is applied, the invaders array is correctly initialized
    always @(posedge i_clk_25MHz) begin
-      // Invaders position goes through all y positions
-      for (i = 0; i < 16; i++) begin
-         cover (o_invaders_row == i);
+      if (i_reset == 1) begin
+         assert (o_invaders_array == 20'b00000000000111111111) else $error("Reset state of invaders array is incorrect.");
+         assert (o_invaders_row == 4'b0000) else $error("Reset state of invaders row is incorrect.");
       end
    end
+
+   // Immediate assertion to check the bullet hit logic is correct
+   always @(posedge i_clk_25MHz) begin
+      if ((i_bullet_y == o_invaders_row + 1) && (o_invaders_array[i_bullet_x] == 1)) begin
+         assert (o_hit == 1) else $error("Bullet hit not detected correctly.");
+      end
+   end
+
+   // reg [4:0] i;
+   // // always @(*) begin
+   //    // Invaders position goes through all y positions
+   // for (i = 0; i < 16; i++) begin
+   //    cover (o_invaders_row == i);
+   // end
+   // // end
+
 `endif
 endmodule

@@ -5,7 +5,7 @@ cover
 [options]
 proof: mode prove
 cover: mode cover
-cover: append 1000
+cover: append 100
 
 [engines]
 smtbmc z3

@@ -57,6 +57,7 @@ module ship(
 `ifdef FORMAL
    reg [4:0]           i;
    always @(posedge i_clk_25MHz) begin
+      // Safety properties: o_ship_x and next_x within bounds
       assert (o_ship_x >= left_limit);
       assert (o_ship_x <= right_limit);
       assert (next_x >= left_limit);
