@@ -66,7 +66,7 @@ module ship(
       // if i_reset is high, then o_ship_x should be equal to reset_position at the next clock edge
       assert property ( i_reset |-> ##1 o_ship_x == reset_position);
       // Ensure the ship moves left or right correctly in response to i_left_debounced or i_right_debounced signals.
-      // Formal verification with tabbyCAD and concurrent SVA made me discover some design flaws, fixed in
+      // Formal verification with tabbyCAD and concurrent SVA made me discover some design flaws, fixed in 441cc76
       assert property ((!i_reset && i_left_debounced == 1 && i_right_debounced == 0 && o_ship_x != left_limit) |-> ##1 o_ship_x == $past(o_ship_x) - 1);
       assert property ((!i_reset && i_right_debounced == 1 && i_left_debounced == 0 && o_ship_x != right_limit) |-> ##1 o_ship_x == $past(o_ship_x) + 1);
       // If both buttons are pressed or no botton is pressed, the ship does not move
