@@ -9,8 +9,7 @@ module ship(
 	          output reg [4:0] o_ship_x
 	          );
 
-   reg [4:0]                 next_x;
-   reg [4:0]                 i;
+   reg [4:0]                 next_x = reset_position;
 
    localparam left_limit = 0;
    localparam reset_position = 5;
@@ -26,34 +25,36 @@ module ship(
 
    always @(*) begin
       if (i_reset == 1) begin
-	       next_x = reset_position;
-	    end
+         next_x = reset_position;
+      end
+      else if (i_left_debounced == 1 && i_right_debounced == 1) begin
+         // If both left and right are pressed, maintain current position
+         next_x = o_ship_x;
+      end
+      else if (i_left_debounced == 1) begin
+         if (o_ship_x > left_limit) begin
+            next_x = o_ship_x - 1;
+         end
+         else begin
+            // If already at left limit, stay or wrap around based on requirements
+            next_x = left_limit;
+         end
+      end
+      else if (i_right_debounced == 1) begin
+         if (o_ship_x < right_limit) begin
+            next_x = o_ship_x + 1;
+         end
+         else begin
+            // If already at right limit, stay or wrap around based on requirements
+            next_x = right_limit;
+         end
+      end
       else begin
-         for(i = left_limit; i <= right_limit; i = i + 1) begin
-            if (i_left_debounced == 1) begin
-               if (i == left_limit) begin
-	                //Left limit
-	                next_x = left_limit;
-               end
-               else begin
-	                next_x = i - 1;
-               end
-            end
-            else if (i_right_debounced == 1) begin
-               if (i == right_limit) begin
-                  //Right limit
-	                next_x = right_limit;
-               end
-               else begin
-	                next_x = i + 1;
-               end
-            end
-            else begin
-	             next_x = i;
-            end // else: !if(i_right_debounced == 1)
-         end // for (i = left_limit; i <= right_limit; i = i + 1)
-      end // else: !if(i_reset == 0)
-   end // always @ (i_reset or i_i_left_debounced or i_right_debounced or i_enable or current_state)
+         // If neither left nor right is debounced, maintain current position
+         next_x = o_ship_x;
+      end
+   end
+
 `ifdef FORMAL
    reg [4:0]           i;
    always @(posedge i_clk_25MHz) begin
@@ -62,11 +63,15 @@ module ship(
       assert (o_ship_x <= right_limit);
       assert (next_x >= left_limit);
       assert (next_x <= right_limit);
-
-      // for (i = 0; i < 20; i++) begin
-      //    cover (o_ship_x == i);
-      // end
-
-   end
+      // if i_reset is high, then o_ship_x should be equal to reset_position at the next clock edge
+      assert property ( i_reset |-> ##1 o_ship_x == reset_position);
+      // Ensure the ship moves left or right correctly in response to i_left_debounced or i_right_debounced signals.
+      // Formal verification with tabbyCAD and concurrent SVA made me discover some design flaws, fixed in
+      assert property ((!i_reset && i_left_debounced == 1 && i_right_debounced == 0 && o_ship_x != left_limit) |-> ##1 o_ship_x == $past(o_ship_x) - 1);
+      assert property ((!i_reset && i_right_debounced == 1 && i_left_debounced == 0 && o_ship_x != right_limit) |-> ##1 o_ship_x == $past(o_ship_x) + 1);
+      // If both buttons are pressed or no botton is pressed, the ship does not move
+      assert property ((!i_reset && i_right_debounced == 1 && i_left_debounced == 1) |-> ##1 o_ship_x == $past(o_ship_x));
+      assert property ((!i_reset && i_right_debounced == 0 && i_left_debounced == 0) |-> ##1 o_ship_x == $past(o_ship_x));
+   end // always @ (posedge i_clk_25MHz)
 `endif
 endmodule
