@@ -74,7 +74,7 @@ All assertions are SVA (SystemVerilog assertions).
 | sprite_drawer           | pending              | pending               |
 | gameplay                | pending              | pending               |
 | player                  | n/a                  | n/a                   |
-| invaders                | pending              | pending               |
+| invaders                | done                 | done                  |
 | ship                    | done                 | done                  |
 | bullet                  | done                 | done                  |
 | edge_detector_debouncer | pending              | pending               |

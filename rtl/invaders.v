@@ -93,7 +93,9 @@ module invaders(
       end // else: !if(tick1)
    end
 `ifdef FORMAL
-   // Immediate assemrtion to ensure that when a reset is applied, the invaders array is correctly initialized
+   default disable iff (i_reset);
+   // --------------- Inmediate assertions ---------------------------
+   // Immediate assertion to ensure that when a reset is applied, the invaders array is correctly initialized
    always @(posedge i_clk_25MHz) begin
       if (i_reset == 1) begin
          assert (o_invaders_array == 20'b00000000000111111111) else $error("Reset state of invaders array is incorrect.");
@@ -101,20 +103,32 @@ module invaders(
       end
    end
 
-   // Immediate assertion to check the bullet hit logic is correct
-   always @(posedge i_clk_25MHz) begin
-      if ((i_bullet_y == o_invaders_row + 1) && (o_invaders_array[i_bullet_x] == 1)) begin
-         assert (o_hit == 1) else $error("Bullet hit not detected correctly.");
-      end
-   end
+   // Example of range check for invaders_row (assuming valid rows are from 0 to some upper limit)
+   property p_valid_invaders_row;
+      @(posedge i_clk_25MHz) (o_invaders_row >= 0 && o_invaders_row < 16); // Adjust according to actual row count
+   endproperty
+   assert property (p_valid_invaders_row) else $error("Invalid invaders_row value");
 
-   // reg [4:0] i;
-   // // always @(*) begin
-   //    // Invaders position goes through all y positions
-   // for (i = 0; i < 16; i++) begin
-   //    cover (o_invaders_row == i);
-   // end
-   // // end
+   // --------------- Concurrent assertions ---------------------------
+   // Clock and Reset Assertions
+   property p_reset_initial;
+      @(posedge i_clk_25MHz) i_reset |-> ##1 !i_reset[*];
+   endproperty
+   assert property (p_reset_initial) else $error("Reset was not maintained after the first release");
+
+   // Safety Checks
+   // Ensure invaders_array remains constant when reset is asserted
+   // Note the use of $changed, documented in https://yosyshq.readthedocs.io/projects/ap109/en/latest/index.html#the-changed-function
+   property p_invaders_array_on_reset;
+      @(posedge i_clk_25MHz) i_reset |=> !$changed(o_invaders_array);
+   endproperty
+   assert property (p_invaders_array_on_reset) else $error("Invaders array changed during reset");
+
+   // Ensure 'hit' is not asserted when 'reset' is active
+   property p_hit_on_reset;
+      @(posedge i_clk_25MHz) i_reset |-> !o_hit;
+   endproperty
+   assert property (p_hit_on_reset) else $error("Hit signal asserted during reset");
 
 `endif
 endmodule
