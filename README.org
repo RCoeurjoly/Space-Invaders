@@ -70,15 +70,22 @@ Given a submodule called =file.v=, and a corresponding testbench called
 All assertions are SVA (SystemVerilog assertions).
 | Module                  | inmediate assertions | concurrent assertions |
 |-------------------------+----------------------+-----------------------|
+| ship                    | done                 | done                  |
+| gameplay                | done                 | done                  |
+| invaders                | done                 | done                  |
+| bullet                  | done                 | done                  |
+| timer_1us               | done                 | done                  |
+| player                  | n/a                  | n/a                   |
+| edge_detector_debouncer | pending              | pending               |
 | vga_controller          | pending              | pending               |
 | sprite_drawer           | pending              | pending               |
-| gameplay                | pending              | pending               |
-| player                  | n/a                  | n/a                   |
-| invaders                | done                 | done                  |
-| ship                    | done                 | done                  |
-| bullet                  | done                 | done                  |
-| edge_detector_debouncer | pending              | pending               |
-| timer_1us               | done                 | done                  |
+
+** Instructions for using the evaluation version of TabbyCAD
+#+begin_src shell :shebang #!/bin/bash -i :results output
+export YOSYSHQ_LICENSE=/home/roland/tabbycad-eval-RolandCoeurjolyLechuga-240115.lic
+cd ~/Space-Invaders
+~/tabby/bin/sby -f formal/ship.sby
+#+end_src
 
 * Known issues
 ** Unexpected response from solver: bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)

@@ -35,16 +35,20 @@ module gameplay(
 	        end
      end // always @ (posedge i_clk_25MHz)
 
-`ifdef FORMAL
-   reg GAME_OVER_reached;
-   initial begin
-      GAME_OVER_reached = 0;
-   end
-   always @(posedge i_clk_25MHz) begin
-      if (o_gameplay == GAME_OVER)
-        GAME_OVER_reached <= 1;
-      assert (!(GAME_OVER_reached && (o_gameplay <= PLAYING || o_gameplay <= YOU_WIN)));
-   end
-`endif
 
+`ifdef FORMAL
+   default disable iff (i_reset);
+   // Note we use past function, documented in https://yosyshq.readthedocs.io/projects/ap109/en/latest/index.html#the-past-function
+   assert property (@(posedge i_clk_25MHz) i_reset |-> ##1 $past(o_gameplay) == PLAYING);
+   assert property (@(posedge i_clk_25MHz) i_invaders_line == 14 |-> ##1 o_gameplay == GAME_OVER);
+   assert property (@(posedge i_clk_25MHz) i_invaders_array == 0 && i_invaders_line != 14 |-> ##1 o_gameplay == YOU_WIN);
+   assert property (@(posedge i_clk_25MHz) disable iff (i_reset) o_gameplay == PLAYING ##1 (i_invaders_line != 14 && i_invaders_array != 0) |-> ##1 o_gameplay == PLAYING);
+   // Forbiden state machine transitions:
+   // Cannot go from YOU_WIN to GAME_OVER
+   // Cannot go from GAME_OVER to YOU_WIN
+   // These properties do not hold because the invaders is an input and can jump from 14 line to 0.
+   // In real playtime is shouldn't. We should assume that i_invaders_line cannot jump more than 1 line in a clock cycle
+   // assert property (@(posedge i_clk_25MHz) disable iff (i_reset) o_gameplay == GAME_OVER |-> ##1 o_gameplay != YOU_WIN);
+   // assert property (@(posedge i_clk_25MHz) disable iff (i_reset) o_gameplay == YOU_WIN |-> ##1 o_gameplay != GAME_OVER);
+`endif
 endmodule

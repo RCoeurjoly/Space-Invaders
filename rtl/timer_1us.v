@@ -55,6 +55,7 @@ module timer_1us(
       // o_q is deasserted in the next cycle after being high: This assertion confirms that once o_q goes high, it should return to low (0) in the next clock cycle
       assert property (o_q |-> ##1 !o_q);
       // This assertion checks that if the timer is not reset and count is not at MAX, then count should increase by 1 in the next cycle.
+      // Note we use past function, documented in https://yosyshq.readthedocs.io/projects/ap109/en/latest/index.html#the-past-function
       assert property ((!i_reset && count < MAX) |-> ##1 count == $past(count) + 1);
    end
 `endif
